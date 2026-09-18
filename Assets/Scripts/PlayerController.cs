@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     float worldWidth;
     private float unitWidth;
 
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
     private Vector3 targetPosition;  // The current destination
     private Vector3 startPosition;  // Where the movement starts
     private float moveDuration = 0.01f; // Time it should take to complete a move
@@ -39,62 +42,39 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-
-        // Handle movement if currently moving
-        if (isMoving)
-        {
-            UpdateMovement();
-        }
     }
 
     void HandleInput()
     {
-        // Check for key inputs and set a new target position
         if (Input.GetKeyDown(KeyCode.Backslash))
         {
-            StartMoving(new Vector3(unitWidth * 3, transform.position.y, transform.position.z));
+            // change only the X axis
+            Vector3 tempPosition = transform.position;
+            tempPosition.x = unitWidth * 3;
+            transform.position = tempPosition;
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket))
         {
-            StartMoving(new Vector3(unitWidth * 1, transform.position.y, transform.position.z));
+            Vector3 tempPosition = transform.position;
+            tempPosition.x = unitWidth * 1;
+            transform.position = tempPosition;
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
-            StartMoving(new Vector3(unitWidth * -1, transform.position.y, transform.position.z));
+            Vector3 tempPosition = transform.position;
+            tempPosition.x = unitWidth * -1;
+            transform.position = tempPosition;
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
-            StartMoving(new Vector3(unitWidth * -3, transform.position.y, transform.position.z));
+            Vector3 tempPosition = transform.position;
+            tempPosition.x = unitWidth * -3;
+            transform.position = tempPosition;
         }
-    }
 
-    void StartMoving(Vector3 newTargetPosition)
-    {
-        // Interrupt the current movement and start a new one
-        startPosition = transform.position;   // Update the startPosition to the current position
-        targetPosition = newTargetPosition;  // Set the new target position
-        moveTimer = 0f;                      // Reset the timer
-        isMoving = true;                     // Make sure we're moving
-    }
-
-    void UpdateMovement()
-    {
-        // Increment the timer
-        moveTimer += Time.deltaTime;
-
-        // Calculate the interpolation factor
-        float t = moveTimer / moveDuration;
-
-        // Smooth interpolation for natural movement
-        t = Mathf.SmoothStep(0, 1, t);
-
-        // Lerp to the target position
-        transform.position = Vector3.Lerp(startPosition, targetPosition, t);
-
-        // Stop moving once the movement is complete
-        if (moveTimer >= moveDuration)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            isMoving = false;
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
     }
 }
