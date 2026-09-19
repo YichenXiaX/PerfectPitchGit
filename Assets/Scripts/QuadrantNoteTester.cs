@@ -23,10 +23,16 @@ public class QuadrantNoteTester : MonoBehaviour
         while (true)
         {
             var preset = GameSettings.Instance.GetCurrentPreset();
+
             int quadrant = Random.Range(0, 4);
             Debug.Log($"--- Triggering sequence for Q{quadrant + 1} ---");
             frequencyManager.PlayNoteSequence(quadrant);
-            yield return new WaitForSeconds(preset.sequenceInterval);
+
+            // Wait for all notes to finish playing
+            float sequenceDuration = preset.notesPerSequence * (preset.noteDuration + preset.pauseBetweenNotes);
+
+            // Then wait the gap before the next sequence
+            //yield return new WaitForSeconds(sequenceDuration + preset.sequenceInterval);
         }
     }
 

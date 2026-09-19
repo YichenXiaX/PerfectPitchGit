@@ -35,6 +35,8 @@ public class FrequencyManager : MonoBehaviour
 
     private GameSettings.LevelPreset Preset => GameSettings.Instance.GetCurrentPreset();
 
+    private Coroutine sequenceCoroutine; //current playing routine
+
     public void PlayNoteSequence(int quadrantIndex)
     {
         if (quadrantIndex < 0 || quadrantIndex >= quadrants.Count)
@@ -60,8 +62,10 @@ public class FrequencyManager : MonoBehaviour
         }
 
         Debug.Log($"=== SEQUENCE START: Quadrant Q{quadrantIndex + 1}, Octave Shift: {selectedOctaveShift} ===");
-        StartCoroutine(PlaySequenceCoroutine(frequencies, quadrantIndex));
+        sequenceCoroutine = StartCoroutine(PlaySequenceCoroutine(frequencies, quadrantIndex)); //start and store the coroutine
     }
+
+
 
     private IEnumerator PlaySequenceCoroutine(List<float> frequencies, int quadrantIndex)
     {
@@ -108,6 +112,18 @@ public class FrequencyManager : MonoBehaviour
         audioSource.pitch = targetFrequency / clipFrequency;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+    //stops the sequence when guessed correctly
+    public void StopSequence()
+    {
+        if (sequenceCoroutine != null)
+        {
+            StopCoroutine(sequenceCoroutine);
+            sequenceCoroutine = null;
+        }
+        audioSource.Stop();
+        audioSource.loop = false;
     }
 
     public void GenerateAndPlayFrequency(int quadrantIndex)
