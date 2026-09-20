@@ -53,12 +53,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        //StartGame();
     }
 
     //kick off the game
     public void StartGame()
     {
+        
+
         var settings = GameSettings.Instance;
         CurrentHealth = settings.maxHealth;
         ConsecutiveCorrectPredictions = 0;
@@ -189,9 +191,9 @@ public class GameManager : MonoBehaviour
     //  Player input hooks
     // ------------------------------------------------------------------
 
-    /// <summary>
-    /// The player picks a quadrant before the comet spawns.
-    /// </summary>
+
+    // The player picks a quadrant before the comet spawns.
+    // Called extenally
     public void OnPlayerPrediction(int quadrant)
     {
         if (roundState != RoundState.Prediction) return;
@@ -202,7 +204,7 @@ public class GameManager : MonoBehaviour
         if (quadrant == currentQuadrant) //correct
         {
             predictionClickTime = decisionTime; // ADDED
-            RecordResult(SequenceOutcome.Predicted, predictionClickTime, decisionTime); // CHANGED ¡ª two time params
+            RecordResult(SequenceOutcome.Predicted, predictionClickTime, decisionTime); //log time
             ConsecutiveCorrectPredictions++;
             roundState = RoundState.Resolved;
 
@@ -222,31 +224,18 @@ public class GameManager : MonoBehaviour
 
 
             StartCoroutine(DelayedSpawnComet(currentQuadrant));
-            //SpawnComet(currentQuadrant);
-            //OnCometSpawn?.Invoke(currentQuadrant);
         }
     }
 
-    /// <summary>
+
     /// The player destroyed the comet with backup ammo.
-    /// </summary>
     public void OnCometDestroyedByPlayer()
     {
         if (roundState != RoundState.CometActive) return;
 
-        //float decisionTime = Time.time - roundStartTime;
-        //float resolvedTime = predictionDecisionTime >= 0 ? predictionDecisionTime : (Time.time - roundStartTime);
+        float resolvedTime = Time.time - roundStartTime;
+        RecordResult(SequenceOutcome.Destroyed, predictionClickTime, resolvedTime); //log time
 
-
-        float resolvedTime = Time.time - roundStartTime; // CHANGED ¡ª was decisionTime
-        RecordResult(SequenceOutcome.Destroyed, predictionClickTime, resolvedTime); // CHANGED ¡ª two time params
-
-
-        //RecordResult(SequenceOutcome.Destroyed, resolvedTime);  // or Hit
-
-
-
-        //RecordResult(SequenceOutcome.Destroyed, decisionTime);
         ConsecutiveCorrectPredictions = 0;
         roundState = RoundState.Resolved;
 
@@ -259,7 +248,7 @@ public class GameManager : MonoBehaviour
         if (roundState != RoundState.CometActive) return;
 
         float resolvedTime = Time.time - roundStartTime;
-        RecordResult(SequenceOutcome.Hit, predictionClickTime, resolvedTime);
+        RecordResult(SequenceOutcome.Hit, predictionClickTime, resolvedTime); //log time
         ConsecutiveCorrectPredictions = 0;
         CurrentHealth--;
         roundState = RoundState.Resolved;
@@ -348,14 +337,16 @@ public class GameManager : MonoBehaviour
     //advance level
     private void CheckLevelAdvancement()
     {
-        var preset = GameSettings.Instance.GetCurrentPreset();
+        if (!GameSettings.Instance.isCustomMode) { //only advance if not in custom mode
+            var preset = GameSettings.Instance.GetCurrentPreset();
 
-        if (ConsecutiveCorrectPredictions >= preset.consecutiveCorrectToAdvance)
-        {
-            GameSettings.Instance.level++;
-            ConsecutiveCorrectPredictions = 0;
-            Debug.Log($"[GameManager] LEVEL UP ¡ú {GameSettings.Instance.level}");
-            OnLevelAdvanced?.Invoke();
+            if (ConsecutiveCorrectPredictions >= preset.consecutiveCorrectToAdvance)
+            {
+                GameSettings.Instance.level++;
+                ConsecutiveCorrectPredictions = 0;
+                Debug.Log($"[GameManager] LEVEL UP ¡ú {GameSettings.Instance.level}");
+                OnLevelAdvanced?.Invoke();
+            }
         }
     }
 

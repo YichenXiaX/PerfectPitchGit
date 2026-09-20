@@ -16,7 +16,7 @@ public class CometBehavior : MonoBehaviour
     void Update()
     {
         // Move the comet downward continuously
-        transform.Translate(Vector3.down * GameSettings.Instance.cometSpeed * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.down * GameSettings.Instance.GetCurrentPreset().cometSpeed * Time.deltaTime, Space.World);
 
         // Rotate the comet circularly on its own center using the random speed
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
