@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     public FrequencyManager frequencyManager;
     public PlayerController playerController;
+    public GameObject OverlayObj;
+    public GameObject starfieldEffect;
+    //public AuraHUD auraHUD;
     //AuraHUD hud = FindObjectOfType<AuraHUD>();
 
     // --- Aura tuning constants ---
     private const float PREDICTION_AURA_K = 5000f;
     private const float COMET_DESTROY_AURA_K = 500f;
-    private const float WRONG_PREDICTION_PENALTY = 300f;
+    private const float WRONG_PREDICTION_PENALTY = 2000f;
     private const float MISSED_SHOT_PENALTY = 300f;
     private const float COMET_HIT_PENALTY = 2000f;
 
@@ -37,8 +40,8 @@ public class GameManager : MonoBehaviour
     public event Action<int> OnRoundStart;            // passes quadrant index
 
     // --- Internal round state ---
-    private enum RoundState { Prediction, CometActive, Resolved }  // state manager
-    private RoundState roundState;
+    public enum RoundState { Prediction, CometActive, Resolved }  // state manager
+    public RoundState roundState;
 
     private List<int> recentQuadrants = new List<int>();
     private int currentQuadrant;
@@ -64,14 +67,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //StartGame();
+        
     }
 
     //kick off the game
     public void StartGame()
     {
-        
-
         var settings = GameSettings.Instance;
         CurrentHealth = settings.maxHealth;
         ConsecutiveCorrectPredictions = 0;
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
         recentQuadrants.Clear();
         Aura = 0f;
         IsGameActive = true;
+        OverlayObj.SetActive(false);
+        starfieldEffect.SetActive(true);
 
         sessionData = new GameSessionData
         {
@@ -232,6 +235,7 @@ public class GameManager : MonoBehaviour
             OnAuraChanged?.Invoke(auraGain);
             Debug.Log($"[Aura] Correct prediction in {decisionTime:F2}s ！ +{auraGain:F0} | Aura: {Aura:F0}");
 
+            //auraHUD.SpawnFloatingText(50);
 
             UpdateXPProgress();
 
@@ -250,13 +254,13 @@ public class GameManager : MonoBehaviour
             ConsecutiveCorrectPredictions = 0;
             roundState = RoundState.CometActive;
 
-            // --- Aura: fixed wrong prediction penalty ---
-            Aura -= WRONG_PREDICTION_PENALTY;
-            OnAuraChanged?.Invoke(-WRONG_PREDICTION_PENALTY);
-            Debug.Log($"[Aura] Wrong prediction ！ -{WRONG_PREDICTION_PENALTY} | Aura: {Aura:F0}");
+            // --- Aura
+            //Aura -= WRONG_PREDICTION_PENALTY;
+            //OnAuraChanged?.Invoke(-WRONG_PREDICTION_PENALTY);
+            //Debug.Log($"[Aura] Wrong prediction ！ -{WRONG_PREDICTION_PENALTY} | Aura: {Aura:F0}");
 
 
-            playerController.SimpleShot();
+            playerController.FailedPredictionShot();
             //frequencyManager.StopSequence();
 
             UpdateXPProgress();
@@ -292,7 +296,7 @@ public class GameManager : MonoBehaviour
 
 
         ConsecutiveCorrectPredictions = 0;
-        roundState = RoundState.Resolved;
+        roundState = RoundState.Resolved; //change state
 
         Debug.Log($"[Round {roundIndex + 1}] Comet destroyed (backup) in {resolvedTime:F2}s");
     }
@@ -312,7 +316,7 @@ public class GameManager : MonoBehaviour
         OnAuraChanged?.Invoke(-COMET_HIT_PENALTY);
         Debug.Log($"[Aura] Comet hit ship ！ -{COMET_HIT_PENALTY} | Aura: {Aura:F0}");
 
-        roundState = RoundState.Resolved;
+        roundState = RoundState.Resolved; //change state
 
         Debug.Log($"[Round {roundIndex + 1}] COMET HIT ！ Health: {CurrentHealth}/{GameSettings.Instance.maxHealth}");
         OnHealthChanged?.Invoke();
@@ -323,15 +327,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void OnPlayerMissedShot()
+    public void OnPlayerFailedPrediction() //called only by FailedPredictionBullet
     {
-        //if (roundState != RoundState.CometActive) return;
-        if (roundState == RoundState.Prediction) return;
-
-        Aura -= MISSED_SHOT_PENALTY;
-        OnAuraChanged?.Invoke(-MISSED_SHOT_PENALTY);
+        Aura -= WRONG_PREDICTION_PENALTY;
+        OnAuraChanged?.Invoke(-WRONG_PREDICTION_PENALTY);
         Debug.Log($"[Aura] Missed shot ！ -{MISSED_SHOT_PENALTY} | Aura: {Aura:F0}");
+    }
+
+
+    public void OnPlayerMissedShot() //called by regular bullets (not the failed prediction one)
+    {
+
+
+
+        //case 1: pass the catcher, correct quadrant, comet still alive
+
+
+        //case 2: don't pass catcher, actual miss
+
+            //case i: wrong prediction -> WRONG_PREDICTION_PENALTY
+
+            //case ii: miss comet -> MISSED_SHOT_PENALTY
+
+
+        if(roundState == RoundState.CometActive && currentQuadrant == playerController.GetPlayerQuadrant())
+        {
+            return;  //could still hit the comet, so ignore the hit
+        }
+        else //apply missed shot penalty
+        {
+            Aura -= MISSED_SHOT_PENALTY;
+            OnAuraChanged?.Invoke(-MISSED_SHOT_PENALTY);
+            ConsecutiveCorrectPredictions = 0;
+            UpdateXPProgress();
+            Debug.Log($"[Aura] Missed shot ！ -{MISSED_SHOT_PENALTY} | Aura: {Aura:F0}");
+        }
+
+
+
+
+
+        //if (roundState != RoundState.CometActive) return;
+        //if (roundState == RoundState.Prediction) return;
+
+
     }
 
     // ------------------------------------------------------------------
@@ -444,6 +483,7 @@ public class GameManager : MonoBehaviour
         IsGameActive = false;
         sessionData.finalLevel = GameSettings.Instance.level;
         sessionData.totalRounds = sessionData.results.Count;
+        starfieldEffect.SetActive(false);
 
         int predicted = 0, destroyed = 0, hit = 0;
         foreach (var r in sessionData.results)
@@ -464,6 +504,45 @@ public class GameManager : MonoBehaviour
         OnGameOver?.Invoke(sessionData);
     }
 
+    public void RestartGame()
+    {
+        // --- Stop everything running ---
+        StopAllCoroutines();
+
+        if (frequencyManager != null)
+            frequencyManager.StopSequence();
+
+        // --- Destroy any active comets ---
+        // Tag your comet prefabs as "Comet" in the inspector for this to work
+        foreach (var go in GameObject.FindGameObjectsWithTag("Comet"))
+            Destroy(go);
+
+        // --- Reset GameSettings level ---
+        if (!GameSettings.Instance.isCustomMode)
+            GameSettings.Instance.level = 0;
+
+        // --- Reset all internal state ---
+        CurrentHealth = GameSettings.Instance.maxHealth;
+        Aura = 0f;
+        ConsecutiveCorrectPredictions = 0;
+        roundIndex = 0;
+        roundState = RoundState.Prediction;
+        predictedQuadrant = -1;
+        predictionClickTime = -1f;
+        cometSpawnTime = -1f;
+        recentQuadrants.Clear();
+        IsGameActive = false;
+
+        // --- Notify UI to reset ---
+        OnHealthChanged?.Invoke();
+        OnAuraChanged?.Invoke(0f);       // delta 0, HUD reads Aura (which is 0)
+        OnXPChanged?.Invoke(0f);         // bar to 0
+        OnLevelAdvanced?.Invoke();       // HUD refreshes level display
+
+        // --- Go ---
+        StartGame();
+    }
+
 
     //getter & setter
     public int GetCurrentHealth()
@@ -473,6 +552,11 @@ public class GameManager : MonoBehaviour
     public void SetCurrentHealth(int newHealth)
     {
         CurrentHealth = newHealth;
+    }
+
+    public RoundState GetRoundState()
+    {
+        return roundState;
     }
 
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class CometBehavior : MonoBehaviour
 {
     private float rotationSpeed; // Speed of rotation (randomized for each comet)
+    public GameObject mothership;
 
     void Start()
     {
@@ -26,7 +27,10 @@ public class CometBehavior : MonoBehaviour
     {
         if (other.CompareTag("Mothership"))
         {
+            other.GetComponent<AudioSource>().Play();
+            other.GetComponent<MothershipMovement>().Hit();
             GameManager.Instance.OnCometHitShip();
+            CometExplosion.Spawn(transform.position, GetComponent<SpriteRenderer>());
             Destroy(gameObject);
         }
     }

@@ -153,6 +153,8 @@ public class SettingsUI : MonoBehaviour
         {
             settings.level = levelDropdown.value;
         }
+
+        //auraHUD.RefreshFromSettings();
     }
 
     // ©¤©¤ slider ranges ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
@@ -164,7 +166,7 @@ public class SettingsUI : MonoBehaviour
         SetSlider(preSpawnDelaySlider, 0f, 5f);
         SetSlider(cometSpeedSlider, 0.5f, 10f);
         SetSlider(cometSpawnDelaySlider, 0f, 3f);
-        SetSlider(pauseBetweenRoundsSlider, 0.5f, 10f);
+        SetSlider(pauseBetweenRoundsSlider, 2f, 10f);
         SetSlider(consecutiveCorrectSlider, 1, 10, true);
         SetSlider(maxHealthSlider, 1, 10, true);
     }
@@ -238,8 +240,8 @@ public class SettingsUI : MonoBehaviour
         SetGroupLocked(sequenceGroup, isCustom);
         SetGroupLocked(timingGroup, isCustom);
         SetGroupLocked(playerGroup, isCustom);
-        SetGroupLocked(progressionGroup, isCustom);
         SetGroupLocked(octaveGroup, isCustom);
+        SetGroupLocked(progressionGroup); //always locks progression
 
         if (!isCustom && settings.levelPresets.Length > 0)
             LoadPresetIntoUI(settings.levelPresets[levelDropdown.value]);
@@ -249,6 +251,12 @@ public class SettingsUI : MonoBehaviour
     {
         group.interactable = unlocked;
         group.alpha = unlocked ? 1f : 0.3f;
+    }
+
+    private void SetGroupLocked(CanvasGroup group) //overloading, always locks progression
+    {
+        group.interactable = false;
+        group.alpha = 0.3f;
     }
 
     // ©¤©¤ level selected ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
@@ -271,8 +279,8 @@ public class SettingsUI : MonoBehaviour
         SetGroupLocked(sequenceGroup, isCustom);
         SetGroupLocked(timingGroup, isCustom);
         SetGroupLocked(playerGroup, isCustom);
-        SetGroupLocked(progressionGroup, isCustom);
         SetGroupLocked(octaveGroup, isCustom);
+        SetGroupLocked(progressionGroup); //always locks progression
 
         if (isCustom)
         {

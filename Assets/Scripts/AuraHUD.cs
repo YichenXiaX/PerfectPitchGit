@@ -46,7 +46,7 @@ public class AuraHUD : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"asdfjaskljdfkljsalkd;fsdad[AuraHUD] xpBarFill is {(xpBarFill == null ? "NULL" : "assigned")}");
+        Debug.Log($"[AuraHUD] xpBarFill is {(xpBarFill == null ? "NULL" : "assigned")}");
 
         if (auraContainer != null)
             originalAuraScale = auraContainer.localScale;
@@ -273,7 +273,16 @@ public class AuraHUD : MonoBehaviour
         if (GameSettings.Instance != null)
         {
             currentLevel = -1;  // force update
-            SetLevel(GameSettings.Instance.level);
+
+            if (GameSettings.Instance.isCustomMode)
+            {
+                if (levelText != null) levelText.text = "X";
+                StartCoroutine(PunchBadgeScale());
+            }
+            else
+            {
+                SetLevel(GameSettings.Instance.level);
+            }
         }
     }
 }

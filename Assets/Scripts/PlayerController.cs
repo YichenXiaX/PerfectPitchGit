@@ -12,13 +12,12 @@ public class PlayerController : MonoBehaviour
     public CelebrationVFX celebrationVFX;
     public LaserBeamVFX laserVFX;
     public GameObject bulletPrefab;
+    public GameObject failedPredictionBulletPrefab; //for the single failed prediction shot
     public Transform firePoint;
     public AudioSource correctLaserSound; //Correct laser sound effect
+    public AudioSource normalLaserSound; //Normal laser sound effect
 
     public TeleportVFX teleportVFX;
-
-
-
 
 
 
@@ -33,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         mainCamera = Camera.main;
 
         if (GameSettings.Instance == null)
@@ -166,9 +166,16 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void FailedPredictionShot() //calls special bullet prefab
+    {
+        GameObject failedPredictionBullet = Instantiate(failedPredictionBulletPrefab, firePoint.position, firePoint.rotation);
+        normalLaserSound.Play();
+    }
+
     public void SimpleShot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        normalLaserSound.Play();
     }
 
 
@@ -180,5 +187,10 @@ public class PlayerController : MonoBehaviour
     public void SetHasPredictedThisRound(bool predicted)
     {
         hasPredictedThisRound = predicted;
+    }
+
+    public int GetPlayerQuadrant()
+    {
+        return currentQuadrant;
     }
 }

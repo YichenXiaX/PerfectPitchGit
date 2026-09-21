@@ -27,7 +27,7 @@ public class DataManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameOver += SaveSession;
+        GameManager.Instance.OnGameOver += SaveSession; //subscribe to OnGameOver, saves data in the end
     }
 
     private void OnDisable()
