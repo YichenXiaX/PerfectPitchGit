@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
 public class GameUIManager : MonoBehaviour
 {
     public static GameUIManager Instance { get; private set; }
@@ -68,8 +69,7 @@ public class GameUIManager : MonoBehaviour
         settingsPanel.SetActive(false);
         startOverlay.SetActive(false);
         gameStarted = true;
-
-        // TODO: hook this up to your GameManager
-        // GameManager.Instance.BeginGame();
     }
 }
+
+*/

@@ -8,9 +8,20 @@ public class PlayerController : MonoBehaviour
     float worldWidth;
     private float unitWidth;
 
+    // In your game manager or wherever you handle correct answers
+    public CelebrationVFX celebrationVFX;
+    public LaserBeamVFX laserVFX;
     public GameObject bulletPrefab;
     public Transform firePoint;
-    
+    public AudioSource correctLaserSound; //Correct laser sound effect
+
+    public TeleportVFX teleportVFX;
+
+
+
+
+
+
 
     private Vector3 targetPosition;  // The current destination
     private Vector3 startPosition;  // Where the movement starts
@@ -62,6 +73,7 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * 3;
             transform.position = tempPosition;
+            MoveShip(tempPosition);
             currentQuadrant = 3;
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket))
@@ -69,6 +81,7 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * 1;
             transform.position = tempPosition;
+            MoveShip(tempPosition);
             currentQuadrant = 2;
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket))
@@ -76,6 +89,7 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * -1;
             transform.position = tempPosition;
+            MoveShip(tempPosition);
             currentQuadrant = 1;
         }
         else if (Input.GetKeyDown(KeyCode.P))
@@ -83,6 +97,7 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * -3;
             transform.position = tempPosition;
+            MoveShip(tempPosition);
             currentQuadrant = 0;
         }
     }
@@ -100,7 +115,7 @@ public class PlayerController : MonoBehaviour
         hasPredictedThisRound = false;
     }
 
-    void HandleShoot()
+    public void HandleShoot()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -114,9 +129,56 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.OnPlayerPrediction(currentQuadrant);
                 Debug.Log($"[Player] Predicted Q{currentQuadrant + 1}");
             }
-
-            // Always fire a bullet (backup ammo handles comet phase)
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            else
+            {
+                SimpleShot();
+            }
         }
+    }
+
+    public void FancyShot()
+    {
+        correctLaserSound.Play(); //play sound effect
+        OnCorrectPrediction();
+    }
+
+    public void OnCorrectPrediction()
+    {
+        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(
+            Camera.main, firePoint.position
+        );
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            celebrationVFX.canvas.GetComponent<RectTransform>(),
+            screenPos,
+            celebrationVFX.canvas.worldCamera,
+            out Vector2 canvasPos
+        );
+
+        celebrationVFX.Play(canvasPos);
+
+        laserVFX.Fire();
+    }
+
+    void MoveShip(Vector3 newPosition)
+    {
+        teleportVFX.Teleport(newPosition);
+    }
+
+
+    public void SimpleShot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+
+    //getters & setters
+    public bool GetHasPredictedThisRound()
+    {
+        return hasPredictedThisRound;
+    }
+    public void SetHasPredictedThisRound(bool predicted)
+    {
+        hasPredictedThisRound = predicted;
     }
 }

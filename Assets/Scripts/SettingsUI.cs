@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class SettingsUI : MonoBehaviour
 {
     public GameObject startOverlay;
     public GameObject settingPanel;
+    public AudioSource audioSource;
+    public GameManager gameManager;
+    public AuraHUD auraHUD;
 
     [Header("Mode")]
     public Toggle presetToggle;
@@ -43,7 +47,7 @@ public class SettingsUI : MonoBehaviour
 
     [Header("Timing")]
     public Slider preSpawnDelaySlider;
-    public TextMeshProUGUI preSpawnDelayValue; // // gap after sequence ends before comet spawns
+    public TextMeshProUGUI preSpawnDelayValue; // gap after sequence ends before comet spawns
     public Slider cometSpeedSlider;
     public TextMeshProUGUI cometSpeedValue;
     public Slider cometSpawnDelaySlider;
@@ -80,6 +84,8 @@ public class SettingsUI : MonoBehaviour
     {
         Initialize();
         LoadSettingsIntoUI();
+        Time.timeScale = 0f;
+        audioSource.Pause();
     }
 
     /// <summary>Call from the X button's OnClick.</summary>
@@ -87,7 +93,10 @@ public class SettingsUI : MonoBehaviour
     {
         Initialize();
         ApplySettings();
+        Time.timeScale = 1f;
+        auraHUD.RefreshFromSettings();
         settingPanel.SetActive(false);
+        audioSource.UnPause();
     }
 
     /// <summary>Call from the Gear button's OnClick.</summary>
@@ -116,6 +125,12 @@ public class SettingsUI : MonoBehaviour
         settings.playerName = playerNameInput.text;
         settings.leftHanded = leftHandedToggle.isOn;
         settings.maxHealth = (int)maxHealthSlider.value;
+
+        if(settings.maxHealth < gameManager.GetCurrentHealth())
+        {
+            gameManager.SetCurrentHealth(settings.maxHealth);
+        }
+
         settings.cometSpawnDelay = cometSpawnDelaySlider.value;
 
         if (isCustom)
@@ -233,7 +248,7 @@ public class SettingsUI : MonoBehaviour
     private void SetGroupLocked(CanvasGroup group, bool unlocked)
     {
         group.interactable = unlocked;
-        group.alpha = unlocked ? 1f : 0.5f;
+        group.alpha = unlocked ? 1f : 0.3f;
     }
 
     // ©¤©¤ level selected ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤

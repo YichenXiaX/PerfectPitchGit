@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
+    //public GameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +24,11 @@ public class BulletBehavior : MonoBehaviour
             GameManager.Instance.OnCometDestroyedByPlayer();
             Destroy(other.gameObject);
             Destroy(gameObject);
-            
+        }
+        if (other.CompareTag("BulletCatcher"))
+        {
+            GameManager.Instance.OnPlayerMissedShot();
+            Destroy(gameObject);
         }
     }
 }
