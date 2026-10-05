@@ -3,6 +3,7 @@ using UnityEngine;
 public class CometBehavior : MonoBehaviour
 {
     private float rotationSpeed; // Speed of rotation (randomized for each comet)
+    private float fixedX; // store the spawn X
     public GameObject mothership;
 
     void Start()
@@ -12,12 +13,17 @@ public class CometBehavior : MonoBehaviour
 
         // Optionally, set a random starting rotation angle for variety
         transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
+        fixedX = transform.position.x; //locks the x axis
     }
 
     void Update()
     {
+        Vector3 pos = transform.position;
         // Move the comet downward continuously
-        transform.Translate(Vector3.down * GameSettings.Instance.GetCurrentPreset().cometSpeed * Time.deltaTime, Space.World);
+        pos.y -= GameSettings.Instance.GetCurrentPreset().cometSpeed * Time.deltaTime;
+        pos.x = fixedX; // no horizontal drift ever
+        transform.position = pos;
 
         // Rotate the comet circularly on its own center using the random speed
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);

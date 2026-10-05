@@ -29,9 +29,27 @@ public class FrequencyManager : MonoBehaviour
 
     private int selectedOctaveShift = 0;
 
+     
+
     [Header("Audio")]
     public AudioSource audioSource;
     public List<AudioClip> pianoSamples;
+
+
+    [Header("Fade Settings")]                          // ◄◄◄ NEW
+    [Tooltip("Duration of the fade-out in seconds")]   // ◄◄◄ NEW
+    public float fadeDuration = 0.15f;                 // ◄◄◄ NEW
+
+    [Header("Loudness Compensation")]                                    // ◄◄◄ NEW
+    [Range(0f, 1f)]                                                      // ◄◄◄ NEW
+    [Tooltip("Minimum volume floor for extreme low/high notes")]         // ◄◄◄ NEW
+    public float minCompensationVolume = 0.15f;                          // ◄◄◄ NEW
+
+    [Range(0f, 1f)]                                                      // ◄◄◄ NEW
+    [Tooltip("Master volume applied after compensation")]                // ◄◄◄ NEW
+    public float masterVolume = 0.8f;                                    // ◄◄◄ NEW
+
+    private float currentNoteVolume = 1f; // tracks the compensated volume for fading // ◄◄◄ NEW
 
     private GameSettings.LevelPreset Preset => GameSettings.Instance.GetCurrentPreset();
 
@@ -87,12 +105,18 @@ public class FrequencyManager : MonoBehaviour
                           $"Octave: {selectedOctaveShift} | " +
                           $"Target: {freq:F2} Hz | " +
                           $"Sample: {closestClip.name} Hz | " +
-                          $"Pitch Adjust: {pitchRatio:F4}");
+                          $"Pitch Adjust: {pitchRatio:F4} | " +
+                          $"Volume: {currentNoteVolume:F3}");
 
                 PlayClipAtFrequency(closestClip, freq);
-                yield return new WaitForSeconds(preset.noteDuration);
-                audioSource.Stop();
-                audioSource.loop = false;
+
+                // Sustain then fade, all within noteDuration
+                float sustainTime = Mathf.Max(0f, preset.noteDuration - fadeDuration);
+                float actualFade = Mathf.Min(fadeDuration, preset.noteDuration);
+
+                yield return new WaitForSeconds(sustainTime);
+                yield return StartCoroutine(FadeOutOverDuration(actualFade));
+
                 yield return new WaitForSeconds(preset.pauseBetweenNotes);
             }
         }
@@ -108,11 +132,43 @@ public class FrequencyManager : MonoBehaviour
             return;
         }
 
+
+        // ◄◄◄ NEW: compute equal loudness compensation
+        //float compensation = PianoLoudnessCompensation.GetVolumeMultiplier(
+        //  targetFrequency, minCompensationVolume);
+
+        float compensation = PianoLoudnessCompensation.GetVolumeMultiplier(targetFrequency);
+        currentNoteVolume = Mathf.Clamp01(masterVolume * compensation);
+
+        currentNoteVolume = masterVolume * compensation;
+        // ◄◄◄ END NEW
+
         audioSource.clip = clip;
         audioSource.pitch = targetFrequency / clipFrequency;
+        audioSource.volume = currentNoteVolume;            // ◄◄◄ CHANGED: was implicitly 1.0
         audioSource.loop = true;
         audioSource.Play();
     }
+
+    private IEnumerator FadeOutOverDuration(float duration)
+    {
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t);
+            yield return null;
+        }
+
+        audioSource.volume = 0f;
+        audioSource.Stop();
+        audioSource.loop = false;
+        audioSource.volume = currentNoteVolume; // restore for next note
+    }
+
 
     //stops the sequence when guessed correctly
     public void StopSequence()
@@ -150,7 +206,8 @@ public class FrequencyManager : MonoBehaviour
         if (closestClip != null)
         {
             PlayClipAtFrequency(closestClip, finalFrequency);
-            StartCoroutine(StopAudioAfterDuration(preset.noteDuration));
+            //StartCoroutine(StopAudioAfterDuration(preset.noteDuration));
+            StartCoroutine(FadeOutAfterDuration(preset.noteDuration));  // ◄◄◄ CHANGED: was StopAudioAfterDuration
         }
     }
 
@@ -175,11 +232,13 @@ public class FrequencyManager : MonoBehaviour
         return closestClip;
     }
 
-    private IEnumerator StopAudioAfterDuration(float duration)
+    private IEnumerator FadeOutAfterDuration(float duration)
     {
-        yield return new WaitForSeconds(duration);
-        audioSource.Stop();
-        audioSource.loop = false;
+        float sustainTime = Mathf.Max(0f, duration - fadeDuration);
+        float actualFade = Mathf.Min(fadeDuration, duration);
+
+        yield return new WaitForSeconds(sustainTime);
+        yield return StartCoroutine(FadeOutOverDuration(actualFade));
     }
 
     private float ApplyOctaveShift(float frequency, int octaveShift)

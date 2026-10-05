@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject OverlayObj;
     public GameObject starfieldEffect;
+    public ToneCloudPlayer toneCloud;   // assign in Inspector
+    public float cloudDuration = 2f;    // how long the cloud plays between loops
     //public AuraHUD auraHUD;
     //AuraHUD hud = FindObjectOfType<AuraHUD>();
 
@@ -68,6 +70,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         
+    }
+
+    private void Update()
+    {
+        Debug.Log("current state: " + roundState);
     }
 
     //kick off the game
@@ -140,10 +147,10 @@ public class GameManager : MonoBehaviour
             if (roundState == RoundState.Resolved)
             {
                 frequencyManager.StopSequence();
-                
-                
 
-                yield return new WaitForSeconds(preset.pauseBetweenRounds);
+                toneCloud.PlayToneCloud(cloudDuration);
+                yield return new WaitForSeconds(cloudDuration + preset.pauseBetweenRounds);
+
                 roundIndex++;
                 continue;
             }
@@ -202,7 +209,8 @@ public class GameManager : MonoBehaviour
                 yield break;
             }
 
-            yield return new WaitForSeconds(preset.pauseBetweenRounds);
+            toneCloud.PlayToneCloud(cloudDuration);
+            yield return new WaitForSeconds(cloudDuration + preset.pauseBetweenRounds);
             roundIndex++;
         }
     }
@@ -481,7 +489,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         IsGameActive = false;
-        sessionData.finalLevel = GameSettings.Instance.level;
+        sessionData.finalLevel = GameSettings.Instance.level + 1;
         sessionData.totalRounds = sessionData.results.Count;
         starfieldEffect.SetActive(false);
 
