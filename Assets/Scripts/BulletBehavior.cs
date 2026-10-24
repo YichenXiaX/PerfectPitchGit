@@ -27,7 +27,7 @@ public class BulletBehavior : MonoBehaviour
         }
         if (other.CompareTag("BulletCatcher"))
         {
-            GameManager.Instance.OnPlayerMissedShot();
+            //GameManager.Instance.OnPlayerMissedShot(); -----> no longer evokes penalty
         }
         if (other.CompareTag("BulletDestroyer"))
         {

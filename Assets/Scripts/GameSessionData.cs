@@ -13,6 +13,7 @@ public class SequenceResult
     public int roundIndex;
     public int correctQuadrant;
     public int predictedQuadrant;   // -1 if no prediction was attempted
+    public int secondGuessQuadrant;
     public int level;
     public float predictionTime;  // when they pressed F (-1 if they never did)
     public float resolvedTime;    // when the round actually ended
@@ -26,6 +27,7 @@ public class GameSessionData
     public string playerName;
     public string sessionId;
     public long sessionStartTimestamp;
+    public float secondGuessSuccessRate;
     public int finalLevel;
     public int totalRounds;
     public int totalPredictions;

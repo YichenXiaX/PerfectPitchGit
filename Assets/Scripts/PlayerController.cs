@@ -132,6 +132,11 @@ public class PlayerController : MonoBehaviour
             else
             {
                 SimpleShot();
+                // --- Second-guess check ---
+                if (GameManager.Instance.IsSecondGuessWindow)
+                {
+                    GameManager.Instance.OnSecondGuess(currentQuadrant);
+                }
             }
         }
     }

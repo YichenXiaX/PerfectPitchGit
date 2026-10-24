@@ -5,14 +5,14 @@ using System.Collections.Generic;
 public class ToneCloudPlayer : MonoBehaviour
 {
     [Header("Cloud Settings")]
-    public float toneGain = 0.15f;
-    public float toneFadeIn = 0.005f;
-    public float toneDuration = 0.1f;
+    public float toneGain = 0.06f;
+    public float toneFadeIn = 0.03f;
+    public float toneDuration = 0.2f;
     public float baseFrequency = 440f;
     public float pulseRate = 3f;     // steady 440 Hz tones per second
-    public float randomRate = 15f;    // scattered tones per second
-    public float minOctaveOffset = 0.5f;
-    public float maxOctaveOffset = 2.5f;
+    public float randomRate = 8f;    // scattered tones per second
+    public float minOctaveOffset = 0.3f;
+    public float maxOctaveOffset = 1.5f;
 
     // ©¤©¤ internal ©¤©¤
 
@@ -124,7 +124,7 @@ public class ToneCloudPlayer : MonoBehaviour
                     tone.phase += tone.frequency * dt;
                     if (tone.phase >= 1.0) tone.phase -= (int)tone.phase;
                     float wave = tone.phase < 0.5 ? 1f : -1f;
-
+                    //float wave = Mathf.Sin((float)(tone.phase * 2.0 * System.Math.PI));
                     mix += wave * env;
                 }
 

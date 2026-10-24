@@ -46,8 +46,8 @@ public class SettingsUI : MonoBehaviour
     public Toggle octavePos5;
 
     [Header("Timing")]
-    public Slider preSpawnDelaySlider;
-    public TextMeshProUGUI preSpawnDelayValue; // gap after sequence ends before comet spawns
+    public Slider predictionWindowSlider;
+    public TextMeshProUGUI predictionWindowValue; // gap after sequence ends before comet spawns
     public Slider cometSpeedSlider;
     public TextMeshProUGUI cometSpeedValue;
     public Slider cometSpawnDelaySlider;
@@ -131,7 +131,7 @@ public class SettingsUI : MonoBehaviour
             gameManager.SetCurrentHealth(settings.maxHealth);
         }
 
-        settings.cometSpawnDelay = cometSpawnDelaySlider.value;
+        //settings.cometSpawnDelay = cometSpawnDelaySlider.value;
 
         if (isCustom)
         {
@@ -141,7 +141,8 @@ public class SettingsUI : MonoBehaviour
                 notesPerSequence = (int)notesPerSequenceSlider.value,
                 noteDuration = noteDurationSlider.value,
                 pauseBetweenNotes = pauseBetweenNotesSlider.value,
-                preSpawnDelay = preSpawnDelaySlider.value,
+                predictionWindow = predictionWindowSlider.value,
+                cometSpawnDelay = cometSpawnDelaySlider.value,
                 cometSpeed = cometSpeedSlider.value,
                 pauseBetweenRounds = pauseBetweenRoundsSlider.value,
                 consecutiveCorrectToAdvance = (int)consecutiveCorrectSlider.value,
@@ -160,15 +161,15 @@ public class SettingsUI : MonoBehaviour
     // ©¤©¤ slider ranges ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
     private void ConfigureSliders()
     {
-        SetSlider(notesPerSequenceSlider, 1, 12, true);
+        SetSlider(notesPerSequenceSlider, 1, 100, true);
         SetSlider(noteDurationSlider, 0.1f, 3f);
         SetSlider(pauseBetweenNotesSlider, 0f, 1f);
-        SetSlider(preSpawnDelaySlider, 0f, 5f);
+        SetSlider(predictionWindowSlider, 3f, 15f);
         SetSlider(cometSpeedSlider, 0.5f, 10f);
         SetSlider(cometSpawnDelaySlider, 0f, 3f);
         SetSlider(pauseBetweenRoundsSlider, 2f, 10f);
-        SetSlider(consecutiveCorrectSlider, 1, 10, true);
-        SetSlider(maxHealthSlider, 1, 10, true);
+        SetSlider(consecutiveCorrectSlider, 1, 100, true);
+        SetSlider(maxHealthSlider, 1, 300, true);
     }
 
     private void SetSlider(Slider s, float min, float max, bool whole = false)
@@ -193,8 +194,8 @@ public class SettingsUI : MonoBehaviour
             noteDurationValue.text = v.ToString("F2") + "s");
         pauseBetweenNotesSlider.onValueChanged.AddListener(v =>
             pauseBetweenNotesValue.text = v.ToString("F2") + "s");
-        preSpawnDelaySlider.onValueChanged.AddListener(v =>
-            preSpawnDelayValue.text = v.ToString("F1") + "s");
+        predictionWindowSlider.onValueChanged.AddListener(v =>
+            predictionWindowValue.text = v.ToString("F1") + "s");
         cometSpeedSlider.onValueChanged.AddListener(v =>
             cometSpeedValue.text = v.ToString("F1"));
         cometSpawnDelaySlider.onValueChanged.AddListener(v =>
@@ -295,7 +296,7 @@ public class SettingsUI : MonoBehaviour
         playerNameInput.text = settings.playerName;
         leftHandedToggle.isOn = settings.leftHanded;
         maxHealthSlider.value = settings.maxHealth;
-        cometSpawnDelaySlider.value = settings.cometSpawnDelay;
+        //cometSpawnDelaySlider.value = settings.cometSpawnDelay;
 
         presetToggle.onValueChanged.AddListener(OnModeChanged);
     }
@@ -305,7 +306,8 @@ public class SettingsUI : MonoBehaviour
         notesPerSequenceSlider.value = preset.notesPerSequence;
         noteDurationSlider.value = preset.noteDuration;
         pauseBetweenNotesSlider.value = preset.pauseBetweenNotes;
-        preSpawnDelaySlider.value = preset.preSpawnDelay;
+        predictionWindowSlider.value = preset.predictionWindow;
+        cometSpawnDelaySlider.value = preset.cometSpawnDelay;
         cometSpeedSlider.value = preset.cometSpeed;
         pauseBetweenRoundsSlider.value = preset.pauseBetweenRounds;
         consecutiveCorrectSlider.value = preset.consecutiveCorrectToAdvance;

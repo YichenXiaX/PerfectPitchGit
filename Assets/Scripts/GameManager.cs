@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject OverlayObj;
     public GameObject starfieldEffect;
+    public GameObject mothership;
     public ToneCloudPlayer toneCloud;   // assign in Inspector
     public float cloudDuration = 2f;    // how long the cloud plays between loops
     //public AuraHUD auraHUD;
@@ -26,10 +27,15 @@ public class GameManager : MonoBehaviour
 
 
     // --- Public read-only state ---
-    public int CurrentHealth { get; private set; }
+    public float CurrentHealth;
     public float Aura { get; private set; }
     public int ConsecutiveCorrectPredictions { get; private set; }
     public bool IsGameActive { get; private set; }
+
+    // --- Second-guess tracking ---
+    public bool IsSecondGuessWindow { get; private set; }
+    private int secondGuessQuadrant = -1;
+    private bool secondGuessRecorded = false;
 
     // --- Events for other systems (comet spawner, UI, effects) ---
     public event Action<int> OnCometSpawn;            // passes quadrant index
@@ -74,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("current state: " + roundState);
+        CheckHealth();
     }
 
     //kick off the game
@@ -82,6 +88,10 @@ public class GameManager : MonoBehaviour
     {
         var settings = GameSettings.Instance;
         CurrentHealth = settings.maxHealth;
+        //HealthBar.Instance.Initialize(CurrentHealth);
+
+        HealthBar.Instance.Initialize(settings.maxHealth);
+
         ConsecutiveCorrectPredictions = 0;
         roundIndex = 0;
         recentQuadrants.Clear();
@@ -123,6 +133,9 @@ public class GameManager : MonoBehaviour
             roundStartTime = Time.time;
             predictionClickTime = -1f;
             cometSpawnTime = -1f;
+            IsSecondGuessWindow = false;
+            secondGuessQuadrant = -1;
+            secondGuessRecorded = false;
 
 
             Debug.Log($"[Round {roundIndex + 1}] Q{currentQuadrant + 1} | Level {GameSettings.Instance.level}");
@@ -132,9 +145,11 @@ public class GameManager : MonoBehaviour
             frequencyManager.PlayNoteSequence(currentQuadrant);
 
             // 4 ！ Prediction window = sequence length + preSpawnDelay
-            float sequenceDuration = preset.notesPerSequence
-                                     * (preset.noteDuration + preset.pauseBetweenNotes);
-            float predictionWindow = sequenceDuration + preset.preSpawnDelay;
+            //float sequenceDuration = preset.notesPerSequence
+            //                         * (preset.noteDuration + preset.pauseBetweenNotes);
+            //float predictionWindow = sequenceDuration + preset.preSpawnDelay;
+
+            float predictionWindow = preset.predictionWindow;
 
             float elapsed = 0f;
             while (elapsed < predictionWindow && roundState == RoundState.Prediction)
@@ -160,7 +175,7 @@ public class GameManager : MonoBehaviour
             {
                 // Timed out with no input at all
                 roundState = RoundState.CometActive;
-                frequencyManager.StopSequence();
+                //frequencyManager.StopSequence();
                 ConsecutiveCorrectPredictions = 0;  
                 UpdateXPProgress(); //○ reset bar when player didn't even try
                 Debug.Log($"[Round {roundIndex + 1}] No prediction ！ spawning comet");
@@ -169,35 +184,7 @@ public class GameManager : MonoBehaviour
             }
             // If roundState is already CometActive, a wrong prediction triggered the spawn
 
-            /*
-            // 6 ！ Comet phase ！ wait for destruction or impact
-            float cometElapsed = 0f;
-            while (cometElapsed < preset.cometTravelTime && roundState == RoundState.CometActive)
-            {
-                cometElapsed += Time.deltaTime;
-                yield return null;
-            }
 
-            // 7 ！ Comet reached the mothership
-            if (roundState == RoundState.CometActive)
-            {
-                //float decisionTime = Time.time - roundStartTime;
-                //RecordResult(SequenceOutcome.Hit, decisionTime);
-                float resolvedTime = Time.time - roundStartTime; // CHANGED ！ was decisionTime
-                RecordResult(SequenceOutcome.Hit, predictionClickTime, resolvedTime); // CHANGED ！ added two time params
-                ConsecutiveCorrectPredictions = 0;
-                CurrentHealth--;
-
-                Debug.Log($"[Round {roundIndex + 1}] COMET HIT ！ Health: {CurrentHealth}/{GameSettings.Instance.maxHealth}");
-                OnHealthChanged?.Invoke();
-
-                if (CurrentHealth <= 0)
-                {
-                    EndGame();
-                    yield break;
-                }
-            }
-            */
 
             while (roundState == RoundState.CometActive)
             {
@@ -317,7 +304,7 @@ public class GameManager : MonoBehaviour
         float resolvedTime = Time.time - roundStartTime;
         RecordResult(SequenceOutcome.Hit, predictionClickTime, resolvedTime); //log time
         ConsecutiveCorrectPredictions = 0;
-        CurrentHealth--;
+        CurrentHealth -= 100;
 
         // --- Aura: big fixed penalty ---
         Aura -= COMET_HIT_PENALTY;
@@ -331,6 +318,7 @@ public class GameManager : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
+            frequencyManager.StopSequence();
             EndGame();
         }
     }
@@ -404,11 +392,47 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private IEnumerator DelayedSpawnComet(int quadrant) //after player misses
+    //private IEnumerator DelayedSpawnComet(int quadrant) //after player misses
+    //{
+    //    yield return new WaitForSeconds(GameSettings.Instance.cometSpawnDelay); //in this delay, we check if players make meaningful second guesses
+    //    SpawnComet(quadrant); //comet spawns
+    //}
+
+    private IEnumerator DelayedSpawnComet(int quadrant)
     {
-        yield return new WaitForSeconds(GameSettings.Instance.cometSpawnDelay);
+        // Open the second-guess window
+        IsSecondGuessWindow = true;
+        secondGuessQuadrant = -1;
+        secondGuessRecorded = false;
+
+        yield return new WaitForSeconds(GameSettings.Instance.GetCurrentPreset().cometSpawnDelay);
+
+        // Close the window
+        IsSecondGuessWindow = false;
+
         SpawnComet(quadrant);
     }
+
+
+    public void OnSecondGuess(int quadrant)
+    {
+        if (!IsSecondGuessWindow || secondGuessRecorded) return;
+
+        secondGuessQuadrant = quadrant;
+        secondGuessRecorded = true;
+
+        bool correct = (quadrant == currentQuadrant);
+
+        Debug.Log($"[Round {roundIndex + 1}] Second guess: Q{quadrant + 1} ！ " +
+                  $"{(correct ? "CORRECT" : "WRONG")} (actual Q{currentQuadrant + 1})");
+
+        // TODO: record secondGuessQuadrant and correct into your SequenceResult / session data
+        // e.g. you could add fields to SequenceResult like:
+        //   public int secondGuessQuadrant;
+        //   public bool secondGuessCorrect;
+        // and write them in RecordResult or at comet resolution time
+    }
+
 
     private void SpawnComet(int quadrant)
     {
@@ -424,7 +448,13 @@ public class GameManager : MonoBehaviour
         float x = unitWidth * (-3 + quadrant * 2);
 
         Vector3 spawnPos = new Vector3(x, GameSettings.Instance.cometSpawnY, 0f);
-        Instantiate(GameSettings.Instance.cometPrefabs[quadrant], spawnPos, Quaternion.identity);
+        var cometInstance = Instantiate(GameSettings.Instance.cometPrefabs[quadrant], spawnPos, Quaternion.identity);
+
+        var radioDamage = cometInstance.GetComponent<RadioactiveDamage>();
+        if (radioDamage != null)
+        {
+            radioDamage.Initialize(mothership.transform); // pass the mothership, not the player
+        }
     }
 
     private void RecordResult(SequenceOutcome outcome, float predictionTime, float resolvedTime)
@@ -434,8 +464,8 @@ public class GameManager : MonoBehaviour
             roundIndex = this.roundIndex,
             correctQuadrant = currentQuadrant,
             predictedQuadrant = predictedQuadrant,
+            secondGuessQuadrant = this.secondGuessQuadrant,
             level = GameSettings.Instance.level,
-            //decisionTime = decisionTime,
             predictionTime = predictionTime,   // CHANGED ！ was decisionTime
             resolvedTime = resolvedTime,       // ADDED
             outcome = outcome.ToString(),
@@ -486,6 +516,16 @@ public class GameManager : MonoBehaviour
         OnXPChanged?.Invoke(Mathf.Clamp01(progress));
     }
 
+    private void CheckHealth()
+    {
+        if (CurrentHealth <= 0)
+        {
+            frequencyManager.StopSequence();
+            Time.timeScale = 0f;
+            EndGame();
+        }
+    }
+
     private void EndGame()
     {
         IsGameActive = false;
@@ -494,20 +534,38 @@ public class GameManager : MonoBehaviour
         starfieldEffect.SetActive(false);
 
         int predicted = 0, destroyed = 0, hit = 0;
+        int secondGuessAttempts = 0, secondGuessCorrect = 0;
+
         foreach (var r in sessionData.results)
         {
             if (r.outcome == SequenceOutcome.Predicted.ToString()) predicted++;
             else if (r.outcome == SequenceOutcome.Destroyed.ToString()) destroyed++;
             else if (r.outcome == SequenceOutcome.Hit.ToString()) hit++;
+
+            // TODO: check r.secondGuessQuadrant or however you store it
+            // A value of -1 means no second guess was made
+            if (r.secondGuessQuadrant >= 0)
+            {
+                secondGuessAttempts++;
+                if (r.secondGuessQuadrant == r.correctQuadrant) secondGuessCorrect++;
+            }
         }
+
         sessionData.totalPredictions = predicted;
         sessionData.totalDestroys = destroyed;
         sessionData.totalHits = hit;
+
+        float secondGuessRate = secondGuessAttempts > 0
+            ? (float)secondGuessCorrect / secondGuessAttempts * 100f
+            : 0f;
+
+        sessionData.secondGuessSuccessRate = secondGuessRate;
 
         Debug.Log("=== GAME OVER ===");
         Debug.Log($"Player: {sessionData.playerName} | Final Level: {sessionData.finalLevel}");
         Debug.Log($"Rounds: {sessionData.totalRounds} | " +
                   $"Predicted: {predicted} | Destroyed: {destroyed} | Hit: {hit}");
+        Debug.Log($"Second Guesses: {secondGuessCorrect}/{secondGuessAttempts} ({secondGuessRate:F1}%)");
 
         OnGameOver?.Invoke(sessionData);
     }
@@ -531,6 +589,7 @@ public class GameManager : MonoBehaviour
 
         // --- Reset all internal state ---
         CurrentHealth = GameSettings.Instance.maxHealth;
+        //HealthBar.Instance.Initialize(CurrentHealth);
         Aura = 0f;
         ConsecutiveCorrectPredictions = 0;
         roundIndex = 0;
@@ -540,6 +599,9 @@ public class GameManager : MonoBehaviour
         cometSpawnTime = -1f;
         recentQuadrants.Clear();
         IsGameActive = false;
+        IsSecondGuessWindow = false;
+        secondGuessQuadrant = -1;
+        secondGuessRecorded = false;
 
         // --- Notify UI to reset ---
         OnHealthChanged?.Invoke();
@@ -553,7 +615,7 @@ public class GameManager : MonoBehaviour
 
 
     //getter & setter
-    public int GetCurrentHealth()
+    public float GetCurrentHealth()
     {
         return CurrentHealth;
     }

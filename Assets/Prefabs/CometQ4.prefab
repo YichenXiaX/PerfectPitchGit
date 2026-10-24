@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1780010464267023965}
   - component: {fileID: 2321643456463113967}
   - component: {fileID: 5466571859917034204}
+  - component: {fileID: 8906852467893445090}
+  - component: {fileID: 2593366844596947578}
   m_Layer: 0
   m_Name: CometQ4
   m_TagString: Comet
@@ -166,3 +168,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666339d558ccb7740be491b6745718f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mothership: {fileID: 0}
+--- !u!114 &8906852467893445090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8418592691367397970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4ed494e64c94b47a0e081e5daac4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamagePerSecond: 5
+  maxDamageMultiplier: 3
+--- !u!114 &2593366844596947578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8418592691367397970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e610d34330e134abddc8b36c2b3754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAutoColor: 1
+  sparkColor: {r: 0.4, g: 1, b: 0.3, a: 1}
+  vaporColor: {r: 0, g: 0.85, b: 0.3, a: 0.15}
+  glowColor: {r: 0, g: 1, b: 0.4, a: 1}
+  sparkRate: 30
+  vaporRate: 10
+  glowIntensity: 1.5
+  glowRange: 8
+  sparkSaturationBoost: 0.2
+  sparkBrightnessBoost: 0.3
+  vaporAlpha: 0.15

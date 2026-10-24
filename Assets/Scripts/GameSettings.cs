@@ -12,9 +12,9 @@ public class GameSettings : MonoBehaviour
         public float noteDuration = 0.95f;
         public float pauseBetweenNotes = 0.15f;
         public int[] octaveShifts = { 0 };
-        public float preSpawnDelay = 3f;   // gap after sequence ends before comet spawns (time for players to think)
+        public float predictionWindow = 8f;
+        public float cometSpawnDelay = 3;
         public float cometSpeed = 2f;
-        //public float responseWindow = 5f;
         public int consecutiveCorrectToAdvance = 3;
         public float pauseBetweenRounds = 2f;
     }
@@ -28,7 +28,7 @@ public class GameSettings : MonoBehaviour
     public bool leftHanded;
 
     [Header("Health")]
-    public int maxHealth = 3;
+    public int maxHealth = 100;
 
     [Header("Current Level")]
     public int level;
@@ -39,7 +39,10 @@ public class GameSettings : MonoBehaviour
     [Header("Comets")]
     public GameObject[] cometPrefabs = new GameObject[4];   // one per quadrant
     public float cometSpawnY = 5f;  // top of screen
-    public float cometSpawnDelay = 0.5f; //gap after player mispredicts before comet spawns
+    //public float cometSpawnDelay = 0.5f; //gap after player mispredicts before comet spawns
+
+
+
     //public float cometSpeed = 2f;
 
     //[Header("General")]
