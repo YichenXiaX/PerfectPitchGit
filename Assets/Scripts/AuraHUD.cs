@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class AuraHUD : MonoBehaviour
+public class auraHud : MonoBehaviour
 {
     [Header("UI References (assign in inspector)")]
     public TextMeshProUGUI auraText;
@@ -38,15 +38,15 @@ public class AuraHUD : MonoBehaviour
     int displayedAura = 0;
     float targetAura = 0;
     int currentLevel = -1;
-    float currentXPPercent = 0f;
-    float displayedXP = 0f;
+    float currentXpPercent = 0f;
+    float displayedXp = 0f;
     Vector3 originalAuraScale;
     Vector3 originalBadgeScale;
     Color originalAuraTextColor;
 
     void Start()
     {
-        Debug.Log($"[AuraHUD] xpBarFill is {(xpBarFill == null ? "NULL" : "assigned")}");
+        Debug.Log($"[auraHud] xpBarFill is {(xpBarFill == null ? "NULL" : "assigned")}");
 
         if (auraContainer != null)
             originalAuraScale = auraContainer.localScale;
@@ -60,26 +60,26 @@ public class AuraHUD : MonoBehaviour
             auraText.text = "0";
         }
 
-        if (GameSettings.Instance != null)
-            SetLevel(GameSettings.Instance.level);
+        if (gameSettings.instance != null)
+            setLevel(gameSettings.instance.level);
         else
-            SetLevel(0);
+            setLevel(0);
 
         // Subscribe to the delta event
-        if (GameManager.Instance != null) {
-            GameManager.Instance.OnAuraChanged += HandleAuraChanged;
-            GameManager.Instance.OnLevelAdvanced += HandleLevelUp;
-            GameManager.Instance.OnXPChanged += HandleXPChanged;
+        if (gameManager.instance != null) {
+            gameManager.instance.onAuraChanged += handleAuraChanged;
+            gameManager.instance.onLevelAdvanced += handleLevelUp;
+            gameManager.instance.onXpChanged += handleXpChanged;
         }
     }
 
     void OnDestroy()
     {
-        if (GameManager.Instance != null)
+        if (gameManager.instance != null)
         {
-            GameManager.Instance.OnAuraChanged -= HandleAuraChanged;
-            GameManager.Instance.OnLevelAdvanced -= HandleLevelUp;
-            GameManager.Instance.OnXPChanged -= HandleXPChanged;
+            gameManager.instance.onAuraChanged -= handleAuraChanged;
+            gameManager.instance.onLevelAdvanced -= handleLevelUp;
+            gameManager.instance.onXpChanged -= handleXpChanged;
         }
     }
 
@@ -97,70 +97,70 @@ public class AuraHUD : MonoBehaviour
         }
 
         // Smooth XP bar fill
-        if (Mathf.Abs(displayedXP - currentXPPercent) > 0.001f)
+        if (Mathf.Abs(displayedXp - currentXpPercent) > 0.001f)
         {
-            displayedXP = Mathf.Lerp(displayedXP, currentXPPercent, Time.deltaTime * countUpSpeed);
+            displayedXp = Mathf.Lerp(displayedXp, currentXpPercent, Time.deltaTime * countUpSpeed);
             if (xpBarFill != null)
-                xpBarFill.fillAmount = displayedXP;
+                xpBarFill.fillAmount = displayedXp;
         }
     }
 
 
-    private void HandleLevelUp()
+    private void handleLevelUp()
     {
-        SetLevel(GameSettings.Instance.level);
+        setLevel(gameSettings.instance.level);
     }
 
-    private void HandleXPChanged(float progress)
+    private void handleXpChanged(float progress)
     {
-        Debug.Log($"[AuraHUD] HandleXPChanged received: {progress:F2}");
-        SetXPPercent(progress);
+        Debug.Log($"[auraHud] handleXpChanged received: {progress:F2}");
+        setXpPercent(progress);
     }
 
     // ------------------------------------------------------------------
-    //  Called by GameManager via OnAuraChanged (now passes delta)
+    //  Called by gameManager via onAuraChanged (now passes delta)
     // ------------------------------------------------------------------
-    private void HandleAuraChanged(float delta)
+    private void handleAuraChanged(float delta)
     {
-        targetAura = GameManager.Instance.Aura;
+        targetAura = gameManager.instance.aura;
 
         // Punch scale on the aura container
-        StopCoroutine(nameof(PunchAuraScale));
-        StartCoroutine(PunchAuraScale());
+        StopCoroutine(nameof(punchAuraScale));
+        StartCoroutine(punchAuraScale());
 
         // Flash the aura text color based on gain/loss
-        StopCoroutine(nameof(FlashAuraText));
+        StopCoroutine(nameof(flashAuraText));
         Color flash = delta > 0 ? gainFlashColor : lossFlashColor;
-        StartCoroutine(FlashAuraText(flash));
+        StartCoroutine(flashAuraText(flash));
 
         // Floating "+500" or "−2000"
-        SpawnFloatingText(delta);
+        spawnFloatingText(delta);
     }
 
     // ------------------------------------------------------------------
     //  Public methods for level / XP updates (called however you like)
     // ------------------------------------------------------------------
-    public void SetLevel(int level)
+    public void setLevel(int level)
     {
         if (level != currentLevel)
         {
             currentLevel = level;
             if (levelText != null) levelText.text = (level + 1).ToString();
 
-            StopCoroutine(nameof(PunchBadgeScale));
-            StartCoroutine(PunchBadgeScale());
+            StopCoroutine(nameof(punchBadgeScale));
+            StartCoroutine(punchBadgeScale());
         }
     }
 
-    public void SetXPPercent(float percent)
+    public void setXpPercent(float percent)
     {
-        currentXPPercent = Mathf.Clamp01(percent);
+        currentXpPercent = Mathf.Clamp01(percent);
     }
 
     // ------------------------------------------------------------------
     //  Animations
     // ------------------------------------------------------------------
-    private IEnumerator PunchAuraScale()
+    private IEnumerator punchAuraScale()
     {
         if (auraContainer == null) yield break;
 
@@ -188,7 +188,7 @@ public class AuraHUD : MonoBehaviour
         auraContainer.localScale = originalAuraScale;
     }
 
-    private IEnumerator PunchBadgeScale()
+    private IEnumerator punchBadgeScale()
     {
         if (levelBadge == null) yield break;
 
@@ -214,7 +214,7 @@ public class AuraHUD : MonoBehaviour
         levelBadge.localScale = originalBadgeScale;
     }
 
-    private IEnumerator FlashAuraText(Color flash)
+    private IEnumerator flashAuraText(Color flash)
     {
         if (auraText == null) yield break;
 
@@ -229,7 +229,7 @@ public class AuraHUD : MonoBehaviour
         auraText.color = originalAuraTextColor;
     }
 
-    private void SpawnFloatingText(float delta)
+    private void spawnFloatingText(float delta)
     {
         if (floatingTextPrefab == null || floatingTextParent == null) return;
 
@@ -243,10 +243,10 @@ public class AuraHUD : MonoBehaviour
             tmp.color = delta > 0 ? gainFlashColor : lossFlashColor;
         }
 
-        StartCoroutine(AnimateFloatingText(go, cg));
+        StartCoroutine(animateFloatingText(go, cg));
     }
 
-    private IEnumerator AnimateFloatingText(GameObject go, CanvasGroup cg)
+    private IEnumerator animateFloatingText(GameObject go, CanvasGroup cg)
     {
         RectTransform rt = go.GetComponent<RectTransform>();
         Vector2 startPos = rt.anchoredPosition;
@@ -268,20 +268,20 @@ public class AuraHUD : MonoBehaviour
         Destroy(go);
     }
 
-    public void RefreshFromSettings()
+    public void refreshFromSettings()
     {
-        if (GameSettings.Instance != null)
+        if (gameSettings.instance != null)
         {
             currentLevel = -1;  // force update
 
-            if (GameSettings.Instance.isCustomMode)
+            if (gameSettings.instance.isCustomMode)
             {
                 if (levelText != null) levelText.text = "X";
-                StartCoroutine(PunchBadgeScale());
+                StartCoroutine(punchBadgeScale());
             }
             else
             {
-                SetLevel(GameSettings.Instance.level);
+                setLevel(gameSettings.instance.level);
             }
         }
     }

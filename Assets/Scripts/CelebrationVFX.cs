@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class CelebrationVFX : MonoBehaviour
+public class celebrationVfx : MonoBehaviour
 {
     [Header("References")]
     public Canvas canvas; // your main UI canvas
@@ -42,16 +42,16 @@ public class CelebrationVFX : MonoBehaviour
     /// Call this when the player gets a correct prediction!
     /// Pass in the screen position (e.g. comet position or ship position)
     /// </summary>
-    public void Play(Vector2 screenPosition)
+    public void play(Vector2 screenPosition)
     {
-        StartCoroutine(ScreenFlash());
-        StartCoroutine(SpawnSparks(screenPosition));
-        StartCoroutine(SpawnExpandingRing(screenPosition));
-        StartCoroutine(SpawnNotes(screenPosition));
+        StartCoroutine(screenFlash());
+        StartCoroutine(spawnSparks(screenPosition));
+        StartCoroutine(spawnExpandingRing(screenPosition));
+        StartCoroutine(spawnNotes(screenPosition));
     }
 
     // ─── SCREEN FLASH ───────────────────────────────────
-    IEnumerator ScreenFlash()
+    IEnumerator screenFlash()
     {
         flashPanel.SetActive(true);
         Image img = flashPanel.GetComponent<Image>();
@@ -71,7 +71,7 @@ public class CelebrationVFX : MonoBehaviour
     }
 
     // ─── SPARKS ──────────────────────────────────────────
-    IEnumerator SpawnSparks(Vector2 origin)
+    IEnumerator spawnSparks(Vector2 origin)
     {
         for (int i = 0; i < sparkCount; i++)
         {
@@ -96,12 +96,12 @@ public class CelebrationVFX : MonoBehaviour
             float force = Random.Range(burstForce * 0.3f, burstForce);
             Vector2 velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * force;
 
-            StartCoroutine(AnimateSpark(spark, rt, img, velocity));
+            StartCoroutine(animateSpark(spark, rt, img, velocity));
         }
         yield return null;
     }
 
-    IEnumerator AnimateSpark(GameObject spark, RectTransform rt, Image img, Vector2 velocity)
+    IEnumerator animateSpark(GameObject spark, RectTransform rt, Image img, Vector2 velocity)
     {
         float t = 0f;
         float lifetime = sparkLifetime * Random.Range(0.7f, 1.3f);
@@ -130,7 +130,7 @@ public class CelebrationVFX : MonoBehaviour
     }
 
     // ─── EXPANDING RING ──────────────────────────────────
-    IEnumerator SpawnExpandingRing(Vector2 origin)
+    IEnumerator spawnExpandingRing(Vector2 origin)
     {
         GameObject ring = new GameObject("Ring");
         ring.transform.SetParent(canvas.transform, false);
@@ -141,7 +141,7 @@ public class CelebrationVFX : MonoBehaviour
         img.color = primaryColor;
 
         // Make it a circle using Unity's built-in sprite
-        img.sprite = MakeCircleSprite();
+        img.sprite = makeCircleSprite();
         img.type = Image.Type.Simple;
         img.preserveAspect = true;
 
@@ -175,7 +175,7 @@ public class CelebrationVFX : MonoBehaviour
     }
 
     // ─── FLOATING MUSIC NOTES ────────────────────────────
-    IEnumerator SpawnNotes(Vector2 origin)
+    IEnumerator spawnNotes(Vector2 origin)
     {
         string[] notes = { "♪", "♫", "♬", "♩", "🎵" };
 
@@ -198,13 +198,13 @@ public class CelebrationVFX : MonoBehaviour
             rt.anchoredPosition = origin + Random.insideUnitCircle * 50f;
             rt.sizeDelta = new Vector2(60, 60);
 
-            StartCoroutine(AnimateNote(note, rt, txt));
+            StartCoroutine(animateNote(note, rt, txt));
 
             yield return new WaitForSeconds(0.05f);
         }
     }
 
-    IEnumerator AnimateNote(GameObject note, RectTransform rt, Text txt)
+    IEnumerator animateNote(GameObject note, RectTransform rt, Text txt)
     {
         float lifetime = Random.Range(0.8f, 1.4f);
         float t = 0f;
@@ -243,7 +243,7 @@ public class CelebrationVFX : MonoBehaviour
     }
 
     // ─── HELPER: SIMPLE CIRCLE SPRITE ────────────────────
-    Sprite MakeCircleSprite()
+    Sprite makeCircleSprite()
     {
         int res = 64;
         Texture2D tex = new Texture2D(res, res);

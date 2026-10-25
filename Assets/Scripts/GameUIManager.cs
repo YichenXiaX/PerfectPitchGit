@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
-public class GameUIManager : MonoBehaviour
+public class gameUiManager : MonoBehaviour
 {
-    public static GameUIManager Instance { get; private set; }
+    public static gameUiManager instance { get; private set; }
 
     [Header("Panels")]
     public GameObject startOverlay;
@@ -16,13 +16,13 @@ public class GameUIManager : MonoBehaviour
     public Button closeSettingsButton;
 
     [Header("References")]
-    public SettingsUI settingsUI;
+    public settingsUi settingsUi;
 
     private bool gameStarted;
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     private void Start()
@@ -30,41 +30,41 @@ public class GameUIManager : MonoBehaviour
         startOverlay.SetActive(true);
         settingsPanel.SetActive(false);
 
-        gearButton.onClick.AddListener(ToggleSettings);
-        playButton.onClick.AddListener(OnPlay);
-        closeSettingsButton.onClick.AddListener(CloseSettings);
+        gearButton.onClick.AddListener(toggleSettings);
+        playButton.onClick.AddListener(onPlay);
+        closeSettingsButton.onClick.AddListener(closeSettings);
     }
 
-    private void ToggleSettings()
+    private void toggleSettings()
     {
         if (settingsPanel.activeSelf)
-            CloseSettings();
+            closeSettings();
         else
-            OpenSettings();
+            openSettings();
     }
 
-    private void OpenSettings()
+    private void openSettings()
     {
-        settingsUI.Open();
+        settingsUi.open();
         settingsPanel.SetActive(true);
 
         if (gameStarted)
             Time.timeScale = 0f;
     }
 
-    private void CloseSettings()
+    private void closeSettings()
     {
-        settingsUI.ApplySettings();
+        settingsUi.applySettings();
         settingsPanel.SetActive(false);
 
         if (gameStarted)
             Time.timeScale = 1f;
     }
 
-    private void OnPlay()
+    private void onPlay()
     {
         if (settingsPanel.activeSelf)
-            settingsUI.ApplySettings();
+            settingsUi.applySettings();
 
         settingsPanel.SetActive(false);
         startOverlay.SetActive(false);

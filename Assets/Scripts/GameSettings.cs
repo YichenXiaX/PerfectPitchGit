@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class GameSettings : MonoBehaviour
+public class gameSettings : MonoBehaviour
 {
-    public static GameSettings Instance { get; private set; }
+    public static gameSettings instance { get; private set; }
 
     [System.Serializable]
-    public class LevelPreset
+    public class levelPreset
     {
         public string name;
         public int notesPerSequence = 4;
@@ -21,7 +21,7 @@ public class GameSettings : MonoBehaviour
 
     [Header("Mode")]
     public bool isCustomMode = false;
-    public LevelPreset customPreset = new LevelPreset();
+    public levelPreset customPreset = new levelPreset();
 
     [Header("Player")]
     public string playerName;
@@ -34,7 +34,7 @@ public class GameSettings : MonoBehaviour
     public int level;
 
     [Header("Level Presets")]
-    public LevelPreset[] levelPresets;
+    public levelPreset[] levelPresets;
 
     [Header("Comets")]
     public GameObject[] cometPrefabs = new GameObject[4];   // one per quadrant
@@ -51,18 +51,18 @@ public class GameSettings : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
 
-    public LevelPreset GetCurrentPreset()
+    public levelPreset getCurrentPreset()
     {
         if (isCustomMode)
             return customPreset;
@@ -70,7 +70,7 @@ public class GameSettings : MonoBehaviour
         if (levelPresets == null || levelPresets.Length == 0)
         {
             Debug.LogError("No level presets defined!");
-            return new LevelPreset();
+            return new levelPreset();
         }
 
         int index = Mathf.Clamp(level, 0, levelPresets.Length - 1);

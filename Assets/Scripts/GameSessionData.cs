@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 
-public enum SequenceOutcome
+public enum sequenceOutcome
 {
-    Predicted,
-    Destroyed,
-    Hit
+    predicted,
+    destroyed,
+    hit
 }
 
 [System.Serializable]
-public class SequenceResult
+public class sequenceResult
 {
     public int roundIndex;
     public int correctQuadrant;
@@ -18,11 +18,12 @@ public class SequenceResult
     public float predictionTime;  // when they pressed F (-1 if they never did)
     public float resolvedTime;    // when the round actually ended
     public string outcome;          // "Predicted", "Destroyed", or "Hit" (string for Firebase)
+    public audioLoudnessRecord audioLoudness;
     public long timestamp;          // Unix ms
 }
 
 [System.Serializable]
-public class GameSessionData
+public class gameSessionData
 {
     public string playerName;
     public string sessionId;
@@ -33,5 +34,5 @@ public class GameSessionData
     public int totalPredictions;
     public int totalDestroys;
     public int totalHits;
-    public List<SequenceResult> results = new List<SequenceResult>();
+    public List<sequenceResult> results = new List<sequenceResult>();
 }

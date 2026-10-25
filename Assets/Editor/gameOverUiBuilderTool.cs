@@ -3,10 +3,10 @@ using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameOverUIBuilderTool
+public class gameOverUiBuilderTool
 {
     [MenuItem("Tools/Build Game Over UI")]
-    public static void Build()
+    public static void build()
     {
         // ── Colors ───────────────────────────────────────────
         Color overlay = new Color(0.02f, 0.02f, 0.06f, 0.92f);
@@ -32,16 +32,16 @@ public class GameOverUIBuilderTool
         root.AddComponent<GraphicRaycaster>();
 
         // ── Overlay ──────────────────────────────────────────
-        GameObject panel = Img(root.transform, "GameOverPanel", overlay);
-        Stretch(panel);
+        GameObject panel = img(root.transform, "GameOverPanel", overlay);
+        stretch(panel);
 
         // ── Title ────────────────────────────────────────────
-        GameObject title = Txt(panel.transform, "Title", "GAME OVER", 72, titleCol, FontStyles.Bold, TextAlignmentOptions.Center);
-        Place(title, 0, 340, 600, 100);
+        GameObject title = txt(panel.transform, "Title", "GAME OVER", 72, titleCol, FontStyles.Bold, TextAlignmentOptions.Center);
+        place(title, 0, 340, 600, 100);
 
         // ── Card ─────────────────────────────────────────────
-        GameObject card = Img(panel.transform, "StatsCard", cardBg);
-        Place(card, 0, -10, 620, 480);
+        GameObject card = img(panel.transform, "StatsCard", cardBg);
+        place(card, 0, -10, 620, 480);
         var ol = card.AddComponent<Outline>();
         ol.effectColor = border;
         ol.effectDistance = new Vector2(2, 2);
@@ -51,61 +51,61 @@ public class GameOverUIBuilderTool
         float y = 180f;
 
         // Level
-        Txt(card.transform, "LevelLabel", "Level", 40, hlLabelCol, FontStyles.Normal, TextAlignmentOptions.Left);
-        Place("LevelLabel", card, lx, y, rw, rh);
-        GameObject levelVal = Txt(card.transform, "LevelValue", "—", 40, hlValueCol, FontStyles.Bold, TextAlignmentOptions.Right);
-        Place(levelVal, rx, y, rw, rh);
+        txt(card.transform, "LevelLabel", "Level", 40, hlLabelCol, FontStyles.Normal, TextAlignmentOptions.Left);
+        place("LevelLabel", card, lx, y, rw, rh);
+        GameObject levelVal = txt(card.transform, "LevelValue", "—", 40, hlValueCol, FontStyles.Bold, TextAlignmentOptions.Right);
+        place(levelVal, rx, y, rw, rh);
 
         // Divider
         y -= 50f;
-        GameObject d1 = Img(card.transform, "Div1", divCol);
-        Place(d1, 0, y, 480, 2);
+        GameObject d1 = img(card.transform, "Div1", divCol);
+        place(d1, 0, y, 480, 2);
 
         // Rounds
         y -= 50f;
-        Txt(card.transform, "RoundsLabel", "Rounds", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
-        Place("RoundsLabel", card, lx, y, rw, rh);
-        GameObject roundsVal = Txt(card.transform, "RoundsValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
-        Place(roundsVal, rx, y, rw, rh);
+        txt(card.transform, "RoundsLabel", "Rounds", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
+        place("RoundsLabel", card, lx, y, rw, rh);
+        GameObject roundsVal = txt(card.transform, "RoundsValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
+        place(roundsVal, rx, y, rw, rh);
 
         // Predicted
         y -= 55f;
-        Txt(card.transform, "PredictedLabel", "Predicted", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
-        Place("PredictedLabel", card, lx, y, rw, rh);
-        GameObject predictedVal = Txt(card.transform, "PredictedValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
-        Place(predictedVal, rx, y, rw, rh);
+        txt(card.transform, "PredictedLabel", "Predicted", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
+        place("PredictedLabel", card, lx, y, rw, rh);
+        GameObject predictedVal = txt(card.transform, "PredictedValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
+        place(predictedVal, rx, y, rw, rh);
 
         // Destroyed
         y -= 55f;
-        Txt(card.transform, "DestroyedLabel", "Destroyed", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
-        Place("DestroyedLabel", card, lx, y, rw, rh);
-        GameObject destroyedVal = Txt(card.transform, "DestroyedValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
-        Place(destroyedVal, rx, y, rw, rh);
+        txt(card.transform, "DestroyedLabel", "Destroyed", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
+        place("DestroyedLabel", card, lx, y, rw, rh);
+        GameObject destroyedVal = txt(card.transform, "DestroyedValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
+        place(destroyedVal, rx, y, rw, rh);
 
         // Hit
         y -= 55f;
-        Txt(card.transform, "HitLabel", "Hit", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
-        Place("HitLabel", card, lx, y, rw, rh);
-        GameObject hitVal = Txt(card.transform, "HitValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
-        Place(hitVal, rx, y, rw, rh);
+        txt(card.transform, "HitLabel", "Hit", 34, labelCol, FontStyles.Normal, TextAlignmentOptions.Left);
+        place("HitLabel", card, lx, y, rw, rh);
+        GameObject hitVal = txt(card.transform, "HitValue", "—", 34, valueCol, FontStyles.Bold, TextAlignmentOptions.Right);
+        place(hitVal, rx, y, rw, rh);
 
         // Divider
         y -= 45f;
-        GameObject d2 = Img(card.transform, "Div2", divCol);
-        Place(d2, 0, y, 480, 2);
+        GameObject d2 = img(card.transform, "Div2", divCol);
+        place(d2, 0, y, 480, 2);
 
         // Aura
         y -= 50f;
-        Txt(card.transform, "AuraLabel", "Aura", 40, hlLabelCol, FontStyles.Normal, TextAlignmentOptions.Left);
-        Place("AuraLabel", card, lx, y, rw, rh);
-        GameObject auraVal = Txt(card.transform, "AuraValue", "—", 40, hlValueCol, FontStyles.Bold, TextAlignmentOptions.Right);
-        Place(auraVal, rx, y, rw, rh);
+        txt(card.transform, "AuraLabel", "Aura", 40, hlLabelCol, FontStyles.Normal, TextAlignmentOptions.Left);
+        place("AuraLabel", card, lx, y, rw, rh);
+        GameObject auraVal = txt(card.transform, "AuraValue", "—", 40, hlValueCol, FontStyles.Bold, TextAlignmentOptions.Right);
+        place(auraVal, rx, y, rw, rh);
 
         // ── Restart button ───────────────────────────────────
-        GameObject btnGO = Img(panel.transform, "RestartButton", btnCol);
-        Place(btnGO, 0, -320, 400, 90);
-        Button btn = btnGO.AddComponent<Button>();
-        btn.targetGraphic = btnGO.GetComponent<Image>();
+        GameObject btnGo = img(panel.transform, "RestartButton", btnCol);
+        place(btnGo, 0, -320, 400, 90);
+        Button btn = btnGo.AddComponent<Button>();
+        btn.targetGraphic = btnGo.GetComponent<Image>();
         ColorBlock cb = btn.colors;
         cb.normalColor = btnCol;
         cb.highlightedColor = btnHover;
@@ -113,19 +113,19 @@ public class GameOverUIBuilderTool
         cb.selectedColor = btnCol;
         btn.colors = cb;
 
-        GameObject btnTxt = Txt(btnGO.transform, "BtnText", "RESTART", 38, Color.white, FontStyles.Bold, TextAlignmentOptions.Center);
-        Stretch(btnTxt);
+        GameObject btnTxt = txt(btnGo.transform, "BtnText", "RESTART", 38, Color.white, FontStyles.Bold, TextAlignmentOptions.Center);
+        stretch(btnTxt);
 
         // ── Finish ───────────────────────────────────────────
         panel.SetActive(false);
         Selection.activeGameObject = root;
         Undo.RegisterCreatedObjectUndo(root, "Build Game Over UI");
-        Debug.Log("[Tools] Game Over UI built — wire GameOverUI fields in the inspector.");
+        Debug.Log("[Tools] Game Over UI built — wire gameOverUi fields in the inspector.");
     }
 
     // ═══════════ Helpers ═══════════════════════════════════════
 
-    static GameObject Img(Transform p, string n, Color c)
+    static GameObject img(Transform p, string n, Color c)
     {
         var go = new GameObject(n);
         go.transform.SetParent(p, false);
@@ -134,7 +134,7 @@ public class GameOverUIBuilderTool
         return go;
     }
 
-    static GameObject Txt(Transform p, string n, string t, float s, Color c, FontStyles fs, TextAlignmentOptions a)
+    static GameObject txt(Transform p, string n, string t, float s, Color c, FontStyles fs, TextAlignmentOptions a)
     {
         var go = new GameObject(n);
         go.transform.SetParent(p, false);
@@ -146,7 +146,7 @@ public class GameOverUIBuilderTool
         return go;
     }
 
-    static void Place(GameObject go, float x, float y, float w, float h)
+    static void place(GameObject go, float x, float y, float w, float h)
     {
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
@@ -154,12 +154,12 @@ public class GameOverUIBuilderTool
         rt.anchoredPosition = new Vector2(x, y);
     }
 
-    static void Place(string name, GameObject parent, float x, float y, float w, float h)
+    static void place(string name, GameObject parent, float x, float y, float w, float h)
     {
-        Place(parent.transform.Find(name).gameObject, x, y, w, h);
+        place(parent.transform.Find(name).gameObject, x, y, w, h);
     }
 
-    static void Stretch(GameObject go)
+    static void stretch(GameObject go)
     {
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;

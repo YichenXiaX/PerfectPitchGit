@@ -1,0 +1,192 @@
+{
+  "profileId": "iso532-1-unity-stereo-4406b8bffc7f0802",
+  "caseCount": 1575,
+  "aboveThresholdCaseCount": 1575,
+  "maximumRelativeErrorAboveOneMillionthSone": 7.63944914441519e-05,
+  "toleranceRelative": 0.05,
+  "failures": 0,
+  "elapsedSeconds": 22.407561500000156,
+  "worstCases": [
+    {
+      "clipName": "2093.00",
+      "pitch": 0.9715302026733559,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.40505924157183676,
+      "predictedSones": 0.4050282972770721,
+      "relativeError": 7.63944914441519e-05
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0293042239273644,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.20880028506235948,
+      "predictedSones": 0.20878780511181677,
+      "relativeError": 5.9769796477924206e-05
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 0.9715316077668175,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.3167579641020769,
+      "predictedSones": 0.3167762039208258,
+      "relativeError": 5.758282605642585e-05
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 0.971529518983572,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.5619049853573491,
+      "predictedSones": 0.5618740410625847,
+      "relativeError": 5.50703331894955e-05
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0293038618807326,
+      "duration": 0.59,
+      "gainDb": -24.0,
+      "actualSones": 0.5266059540155683,
+      "predictedSones": 0.5265779524561804,
+      "relativeError": 5.31736475335052e-05
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0293038618807326,
+      "duration": 3.0,
+      "gainDb": -24.0,
+      "actualSones": 0.5266059540155683,
+      "predictedSones": 0.5265779524561804,
+      "relativeError": 5.31736475335052e-05
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.029304886558846,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.4693238167226674,
+      "predictedSones": 0.4693475110062037,
+      "relativeError": 5.048600282377209e-05
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0293348435789624,
+      "duration": 0.59,
+      "gainDb": -24.0,
+      "actualSones": 0.48382432328756303,
+      "predictedSones": 0.4838441182144253,
+      "relativeError": 4.09134595130841e-05
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0293348435789624,
+      "duration": 3.0,
+      "gainDb": -24.0,
+      "actualSones": 0.48382432328756303,
+      "predictedSones": 0.4838441182144253,
+      "relativeError": 4.09134595130841e-05
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0292852742045588,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.44961870061838716,
+      "predictedSones": 0.4496004607996381,
+      "relativeError": 4.056730452705306e-05
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 0.9715312393509312,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.6956242099963346,
+      "predictedSones": 0.6955971482939932,
+      "relativeError": 3.890276093393764e-05
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.029300765763704,
+      "duration": 0.1,
+      "gainDb": -24.0,
+      "actualSones": 0.5887186618782322,
+      "predictedSones": 0.5886963804262815,
+      "relativeError": 3.784736818028805e-05
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0293028612531745,
+      "duration": 0.59,
+      "gainDb": -24.0,
+      "actualSones": 0.37715826064171887,
+      "predictedSones": 0.3771441258867846,
+      "relativeError": 3.747698621324387e-05
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0293028612531745,
+      "duration": 3.0,
+      "gainDb": -24.0,
+      "actualSones": 0.37715826064171887,
+      "predictedSones": 0.3771441258867846,
+      "relativeError": 3.747698621324387e-05
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0293000838681017,
+      "duration": 0.59,
+      "gainDb": -24.0,
+      "actualSones": 0.332347321224031,
+      "predictedSones": 0.33233622011785885,
+      "relativeError": 3.34021232103053e-05
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0293000838681017,
+      "duration": 3.0,
+      "gainDb": -24.0,
+      "actualSones": 0.332347321224031,
+      "predictedSones": 0.33233622011785885,
+      "relativeError": 3.34021232103053e-05
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 0.9715332172389275,
+      "duration": 0.59,
+      "gainDb": -24.0,
+      "actualSones": 0.6019359260340458,
+      "predictedSones": 0.6019546286682302,
+      "relativeError": 3.107080567144358e-05
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 0.9715332172389275,
+      "duration": 3.0,
+      "gainDb": -24.0,
+      "actualSones": 0.6019359260340458,
+      "predictedSones": 0.6019546286682302,
+      "relativeError": 3.107080567144358e-05
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 0.2889639090909091,
+      "duration": 0.1,
+      "gainDb": -6.0,
+      "actualSones": 0.2951710432651001,
+      "predictedSones": 0.2951802040438785,
+      "relativeError": 3.1035492767531305e-05
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0293352165342953,
+      "duration": 0.59,
+      "gainDb": -24.0,
+      "actualSones": 0.6152500103870557,
+      "predictedSones": 0.6152688518574774,
+      "relativeError": 3.0624087937494746e-05
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,10 @@
+{
+  "fixture": "MoSQITo official test10:1kHz10ms70dB pulse; no alignment shift",
+  "referenceTotalMaximumAbsoluteError": 0.00019763437256306582,
+  "referenceSpecificMaximumAbsoluteError": 6.948992989519454e-05,
+  "referenceWithin5PercentOrPoint1": true,
+  "acceleratedTotalBitExact": true,
+  "acceleratedSpecificBitExact": true,
+  "scope": "One official fixture and exact execution comparison, not exhaustive ISO conformance certification.",
+  "pass": true
+}

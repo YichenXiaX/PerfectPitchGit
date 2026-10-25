@@ -4,13 +4,14 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
 
-public class SettingsUI : MonoBehaviour
+public class settingsUi : MonoBehaviour
 {
     public GameObject startOverlay;
     public GameObject settingPanel;
     public AudioSource audioSource;
-    public GameManager gameManager;
-    public AuraHUD auraHUD;
+    public gameManager gameManager;
+    [UnityEngine.Serialization.FormerlySerializedAs("auraHUD")]
+    public auraHud auraHud;
 
     [Header("Mode")]
     public Toggle presetToggle;
@@ -66,58 +67,58 @@ public class SettingsUI : MonoBehaviour
     public CanvasGroup progressionGroup;
     public CanvasGroup octaveGroup;
 
-    private GameSettings settings;
+    private gameSettings settings;
     private bool initialized;
 
     // ©¤©¤ init ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void Initialize()
+    private void initialize()
     {
         if (initialized) return;
-        settings = GameSettings.Instance;
-        ConfigureSliders();
-        WireUpListeners();
-        PopulateLevelDropdown();
+        settings = gameSettings.instance;
+        configureSliders();
+        wireUpListeners();
+        populateLevelDropdown();
         initialized = true;
     }
 
-    public void Open()
+    public void open()
     {
-        Initialize();
-        LoadSettingsIntoUI();
+        initialize();
+        loadSettingsIntoUi();
         Time.timeScale = 0f;
         audioSource.Pause();
     }
 
     /// <summary>Call from the X button's OnClick.</summary>
-    public void Close()
+    public void close()
     {
-        Initialize();
-        ApplySettings();
+        initialize();
+        applySettings();
         Time.timeScale = 1f;
-        auraHUD.RefreshFromSettings();
+        auraHud.refreshFromSettings();
         settingPanel.SetActive(false);
         audioSource.UnPause();
     }
 
     /// <summary>Call from the Gear button's OnClick.</summary>
-    public void Show()
+    public void show()
     {
         Debug.Log("clicked");
         settingPanel.SetActive(true);
-        Open();
+        open();
     }
 
     /// <summary>Call from the Start Game button's OnClick.</summary>
-    public void StartGame()
+    public void startGame()
     {
-        Initialize();
-        ApplySettings();
+        initialize();
+        applySettings();
         startOverlay.SetActive(false);
 
-        GameManager.Instance.StartGame();
+        gameManager.instance.startGame();
     }
 
-    public void ApplySettings()
+    public void applySettings()
     {
         bool isCustom = customToggle.isOn;
         settings.isCustomMode = isCustom;
@@ -126,16 +127,16 @@ public class SettingsUI : MonoBehaviour
         settings.leftHanded = leftHandedToggle.isOn;
         settings.maxHealth = (int)maxHealthSlider.value;
 
-        if(settings.maxHealth < gameManager.GetCurrentHealth())
+        if(settings.maxHealth < gameManager.getCurrentHealth())
         {
-            gameManager.SetCurrentHealth(settings.maxHealth);
+            gameManager.setCurrentHealth(settings.maxHealth);
         }
 
         //settings.cometSpawnDelay = cometSpawnDelaySlider.value;
 
         if (isCustom)
         {
-            settings.customPreset = new GameSettings.LevelPreset
+            settings.customPreset = new gameSettings.levelPreset
             {
                 name = "Custom",
                 notesPerSequence = (int)notesPerSequenceSlider.value,
@@ -146,7 +147,7 @@ public class SettingsUI : MonoBehaviour
                 cometSpeed = cometSpeedSlider.value,
                 pauseBetweenRounds = pauseBetweenRoundsSlider.value,
                 consecutiveCorrectToAdvance = (int)consecutiveCorrectSlider.value,
-                octaveShifts = GetSelectedOctaveShifts()
+                octaveShifts = getSelectedOctaveShifts()
             };
             settings.level = 0;
         }
@@ -155,24 +156,24 @@ public class SettingsUI : MonoBehaviour
             settings.level = levelDropdown.value;
         }
 
-        //auraHUD.RefreshFromSettings();
+        //auraHud.refreshFromSettings();
     }
 
     // ©¤©¤ slider ranges ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void ConfigureSliders()
+    private void configureSliders()
     {
-        SetSlider(notesPerSequenceSlider, 1, 100, true);
-        SetSlider(noteDurationSlider, 0.1f, 3f);
-        SetSlider(pauseBetweenNotesSlider, 0f, 1f);
-        SetSlider(predictionWindowSlider, 3f, 15f);
-        SetSlider(cometSpeedSlider, 0.5f, 10f);
-        SetSlider(cometSpawnDelaySlider, 0f, 3f);
-        SetSlider(pauseBetweenRoundsSlider, 2f, 10f);
-        SetSlider(consecutiveCorrectSlider, 1, 100, true);
-        SetSlider(maxHealthSlider, 1, 300, true);
+        setSlider(notesPerSequenceSlider, 1, 100, true);
+        setSlider(noteDurationSlider, 0.1f, 3f);
+        setSlider(pauseBetweenNotesSlider, 0f, 1f);
+        setSlider(predictionWindowSlider, 3f, 15f);
+        setSlider(cometSpeedSlider, 0.5f, 10f);
+        setSlider(cometSpawnDelaySlider, 0f, 3f);
+        setSlider(pauseBetweenRoundsSlider, 2f, 10f);
+        setSlider(consecutiveCorrectSlider, 1, 100, true);
+        setSlider(maxHealthSlider, 1, 300, true);
     }
 
-    private void SetSlider(Slider s, float min, float max, bool whole = false)
+    private void setSlider(Slider s, float min, float max, bool whole = false)
     {
         s.minValue = min;
         s.maxValue = max;
@@ -180,13 +181,13 @@ public class SettingsUI : MonoBehaviour
     }
 
     // ©¤©¤ listeners ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void WireUpListeners()
+    private void wireUpListeners()
     {
-        presetToggle.onValueChanged.AddListener(OnModeChanged);
-        levelDropdown.onValueChanged.AddListener(OnLevelSelected);
+        presetToggle.onValueChanged.AddListener(onModeChanged);
+        levelDropdown.onValueChanged.AddListener(onLevelSelected);
 
-        presetToggle.onValueChanged.AddListener(OnModeChanged);
-        customToggle.onValueChanged.AddListener(OnCustomToggleChanged);
+        presetToggle.onValueChanged.AddListener(onModeChanged);
+        customToggle.onValueChanged.AddListener(onCustomToggleChanged);
 
         notesPerSequenceSlider.onValueChanged.AddListener(v =>
             notesPerSequenceValue.text = v.ToString("F0"));
@@ -209,14 +210,14 @@ public class SettingsUI : MonoBehaviour
     }
 
     // ©¤©¤ mode toggle ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void OnCustomToggleChanged(bool customIsOn)
+    private void onCustomToggleChanged(bool customIsOn)
     {
         presetToggle.SetIsOnWithoutNotify(!customIsOn);
-        OnModeChanged(!customIsOn);
+        onModeChanged(!customIsOn);
     }
 
     // ©¤©¤ dropdown ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void PopulateLevelDropdown()
+    private void populateLevelDropdown()
     {
         levelDropdown.ClearOptions();
         var options = new List<string>();
@@ -231,66 +232,66 @@ public class SettingsUI : MonoBehaviour
     }
 
     // ©¤©¤ mode toggle ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void OnModeChanged(bool presetIsOn)
+    private void onModeChanged(bool presetIsOn)
     {
         customToggle.SetIsOnWithoutNotify(!presetIsOn);
 
         bool isCustom = !presetIsOn;
         levelDropdownRow.SetActive(!isCustom);
 
-        SetGroupLocked(sequenceGroup, isCustom);
-        SetGroupLocked(timingGroup, isCustom);
-        SetGroupLocked(playerGroup, isCustom);
-        SetGroupLocked(octaveGroup, isCustom);
-        SetGroupLocked(progressionGroup); //always locks progression
+        setGroupLocked(sequenceGroup, isCustom);
+        setGroupLocked(timingGroup, isCustom);
+        setGroupLocked(playerGroup, isCustom);
+        setGroupLocked(octaveGroup, isCustom);
+        setGroupLocked(progressionGroup); //always locks progression
 
         if (!isCustom && settings.levelPresets.Length > 0)
-            LoadPresetIntoUI(settings.levelPresets[levelDropdown.value]);
+            loadPresetIntoUi(settings.levelPresets[levelDropdown.value]);
     }
 
-    private void SetGroupLocked(CanvasGroup group, bool unlocked)
+    private void setGroupLocked(CanvasGroup group, bool unlocked)
     {
         group.interactable = unlocked;
         group.alpha = unlocked ? 1f : 0.3f;
     }
 
-    private void SetGroupLocked(CanvasGroup group) //overloading, always locks progression
+    private void setGroupLocked(CanvasGroup group) //overloading, always locks progression
     {
         group.interactable = false;
         group.alpha = 0.3f;
     }
 
     // ©¤©¤ level selected ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void OnLevelSelected(int index)
+    private void onLevelSelected(int index)
     {
         if (presetToggle.isOn && index < settings.levelPresets.Length)
-            LoadPresetIntoUI(settings.levelPresets[index]);
+            loadPresetIntoUi(settings.levelPresets[index]);
     }
 
     // ©¤©¤ load values into UI ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void LoadSettingsIntoUI()
+    private void loadSettingsIntoUi()
     {
-        presetToggle.onValueChanged.RemoveListener(OnModeChanged);
+        presetToggle.onValueChanged.RemoveListener(onModeChanged);
 
         bool isCustom = settings.isCustomMode;
         presetToggle.isOn = !isCustom;
         customToggle.isOn = isCustom;
 
         levelDropdownRow.SetActive(!isCustom);
-        SetGroupLocked(sequenceGroup, isCustom);
-        SetGroupLocked(timingGroup, isCustom);
-        SetGroupLocked(playerGroup, isCustom);
-        SetGroupLocked(octaveGroup, isCustom);
-        SetGroupLocked(progressionGroup); //always locks progression
+        setGroupLocked(sequenceGroup, isCustom);
+        setGroupLocked(timingGroup, isCustom);
+        setGroupLocked(playerGroup, isCustom);
+        setGroupLocked(octaveGroup, isCustom);
+        setGroupLocked(progressionGroup); //always locks progression
 
         if (isCustom)
         {
-            LoadPresetIntoUI(settings.customPreset);
+            loadPresetIntoUi(settings.customPreset);
         }
         else if (settings.levelPresets.Length > 0)
         {
             levelDropdown.value = settings.level;
-            LoadPresetIntoUI(settings.levelPresets[settings.level]);
+            loadPresetIntoUi(settings.levelPresets[settings.level]);
         }
 
         playerNameInput.text = settings.playerName;
@@ -298,10 +299,10 @@ public class SettingsUI : MonoBehaviour
         maxHealthSlider.value = settings.maxHealth;
         //cometSpawnDelaySlider.value = settings.cometSpawnDelay;
 
-        presetToggle.onValueChanged.AddListener(OnModeChanged);
+        presetToggle.onValueChanged.AddListener(onModeChanged);
     }
 
-    private void LoadPresetIntoUI(GameSettings.LevelPreset preset)
+    private void loadPresetIntoUi(gameSettings.levelPreset preset)
     {
         notesPerSequenceSlider.value = preset.notesPerSequence;
         noteDurationSlider.value = preset.noteDuration;
@@ -327,7 +328,7 @@ public class SettingsUI : MonoBehaviour
     }
 
     // ©¤©¤ octave helper ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private int[] GetSelectedOctaveShifts()
+    private int[] getSelectedOctaveShifts()
     {
         var shifts = new List<int>();
         if (octaveNeg5.isOn) shifts.Add(-5);

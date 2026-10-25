@@ -2,57 +2,51 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class dataManager : MonoBehaviour
 {
-    public static DataManager Instance { get; private set; }
+    public static dataManager instance { get; private set; }
 
     private string saveFolder;
-    private bool hasSavedThisSession = false;
+    private string lastSavedSessionId;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        instance = this;
 
         saveFolder = Path.Combine(Application.persistentDataPath, "SessionData");
         if (!Directory.Exists(saveFolder))
             Directory.CreateDirectory(saveFolder);
 
-        Debug.Log($"[DataManager] Save folder: {saveFolder}");
+        Debug.Log($"[dataManager] Save folder: {saveFolder}");
     }
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameOver += SaveSession; //subscribe to OnGameOver, saves data in the end
+        gameManager.instance.onGameOver += saveSession; //subscribe to onGameOver, saves data in the end
     }
 
     private void OnDisable()
     {
-        if (GameManager.Instance != null)
-            GameManager.Instance.OnGameOver -= SaveSession;
+        if (gameManager.instance != null)
+            gameManager.instance.onGameOver -= saveSession;
     }
 
     private void OnApplicationQuit()
     {
-        // Safety net ¡ª if game didn't end cleanly, save whatever we have
-        if (!hasSavedThisSession)
-        {
-            var data = GameManager.Instance?.GetSessionData();
-            if (data != null && data.results.Count > 0)
-            {
-                Debug.Log("[DataManager] App quitting ¡ª emergency save");
-                SaveSession(data);
-            }
-        }
+        // Save unfinished sessions too; saveSession ignores an already saved ID.
+        var data = gameManager.instance?.getSessionData();
+        if (data != null && data.results.Count > 0)
+            saveSession(data);
     }
 
-    public void SaveSession(GameSessionData data)
+    public void saveSession(gameSessionData data)
     {
-        if (hasSavedThisSession) return;
+        if (data == null || data.sessionId == lastSavedSessionId) return;
 
         string json = JsonUtility.ToJson(data, true);  // pretty print
 
@@ -63,8 +57,8 @@ public class DataManager : MonoBehaviour
 
         string fullPath = Path.Combine(saveFolder, filename);
         File.WriteAllText(fullPath, json);
-        hasSavedThisSession = true;
+        lastSavedSessionId = data.sessionId;
 
-        Debug.Log($"[DataManager] Session saved ¡ú {fullPath}");
+        Debug.Log($"[dataManager] Session saved ¡ú {fullPath}");
     }
 }

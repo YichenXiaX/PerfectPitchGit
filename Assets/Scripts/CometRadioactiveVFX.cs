@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CometRadioactiveVFX : MonoBehaviour
+public class cometRadioactiveVfx : MonoBehaviour
 {
     [Header("Auto-Color Settings")]
     [Tooltip("If true, particle colors are derived from the sprite's dominant color")]
@@ -29,25 +29,25 @@ public class CometRadioactiveVFX : MonoBehaviour
     void Start()
     {
         if (useAutoColor)
-            SampleSpriteColors();
+            sampleSpriteColors();
 
-        CreateSparkTrail();
-        CreateToxicVapor();
-        CreateGlow();
+        createSparkTrail();
+        createToxicVapor();
+        createGlow();
     }
 
-    void SampleSpriteColors()
+    void sampleSpriteColors()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr == null) sr = GetComponentInChildren<SpriteRenderer>();
 
         if (sr == null || sr.sprite == null)
         {
-            Debug.LogWarning("CometRadioactiveVFX: No SpriteRenderer found, using manual colors.");
+            Debug.LogWarning("cometRadioactiveVfx: No SpriteRenderer found, using manual colors.");
             return;
         }
 
-        Color dominant = GetDominantColor(sr.sprite, sr.color);
+        Color dominant = getDominantColor(sr.sprite, sr.color);
 
         // Convert to HSV so we can manipulate it
         Color.RGBToHSV(dominant, out float h, out float s, out float v);
@@ -67,7 +67,7 @@ public class CometRadioactiveVFX : MonoBehaviour
         glowColor.a = 1f;
     }
 
-    Color GetDominantColor(Sprite sprite, Color tint)
+    Color getDominantColor(Sprite sprite, Color tint)
     {
         // Read the sprite's pixels from its texture rect
         Texture2D tex = sprite.texture;
@@ -75,7 +75,7 @@ public class CometRadioactiveVFX : MonoBehaviour
         // Check if texture is readable
         if (!tex.isReadable)
         {
-            Debug.LogWarning("CometRadioactiveVFX: Sprite texture not readable. Enable Read/Write in import settings. Falling back to SpriteRenderer color.");
+            Debug.LogWarning("cometRadioactiveVfx: Sprite texture not readable. Enable Read/Write in import settings. Falling back to SpriteRenderer color.");
             return tint;
         }
 
@@ -116,7 +116,7 @@ public class CometRadioactiveVFX : MonoBehaviour
         return avg;
     }
 
-    void CreateSparkTrail()
+    void createSparkTrail()
     {
         GameObject sparkObj = new GameObject("SparkTrail");
         sparkObj.transform.SetParent(transform);
@@ -182,13 +182,13 @@ public class CometRadioactiveVFX : MonoBehaviour
         colorOverLife.color = sparkGrad;
 
         var renderer = sparkObj.GetComponent<ParticleSystemRenderer>();
-        renderer.material = CreateParticleMaterial();
+        renderer.material = createParticleMaterial();
         renderer.renderMode = ParticleSystemRenderMode.Billboard;
 
         sparkSystem.Play();
     }
 
-    void CreateToxicVapor()
+    void createToxicVapor()
     {
         GameObject vaporObj = new GameObject("ToxicVapor");
         vaporObj.transform.SetParent(transform);
@@ -250,13 +250,13 @@ public class CometRadioactiveVFX : MonoBehaviour
         colorOverLife.color = vaporGrad;
 
         var renderer = vaporObj.GetComponent<ParticleSystemRenderer>();
-        renderer.material = CreateParticleMaterial();
+        renderer.material = createParticleMaterial();
         renderer.renderMode = ParticleSystemRenderMode.Billboard;
 
         vaporSystem.Play();
     }
 
-    void CreateGlow()
+    void createGlow()
     {
         GameObject glowObj = new GameObject("RadioactiveGlow");
         glowObj.transform.SetParent(transform);
@@ -279,17 +279,17 @@ public class CometRadioactiveVFX : MonoBehaviour
         }
     }
 
-    Material CreateParticleMaterial()
+    Material createParticleMaterial()
     {
         Material mat = new Material(Shader.Find("Particles/Standard Unlit"));
         mat.SetFloat("_Mode", 1);
         mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
         mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
-        mat.SetTexture("_MainTex", CreateSoftCircleTexture());
+        mat.SetTexture("_MainTex", createSoftCircleTexture());
         return mat;
     }
 
-    Texture2D CreateSoftCircleTexture()
+    Texture2D createSoftCircleTexture()
     {
         int size = 64;
         Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
@@ -311,7 +311,7 @@ public class CometRadioactiveVFX : MonoBehaviour
         return tex;
     }
 
-    public void StopEffects()
+    public void stopEffects()
     {
         if (sparkSystem != null) sparkSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         if (vaporSystem != null) vaporSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);

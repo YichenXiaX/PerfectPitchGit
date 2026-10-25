@@ -1,0 +1,135 @@
+{
+  "profileId": "iso532-1-unity-stereo-56a82465c12154a4",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "395bdc1a77a890949d31e78b4bcea39cfa20b781b96606347d5cfbf0002c35d4",
+      "bytes": 57
+    },
+    {
+      "path": "analyzeOnsets.py",
+      "sha256": "285b210e6d8e2d2388104cde4cb6caaed15c456c802f7de6c9fcf853f72fda34",
+      "bytes": 1838
+    },
+    {
+      "path": "endpoint-validation.json",
+      "sha256": "63e6913587b1248b8df7af4cc578622945b8add566de611b556b5e6ea518ce13",
+      "bytes": 5544
+    },
+    {
+      "path": "fastModel.py",
+      "sha256": "28c0d7d5173c24defc0770eb151a0ae505d29ace50a6db7f72ff11779fdac538",
+      "bytes": 8161
+    },
+    {
+      "path": "generateProfile.py",
+      "sha256": "89090cdbee0e37222c03e7362128bed869de92ad11b9c86d2280190ddece4764",
+      "bytes": 11599
+    },
+    {
+      "path": "identifier-map.json",
+      "sha256": "589fd2db44737097fe10d76549a5fb2ea88bf7505fe27a31272b23fdae455ead",
+      "bytes": 774
+    },
+    {
+      "path": "identifier-rename-equivalence.json",
+      "sha256": "43d412f15b8f05125906709c81b1e585010f452d9117d8c683589822ceb31010",
+      "bytes": 546
+    },
+    {
+      "path": "LICENSE-MOSQITO.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "path": "loudness-profile.json",
+      "sha256": "015316a845e67815f0c736e93fe02753e7774f6ea5c402da5ad6cf3fbc002538",
+      "bytes": 1673941
+    },
+    {
+      "path": "model-validation.json",
+      "sha256": "9389e07d6cc30a80f17bad9ee7311b27612331b421a9cf60d4b4533cf8887497",
+      "bytes": 467
+    },
+    {
+      "path": "onset-proposals.json",
+      "sha256": "a2cb0f81a5ddbb3e9f348e94be76dbe1ff19875ddfb71cf680a4d5f75d3280b3",
+      "bytes": 29599
+    },
+    {
+      "path": "onset-short-note-check.json",
+      "sha256": "43f0b7092bf47c992ae20b73c96ffa9b0820ba0af6b3f6e9ff222457f6dc0fb8",
+      "bytes": 126465
+    },
+    {
+      "path": "README.md",
+      "sha256": "99b56eef07fda5f3d82e04e2257d9e4ea8444bea350447221a2d076039a3d028",
+      "bytes": 4068
+    },
+    {
+      "path": "reference-fast-equivalence.json",
+      "sha256": "0f238923a85e77f33e2cc24883c3ba2fa797b2cbcd560bd3dfcc958def27a569",
+      "bytes": 109
+    },
+    {
+      "path": "reference-manifest.json",
+      "sha256": "5f5418edb43847b0f0ccd1a13388fc53d23765b0ac58c5ad140cb0abe769a954",
+      "bytes": 3259
+    },
+    {
+      "path": "reference-validation.json",
+      "sha256": "99c9fa2bc9bed79f52b8ce7680923c2b511549d15c73cf4d4b9a0cc14749fcc6",
+      "bytes": 4377
+    },
+    {
+      "path": "requirements.lock.txt",
+      "sha256": "90e05e1879cfe1ffe7f42a928c491c541dcd833ff995c679696d6680dc9ef96b",
+      "bytes": 288
+    },
+    {
+      "path": "runtime-model-validation.json",
+      "sha256": "f2e8dea42cf2ecdf84b48a2849d9860e2cd0cf0cd7762533ba915dce9f843ebd",
+      "bytes": 1119817
+    },
+    {
+      "path": "runtime-validation-cases.json",
+      "sha256": "3ef2388e1bd51ce3ddd9a84a7bb33fe2da8760b8929cfb4b4ffba8be6a4f974d",
+      "bytes": 677161
+    },
+    {
+      "path": "runtime-validation-report.json",
+      "sha256": "62b726e602646994e1f3881c461d3f200d0d9607a9dbe0e11ea066aa1f983407",
+      "bytes": 503986
+    },
+    {
+      "path": "slopes-fast-validation.json",
+      "sha256": "c4032bdfe4547f48dc0d02b85a6dead6c37dfd2324efc6bb4afe42e6fce3c7a5",
+      "bytes": 1544
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "sha256": "947928492b7c0807f240699da4df93afb3af00f25b749ef505409baebe06ecf8",
+      "bytes": 1562
+    },
+    {
+      "path": "validateModel.py",
+      "sha256": "8f5176be1ea638717e1796844de6fdee2784b15fe1707175097536fab0f759f4",
+      "bytes": 2548
+    },
+    {
+      "path": "validateSolvedGains.py",
+      "sha256": "881f070a97b575da76fed793f34645e462ea2678612b5a1eab5636f9ff23d886",
+      "bytes": 4358
+    },
+    {
+      "path": "reference/test10-values.json",
+      "sha256": "ba3cce5c7cab8a3f412de3380f7ad8aaa4ae54344300194df20d4e68527c38dc",
+      "bytes": 5198
+    },
+    {
+      "path": "reference/test10.wav",
+      "sha256": "06c92f24a6991785a75a53153f39f8271f3265c29d411921e3309243a9c4f907",
+      "bytes": 96044
+    }
+  ]
+}

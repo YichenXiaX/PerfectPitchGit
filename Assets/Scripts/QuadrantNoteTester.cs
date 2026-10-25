@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class QuadrantNoteTester : MonoBehaviour
+public class quadrantNoteTester : MonoBehaviour
 {
-    public FrequencyManager frequencyManager;
+    public frequencyManager frequencyManager;
 
     private Coroutine sequenceLoop;
 
@@ -11,22 +11,22 @@ public class QuadrantNoteTester : MonoBehaviour
     {
         if (frequencyManager == null)
         {
-            Debug.LogError("FrequencyManager not assigned!");
+            Debug.LogError("frequencyManager not assigned!");
             return;
         }
 
-        sequenceLoop = StartCoroutine(SequenceLoop());
+        sequenceLoop = StartCoroutine(runSequenceLoop());
     }
 
-    private IEnumerator SequenceLoop()
+    private IEnumerator runSequenceLoop()
     {
         while (true)
         {
-            var preset = GameSettings.Instance.GetCurrentPreset();
+            var preset = gameSettings.instance.getCurrentPreset();
 
             int quadrant = Random.Range(0, 4);
             Debug.Log($"--- Triggering sequence for Q{quadrant + 1} ---");
-            frequencyManager.PlayNoteSequence(quadrant);
+            frequencyManager.playNoteSequence(quadrant);
 
             // Wait for all notes to finish playing
             float sequenceDuration = preset.notesPerSequence * (preset.noteDuration + preset.pauseBetweenNotes);
@@ -36,7 +36,7 @@ public class QuadrantNoteTester : MonoBehaviour
         }
     }
 
-    public void StopSequences()
+    public void stopSequences() 
     {
         if (sequenceLoop != null)
         {

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class FailedPredictionBullet : MonoBehaviour
+public class failedPredictionBullet : MonoBehaviour
 {
-    //public GameManager gameManager;
+    //public gameManager gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +23,7 @@ public class FailedPredictionBullet : MonoBehaviour
         {
 
             Debug.Log("alkdjfk;lasdjklfjklsadjkflfailedalksdjflkajslkdfjklasdjfklasdk;lf");
-            GameManager.Instance.OnPlayerFailedPrediction();
+            gameManager.instance.onPlayerFailedPrediction();
         }
         if (other.CompareTag("BulletDestroyer"))
         {

@@ -1,0 +1,33 @@
+Third-party attribution: MoSQITo
+================================
+
+This calibration tooling uses MoSQITo version 1.2.1, developed by its
+contributors (citation: Green Forge Coop, MOSQITO, 2024-04-19,
+DOI 10.5281/zenodo.10629475).
+
+Upstream: https://github.com/Eomys/MoSQITo
+Pinned source revision: a14daeafcf0a37f36e4a29314ea42bc68b304c0e
+License: Apache License, Version 2.0; full text is in LICENSE-MOSQITO.txt.
+Upstream supplied no NOTICE file at this revision. This file is the
+downstream attribution and modification notice, not an upstream NOTICE.
+
+fastModel.py is a modified derivative of these MoSQITo modules:
+- mosqito/sq_metrics/loudness/loudness_zwtv/_nonlinear_decay.py
+- mosqito/sq_metrics/loudness/loudness_zwst/_calc_slopes.py
+
+Modifications, 2026-10-24:
+- Scalarized the nonlinear-decay recurrence and specific-loudness slope
+  algorithm for Numba JIT execution.
+- Retained upstream constants, calculation and rounding order, temporal
+  interpolation, threshold rules, and initial-state behavior.
+- Added wrappers for gain-scaled cached third-octave power with the
+  upstream fixed numerical floor restored after gain application.
+- No fast-math, coefficient retuning, new weighting, or alternate
+  psychoacoustic model is used.
+
+Other psychoacoustic stages execute the pinned MoSQITo implementation.
+Accelerated kernels were compared directly with untouched public API
+outputs, including the official test-10 pulse fixture. These comparison
+results do not constitute exhaustive ISO conformance certification.
+
+

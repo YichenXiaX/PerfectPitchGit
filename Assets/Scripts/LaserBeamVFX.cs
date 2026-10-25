@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class LaserBeamVFX : MonoBehaviour
+public class laserBeamVfx : MonoBehaviour
 {
     [Header("References")]
     public Transform firePoint;
@@ -24,27 +24,27 @@ public class LaserBeamVFX : MonoBehaviour
     public float shakeAmount = 0.1f;
     public Camera mainCam;
 
-    public void Fire()
+    public void fire()
     {
-        StartCoroutine(FireSequence());
+        StartCoroutine(fireSequence());
     }
 
-    IEnumerator FireSequence()
+    IEnumerator fireSequence()
     {
         GameObject beam = new GameObject("LaserBeam");
 
         // --- Create 4 layers for that chunky energy look ---
-        LineRenderer glow = CreateLine(beam, "Glow", glowWidth, glowColor, true);
-        LineRenderer core = CreateLine(beam, "Core", coreWidth, coreColor, true);
-        LineRenderer edgeL = CreateLine(beam, "EdgeL", coreWidth * 0.3f, electricColor, false);
-        LineRenderer edgeR = CreateLine(beam, "EdgeR", coreWidth * 0.3f, electricColor, false);
+        LineRenderer glow = createLine(beam, "Glow", glowWidth, glowColor, true);
+        LineRenderer core = createLine(beam, "Core", coreWidth, coreColor, true);
+        LineRenderer edgeL = createLine(beam, "EdgeL", coreWidth * 0.3f, electricColor, false);
+        LineRenderer edgeR = createLine(beam, "EdgeR", coreWidth * 0.3f, electricColor, false);
 
         Vector3 start = firePoint.position;
         Vector3 dir = firePoint.up; // shoots along firePoint's up axis
         Vector3 end = start + dir * beamLength;
 
         // Optional muzzle flash
-        GameObject flash = CreateMuzzleFlash(start);
+        GameObject flash = createMuzzleFlash(start);
 
         // ©¤©¤ PHASE 1: Beam shoots up instantly ©¤©¤
         float shootTime = 0.04f;
@@ -57,14 +57,14 @@ public class LaserBeamVFX : MonoBehaviour
             p = 1f - (1f - p) * (1f - p);
 
             Vector3 tip = Vector3.Lerp(start, end, p);
-            SetBeam(core, start, tip);
-            SetBeam(glow, start, tip);
-            SetNoisyBeam(edgeL, start, tip, electricNoise);
-            SetNoisyBeam(edgeR, start, tip, electricNoise);
+            setBeam(core, start, tip);
+            setBeam(glow, start, tip);
+            setNoisyBeam(edgeL, start, tip, electricNoise);
+            setNoisyBeam(edgeR, start, tip, electricNoise);
             yield return null;
         }
 
-        if (screenShake) StartCoroutine(CameraShake());
+        if (screenShake) StartCoroutine(cameraShake());
 
         // ©¤©¤ PHASE 2: Hold with electric flicker ©¤©¤
         float holdTime = beamDuration * 0.5f;
@@ -81,8 +81,8 @@ public class LaserBeamVFX : MonoBehaviour
             glow.widthMultiplier = glowWidth * flicker;
 
             // Regenerate electric edges every frame
-            SetNoisyBeam(edgeL, start, end, electricNoise * 2.5f);
-            SetNoisyBeam(edgeR, start, end, electricNoise * 2.5f);
+            setNoisyBeam(edgeL, start, end, electricNoise * 2.5f);
+            setNoisyBeam(edgeR, start, end, electricNoise * 2.5f);
 
             yield return null;
         }
@@ -107,12 +107,12 @@ public class LaserBeamVFX : MonoBehaviour
             edgeL.widthMultiplier = startEdge * smooth;
             edgeR.widthMultiplier = startEdge * smooth;
 
-            SetNoisyBeam(edgeL, start, end, electricNoise * fade);
-            SetNoisyBeam(edgeR, start, end, electricNoise * fade);
+            setNoisyBeam(edgeL, start, end, electricNoise * fade);
+            setNoisyBeam(edgeR, start, end, electricNoise * fade);
 
             // Fade colors
-            SetAlpha(core, coreColor.a * fade);
-            SetAlpha(glow, glowColor.a * fade);
+            setAlpha(core, coreColor.a * fade);
+            setAlpha(glow, glowColor.a * fade);
 
             yield return null;
         }
@@ -122,7 +122,7 @@ public class LaserBeamVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ LINE CREATION ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    LineRenderer CreateLine(GameObject parent, string name, float width, Color color, bool smooth)
+    LineRenderer createLine(GameObject parent, string name, float width, Color color, bool smooth)
     {
         GameObject obj = new GameObject(name);
         obj.transform.SetParent(parent.transform);
@@ -157,7 +157,7 @@ public class LaserBeamVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ BEAM POSITIONING ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    void SetBeam(LineRenderer lr, Vector3 from, Vector3 to)
+    void setBeam(LineRenderer lr, Vector3 from, Vector3 to)
     {
         lr.positionCount = segments;
         for (int i = 0; i < segments; i++)
@@ -167,7 +167,7 @@ public class LaserBeamVFX : MonoBehaviour
         }
     }
 
-    void SetNoisyBeam(LineRenderer lr, Vector3 from, Vector3 to, float noise)
+    void setNoisyBeam(LineRenderer lr, Vector3 from, Vector3 to, float noise)
     {
         lr.positionCount = segments;
         Vector3 right = Vector3.Cross((to - from).normalized, Vector3.forward);
@@ -188,7 +188,7 @@ public class LaserBeamVFX : MonoBehaviour
         }
     }
 
-    void SetAlpha(LineRenderer lr, float alpha)
+    void setAlpha(LineRenderer lr, float alpha)
     {
         Color s = lr.startColor;
         Color e = lr.endColor;
@@ -197,22 +197,22 @@ public class LaserBeamVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ MUZZLE FLASH ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    GameObject CreateMuzzleFlash(Vector3 position)
+    GameObject createMuzzleFlash(Vector3 position)
     {
         GameObject flash = new GameObject("MuzzleFlash");
         flash.transform.position = position;
 
         SpriteRenderer sr = flash.AddComponent<SpriteRenderer>();
-        sr.sprite = CreateGlowSprite();
+        sr.sprite = createGlowSprite();
         sr.color = coreColor;
         sr.sortingOrder = 11;
         flash.transform.localScale = Vector3.one * 1.5f;
 
-        StartCoroutine(AnimateMuzzleFlash(flash));
+        StartCoroutine(animateMuzzleFlash(flash));
         return flash;
     }
 
-    IEnumerator AnimateMuzzleFlash(GameObject flash)
+    IEnumerator animateMuzzleFlash(GameObject flash)
     {
         float duration = 0.3f;
         float t = 0f;
@@ -231,7 +231,7 @@ public class LaserBeamVFX : MonoBehaviour
         }
     }
 
-    Sprite CreateGlowSprite()
+    Sprite createGlowSprite()
     {
         int res = 32;
         Texture2D tex = new Texture2D(res, res);
@@ -253,7 +253,7 @@ public class LaserBeamVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ CAMERA SHAKE ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    IEnumerator CameraShake()
+    IEnumerator cameraShake()
     {
         if (mainCam == null) mainCam = Camera.main;
         Vector3 originalPos = mainCam.transform.position;

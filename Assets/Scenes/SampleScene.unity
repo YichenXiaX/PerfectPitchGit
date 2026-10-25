@@ -2364,19 +2364,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 169503103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 835050868}
-        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &169503103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4541,14 +4529,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b85ce707d90f7468d93a59755aa30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  celebrationVFX: {fileID: 312791259}
-  laserVFX: {fileID: 2029977434}
+  celebrationVfx: {fileID: 312791259}
+  laserVfx: {fileID: 2029977434}
   bulletPrefab: {fileID: 7561359017914788034, guid: 4f7c07791b7b3ce438d7332db95b55db, type: 3}
   failedPredictionBulletPrefab: {fileID: 7561359017914788034, guid: 83cd0d2c8f663dc4597725327a0eb911, type: 3}
   firePoint: {fileID: 91148744}
   correctLaserSound: {fileID: 275286744}
   normalLaserSound: {fileID: 1236930394}
-  teleportVFX: {fileID: 1594833752}
+  teleportVfx: {fileID: 1594833752}
 --- !u!212 &348000800
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10904,12 +10892,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frequencyManager: {fileID: 938363222}
   playerController: {fileID: 348000799}
-  OverlayObj: {fileID: 1021930892}
+  overlayObj: {fileID: 1021930892}
   starfieldEffect: {fileID: 444488110}
   mothership: {fileID: 1337840047}
   toneCloud: {fileID: 63539380}
   cloudDuration: 2
-  CurrentHealth: 1
+  currentHealth: 1
   roundState: 0
 --- !u!4 &814929387
 Transform:
@@ -11412,7 +11400,7 @@ MonoBehaviour:
   settingPanel: {fileID: 174744128}
   audioSource: {fileID: 795858507}
   gameManager: {fileID: 814929386}
-  auraHUD: {fileID: 719031654}
+  auraHud: {fileID: 719031654}
   presetToggle: {fileID: 449805289}
   customToggle: {fileID: 2020206254}
   levelDropdown: {fileID: 70787548}
@@ -13005,7 +12993,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4314002ade7127343803efafb2f500f9, type: 3}
   - {fileID: 8300000, guid: cb6b57f292322c74aa3c81c327ee7aed, type: 3}
   fadeDuration: 0.15
-  minCompensationVolume: 0.15
+  loudnessCalibrationData: {fileID: 4900000, guid: d97587454efb99441b16d5e4982936cd, type: 3}
   masterVolume: 0.8
 --- !u!4 &938363223
 Transform:
@@ -15925,8 +15913,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 835050868}
-        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Close
+        m_TargetAssemblyTypeName: settingsUi, Assembly-CSharp
+        m_MethodName: close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24606,8 +24594,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 814929386}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_TargetAssemblyTypeName: gameManager, Assembly-CSharp
+        m_MethodName: startGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26064,8 +26052,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 835050868}
-        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Show
+        m_TargetAssemblyTypeName: settingsUi, Assembly-CSharp
+        m_MethodName: show
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

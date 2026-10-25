@@ -1,0 +1,886 @@
+{
+  "method": "10ms combined-channel mean-power RMS windows, 1ms step, first window crossing -30dB relative to maximum window RMS in first500ms; search first250ms; preserve2ms lead-in; apply only starts>5ms.",
+  "changedCount": 54,
+  "clips": [
+    {
+      "clipName": "27.50",
+      "sampleRate": 44100,
+      "playbackStartFrame": 572,
+      "playbackStartSeconds": 0.012970521541950114,
+      "thresholdRms": 0.0018881807328350508,
+      "first500msMaxWindowRms": 0.059709517498046406,
+      "thresholdCrossingFrame": 660,
+      "proposedFrameBeforeMateriality": 572
+    },
+    {
+      "clipName": "29.14",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1540,
+      "playbackStartSeconds": 0.03492063492063492,
+      "thresholdRms": 0.0008734396628212224,
+      "first500msMaxWindowRms": 0.027620587332445535,
+      "thresholdCrossingFrame": 1628,
+      "proposedFrameBeforeMateriality": 1540
+    },
+    {
+      "clipName": "30.87",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0008875558588875161,
+      "first500msMaxWindowRms": 0.02806698064711551,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "32.70",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0021878085481741812,
+      "first500msMaxWindowRms": 0.0691845809661663,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "34.65",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0018387718495949613,
+      "first500msMaxWindowRms": 0.05814707142120638,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "36.71",
+      "sampleRate": 44100,
+      "playbackStartFrame": 792,
+      "playbackStartSeconds": 0.017959183673469388,
+      "thresholdRms": 0.0017153393665128916,
+      "first500msMaxWindowRms": 0.054243793583310974,
+      "thresholdCrossingFrame": 880,
+      "proposedFrameBeforeMateriality": 792
+    },
+    {
+      "clipName": "38.89",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0018052713806741348,
+      "first500msMaxWindowRms": 0.05708769357647143,
+      "thresholdCrossingFrame": 132,
+      "proposedFrameBeforeMateriality": 44
+    },
+    {
+      "clipName": "41.20",
+      "sampleRate": 44100,
+      "playbackStartFrame": 484,
+      "playbackStartSeconds": 0.010975056689342403,
+      "thresholdRms": 0.0017945375450202916,
+      "first500msMaxWindowRms": 0.05674825988951076,
+      "thresholdCrossingFrame": 572,
+      "proposedFrameBeforeMateriality": 484
+    },
+    {
+      "clipName": "43.65",
+      "sampleRate": 44100,
+      "playbackStartFrame": 440,
+      "playbackStartSeconds": 0.009977324263038548,
+      "thresholdRms": 0.001888080750780161,
+      "first500msMaxWindowRms": 0.059706355787860446,
+      "thresholdCrossingFrame": 528,
+      "proposedFrameBeforeMateriality": 440
+    },
+    {
+      "clipName": "46.25",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0026981144160849774,
+      "first500msMaxWindowRms": 0.08532186942563776,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "49.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1100,
+      "playbackStartSeconds": 0.024943310657596373,
+      "thresholdRms": 0.0023145820898514305,
+      "first500msMaxWindowRms": 0.0731935123536302,
+      "thresholdCrossingFrame": 1188,
+      "proposedFrameBeforeMateriality": 1100
+    },
+    {
+      "clipName": "51.91",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2992,
+      "playbackStartSeconds": 0.06784580498866213,
+      "thresholdRms": 0.0017980413532045303,
+      "first500msMaxWindowRms": 0.05685906003297609,
+      "thresholdCrossingFrame": 3080,
+      "proposedFrameBeforeMateriality": 2992
+    },
+    {
+      "clipName": "55.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2728,
+      "playbackStartSeconds": 0.061859410430839,
+      "thresholdRms": 0.0014019701888246022,
+      "first500msMaxWindowRms": 0.04433419008342084,
+      "thresholdCrossingFrame": 2816,
+      "proposedFrameBeforeMateriality": 2728
+    },
+    {
+      "clipName": "58.27",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0016242261309866457,
+      "first500msMaxWindowRms": 0.0513625400908079,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "61.74",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2992,
+      "playbackStartSeconds": 0.06784580498866213,
+      "thresholdRms": 0.0015314438397663087,
+      "first500msMaxWindowRms": 0.04842850642295481,
+      "thresholdCrossingFrame": 3080,
+      "proposedFrameBeforeMateriality": 2992
+    },
+    {
+      "clipName": "65.41",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0019686116296234496,
+      "first500msMaxWindowRms": 0.062252965779059026,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "69.30",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1188,
+      "playbackStartSeconds": 0.026938775510204082,
+      "thresholdRms": 0.002377851802444554,
+      "first500msMaxWindowRms": 0.07519427634061528,
+      "thresholdCrossingFrame": 1276,
+      "proposedFrameBeforeMateriality": 1188
+    },
+    {
+      "clipName": "73.42",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1364,
+      "playbackStartSeconds": 0.0309297052154195,
+      "thresholdRms": 0.0018570082202574543,
+      "first500msMaxWindowRms": 0.05872375609669189,
+      "thresholdCrossingFrame": 1452,
+      "proposedFrameBeforeMateriality": 1364
+    },
+    {
+      "clipName": "77.78",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1276,
+      "playbackStartSeconds": 0.02893424036281179,
+      "thresholdRms": 0.0021537777285129166,
+      "first500msMaxWindowRms": 0.06810843195844593,
+      "thresholdCrossingFrame": 1364,
+      "proposedFrameBeforeMateriality": 1276
+    },
+    {
+      "clipName": "82.41",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0026182999092057803,
+      "first500msMaxWindowRms": 0.08279791310502335,
+      "thresholdCrossingFrame": 44,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "87.31",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.003973529701862319,
+      "first500msMaxWindowRms": 0.12565404208214734,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "92.50",
+      "sampleRate": 44100,
+      "playbackStartFrame": 968,
+      "playbackStartSeconds": 0.021950113378684806,
+      "thresholdRms": 0.002878117371404193,
+      "first500msMaxWindowRms": 0.09101406266934019,
+      "thresholdCrossingFrame": 1056,
+      "proposedFrameBeforeMateriality": 968
+    },
+    {
+      "clipName": "98.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 968,
+      "playbackStartSeconds": 0.021950113378684806,
+      "thresholdRms": 0.0025097601961262786,
+      "first500msMaxWindowRms": 0.07936558600589942,
+      "thresholdCrossingFrame": 1056,
+      "proposedFrameBeforeMateriality": 968
+    },
+    {
+      "clipName": "103.83",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1408,
+      "playbackStartSeconds": 0.03192743764172336,
+      "thresholdRms": 0.0030988373602908862,
+      "first500msMaxWindowRms": 0.09799384156943021,
+      "thresholdCrossingFrame": 1496,
+      "proposedFrameBeforeMateriality": 1408
+    },
+    {
+      "clipName": "110.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0023519267381249967,
+      "first500msMaxWindowRms": 0.07437445382325364,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "116.54",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2860,
+      "playbackStartSeconds": 0.06485260770975057,
+      "thresholdRms": 0.0028612511960975856,
+      "first500msMaxWindowRms": 0.0904807073754945,
+      "thresholdCrossingFrame": 2948,
+      "proposedFrameBeforeMateriality": 2860
+    },
+    {
+      "clipName": "123.47",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0029974895865051573,
+      "first500msMaxWindowRms": 0.09478894355992612,
+      "thresholdCrossingFrame": 176,
+      "proposedFrameBeforeMateriality": 88
+    },
+    {
+      "clipName": "130.81",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2992,
+      "playbackStartSeconds": 0.06784580498866213,
+      "thresholdRms": 0.002896389007491567,
+      "first500msMaxWindowRms": 0.09159186253547848,
+      "thresholdCrossingFrame": 3080,
+      "proposedFrameBeforeMateriality": 2992
+    },
+    {
+      "clipName": "138.59",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1540,
+      "playbackStartSeconds": 0.03492063492063492,
+      "thresholdRms": 0.0024259861675272653,
+      "first500msMaxWindowRms": 0.07671641861448975,
+      "thresholdCrossingFrame": 1628,
+      "proposedFrameBeforeMateriality": 1540
+    },
+    {
+      "clipName": "146.83",
+      "sampleRate": 44100,
+      "playbackStartFrame": 704,
+      "playbackStartSeconds": 0.01596371882086168,
+      "thresholdRms": 0.00195514881748114,
+      "first500msMaxWindowRms": 0.06182723427825233,
+      "thresholdCrossingFrame": 792,
+      "proposedFrameBeforeMateriality": 704
+    },
+    {
+      "clipName": "155.56",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.002192397126743102,
+      "first500msMaxWindowRms": 0.06932968456117056,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "164.81",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0030320867006920884,
+      "first500msMaxWindowRms": 0.09588300037292238,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "174.61",
+      "sampleRate": 44100,
+      "playbackStartFrame": 3740,
+      "playbackStartSeconds": 0.08480725623582766,
+      "thresholdRms": 0.0032276347888459452,
+      "first500msMaxWindowRms": 0.10206677387949817,
+      "thresholdCrossingFrame": 3828,
+      "proposedFrameBeforeMateriality": 3740
+    },
+    {
+      "clipName": "185.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.002882212867180788,
+      "first500msMaxWindowRms": 0.09114357361735659,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "196.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1452,
+      "playbackStartSeconds": 0.03292517006802721,
+      "thresholdRms": 0.002293715756581454,
+      "first500msMaxWindowRms": 0.07253366095813746,
+      "thresholdCrossingFrame": 1540,
+      "proposedFrameBeforeMateriality": 1452
+    },
+    {
+      "clipName": "207.65",
+      "sampleRate": 44100,
+      "playbackStartFrame": 792,
+      "playbackStartSeconds": 0.017959183673469388,
+      "thresholdRms": 0.0027197885776259994,
+      "first500msMaxWindowRms": 0.0860072665940783,
+      "thresholdCrossingFrame": 880,
+      "proposedFrameBeforeMateriality": 792
+    },
+    {
+      "clipName": "220.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0029042626347479217,
+      "first500msMaxWindowRms": 0.09184084849125111,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "233.08",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1144,
+      "playbackStartSeconds": 0.025941043083900227,
+      "thresholdRms": 0.004028444369378413,
+      "first500msMaxWindowRms": 0.12739059634516453,
+      "thresholdCrossingFrame": 1232,
+      "proposedFrameBeforeMateriality": 1144
+    },
+    {
+      "clipName": "246.94",
+      "sampleRate": 44100,
+      "playbackStartFrame": 308,
+      "playbackStartSeconds": 0.006984126984126984,
+      "thresholdRms": 0.0036091639437223996,
+      "first500msMaxWindowRms": 0.1141317851111855,
+      "thresholdCrossingFrame": 396,
+      "proposedFrameBeforeMateriality": 308
+    },
+    {
+      "clipName": "261.63",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.004629698639688662,
+      "first500msMaxWindowRms": 0.14640392581599393,
+      "thresholdCrossingFrame": 220,
+      "proposedFrameBeforeMateriality": 132
+    },
+    {
+      "clipName": "277.18",
+      "sampleRate": 44100,
+      "playbackStartFrame": 308,
+      "playbackStartSeconds": 0.006984126984126984,
+      "thresholdRms": 0.004964971068577921,
+      "first500msMaxWindowRms": 0.15700617093546285,
+      "thresholdCrossingFrame": 396,
+      "proposedFrameBeforeMateriality": 308
+    },
+    {
+      "clipName": "293.66",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1012,
+      "playbackStartSeconds": 0.02294784580498866,
+      "thresholdRms": 0.004363141370676036,
+      "first500msMaxWindowRms": 0.13797464484645272,
+      "thresholdCrossingFrame": 1100,
+      "proposedFrameBeforeMateriality": 1012
+    },
+    {
+      "clipName": "311.13",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.003627616941968368,
+      "first500msMaxWindowRms": 0.11471532015234903,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "329.63",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0026550080572969935,
+      "first500msMaxWindowRms": 0.08395872667157331,
+      "thresholdCrossingFrame": 220,
+      "proposedFrameBeforeMateriality": 132
+    },
+    {
+      "clipName": "349.23",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1276,
+      "playbackStartSeconds": 0.02893424036281179,
+      "thresholdRms": 0.0037629878828749305,
+      "first500msMaxWindowRms": 0.118996125174997,
+      "thresholdCrossingFrame": 1364,
+      "proposedFrameBeforeMateriality": 1276
+    },
+    {
+      "clipName": "369.99",
+      "sampleRate": 44100,
+      "playbackStartFrame": 924,
+      "playbackStartSeconds": 0.02095238095238095,
+      "thresholdRms": 0.003879568156246311,
+      "first500msMaxWindowRms": 0.12268271711598339,
+      "thresholdCrossingFrame": 1012,
+      "proposedFrameBeforeMateriality": 924
+    },
+    {
+      "clipName": "392.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.003530295715224411,
+      "first500msMaxWindowRms": 0.11163775274042306,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "415.30",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.008029752647285119,
+      "first500msMaxWindowRms": 0.25392307413187637,
+      "thresholdCrossingFrame": 132,
+      "proposedFrameBeforeMateriality": 44
+    },
+    {
+      "clipName": "440.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 792,
+      "playbackStartSeconds": 0.017959183673469388,
+      "thresholdRms": 0.005024353039343081,
+      "first500msMaxWindowRms": 0.15888399373113726,
+      "thresholdCrossingFrame": 880,
+      "proposedFrameBeforeMateriality": 792
+    },
+    {
+      "clipName": "466.16",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1408,
+      "playbackStartSeconds": 0.03192743764172336,
+      "thresholdRms": 0.006025094505225281,
+      "first500msMaxWindowRms": 0.1905302175427716,
+      "thresholdCrossingFrame": 1496,
+      "proposedFrameBeforeMateriality": 1408
+    },
+    {
+      "clipName": "493.88",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.008583295089650191,
+      "first500msMaxWindowRms": 0.2714276231263375,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "523.25",
+      "sampleRate": 44100,
+      "playbackStartFrame": 748,
+      "playbackStartSeconds": 0.016961451247165533,
+      "thresholdRms": 0.009464412388972417,
+      "first500msMaxWindowRms": 0.29929099864268316,
+      "thresholdCrossingFrame": 836,
+      "proposedFrameBeforeMateriality": 748
+    },
+    {
+      "clipName": "554.37",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1276,
+      "playbackStartSeconds": 0.02893424036281179,
+      "thresholdRms": 0.004334558712345847,
+      "first500msMaxWindowRms": 0.13707078182739488,
+      "thresholdCrossingFrame": 1364,
+      "proposedFrameBeforeMateriality": 1276
+    },
+    {
+      "clipName": "587.33",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1452,
+      "playbackStartSeconds": 0.03292517006802721,
+      "thresholdRms": 0.0033712550625154534,
+      "first500msMaxWindowRms": 0.10660844570922172,
+      "thresholdCrossingFrame": 1540,
+      "proposedFrameBeforeMateriality": 1452
+    },
+    {
+      "clipName": "622.25",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2068,
+      "playbackStartSeconds": 0.04689342403628118,
+      "thresholdRms": 0.004641471758061147,
+      "first500msMaxWindowRms": 0.1467762245081922,
+      "thresholdCrossingFrame": 2156,
+      "proposedFrameBeforeMateriality": 2068
+    },
+    {
+      "clipName": "659.26",
+      "sampleRate": 44100,
+      "playbackStartFrame": 2156,
+      "playbackStartSeconds": 0.04888888888888889,
+      "thresholdRms": 0.006825361377056723,
+      "first500msMaxWindowRms": 0.21583687805242563,
+      "thresholdCrossingFrame": 2244,
+      "proposedFrameBeforeMateriality": 2156
+    },
+    {
+      "clipName": "698.46",
+      "sampleRate": 44100,
+      "playbackStartFrame": 308,
+      "playbackStartSeconds": 0.006984126984126984,
+      "thresholdRms": 0.006781264776042422,
+      "first500msMaxWindowRms": 0.2144424210896568,
+      "thresholdCrossingFrame": 396,
+      "proposedFrameBeforeMateriality": 308
+    },
+    {
+      "clipName": "739.99",
+      "sampleRate": 44100,
+      "playbackStartFrame": 396,
+      "playbackStartSeconds": 0.008979591836734694,
+      "thresholdRms": 0.007205294311674209,
+      "first500msMaxWindowRms": 0.22785141236745654,
+      "thresholdCrossingFrame": 484,
+      "proposedFrameBeforeMateriality": 396
+    },
+    {
+      "clipName": "783.99",
+      "sampleRate": 44100,
+      "playbackStartFrame": 396,
+      "playbackStartSeconds": 0.008979591836734694,
+      "thresholdRms": 0.005215411524538753,
+      "first500msMaxWindowRms": 0.1649257935263361,
+      "thresholdCrossingFrame": 484,
+      "proposedFrameBeforeMateriality": 396
+    },
+    {
+      "clipName": "830.61",
+      "sampleRate": 44100,
+      "playbackStartFrame": 616,
+      "playbackStartSeconds": 0.013968253968253968,
+      "thresholdRms": 0.0034314362456808727,
+      "first500msMaxWindowRms": 0.1085115418200868,
+      "thresholdCrossingFrame": 704,
+      "proposedFrameBeforeMateriality": 616
+    },
+    {
+      "clipName": "880.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 572,
+      "playbackStartSeconds": 0.012970521541950114,
+      "thresholdRms": 0.003600972452759623,
+      "first500msMaxWindowRms": 0.1138727474224349,
+      "thresholdCrossingFrame": 660,
+      "proposedFrameBeforeMateriality": 572
+    },
+    {
+      "clipName": "932.33",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.006072977772728647,
+      "first500msMaxWindowRms": 0.19204441941398923,
+      "thresholdCrossingFrame": 220,
+      "proposedFrameBeforeMateriality": 132
+    },
+    {
+      "clipName": "987.77",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1276,
+      "playbackStartSeconds": 0.02893424036281179,
+      "thresholdRms": 0.0069335556881294745,
+      "first500msMaxWindowRms": 0.21925828258105234,
+      "thresholdCrossingFrame": 1364,
+      "proposedFrameBeforeMateriality": 1276
+    },
+    {
+      "clipName": "1046.50",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1144,
+      "playbackStartSeconds": 0.025941043083900227,
+      "thresholdRms": 0.0037785667884922525,
+      "first500msMaxWindowRms": 0.11948877342703229,
+      "thresholdCrossingFrame": 1232,
+      "proposedFrameBeforeMateriality": 1144
+    },
+    {
+      "clipName": "1108.73",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0032461498707986995,
+      "first500msMaxWindowRms": 0.10265227217985198,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "1174.66",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.006373462569312838,
+      "first500msMaxWindowRms": 0.2015465830085735,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "1244.51",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.006155390245611684,
+      "first500msMaxWindowRms": 0.19465053063316182,
+      "thresholdCrossingFrame": 264,
+      "proposedFrameBeforeMateriality": 176
+    },
+    {
+      "clipName": "1318.51",
+      "sampleRate": 44100,
+      "playbackStartFrame": 836,
+      "playbackStartSeconds": 0.018956916099773242,
+      "thresholdRms": 0.0069813354820480265,
+      "first500msMaxWindowRms": 0.22076921233021318,
+      "thresholdCrossingFrame": 924,
+      "proposedFrameBeforeMateriality": 836
+    },
+    {
+      "clipName": "1396.91",
+      "sampleRate": 44100,
+      "playbackStartFrame": 836,
+      "playbackStartSeconds": 0.018956916099773242,
+      "thresholdRms": 0.004434975066040019,
+      "first500msMaxWindowRms": 0.14024622574742135,
+      "thresholdCrossingFrame": 924,
+      "proposedFrameBeforeMateriality": 836
+    },
+    {
+      "clipName": "1479.98",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0034914577310037748,
+      "first500msMaxWindowRms": 0.11040958784175417,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "1567.98",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.002859177468749248,
+      "first500msMaxWindowRms": 0.09041513035882522,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "1661.22",
+      "sampleRate": 44100,
+      "playbackStartFrame": 1056,
+      "playbackStartSeconds": 0.02394557823129252,
+      "thresholdRms": 0.004196736820293094,
+      "first500msMaxWindowRms": 0.1327124709241893,
+      "thresholdCrossingFrame": 1144,
+      "proposedFrameBeforeMateriality": 1056
+    },
+    {
+      "clipName": "1760.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.004095484591061555,
+      "first500msMaxWindowRms": 0.12951059429877787,
+      "thresholdCrossingFrame": 176,
+      "proposedFrameBeforeMateriality": 88
+    },
+    {
+      "clipName": "1864.66",
+      "sampleRate": 44100,
+      "playbackStartFrame": 704,
+      "playbackStartSeconds": 0.01596371882086168,
+      "thresholdRms": 0.003869760728090729,
+      "first500msMaxWindowRms": 0.12237257900638235,
+      "thresholdCrossingFrame": 792,
+      "proposedFrameBeforeMateriality": 704
+    },
+    {
+      "clipName": "1975.53",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0030399578497478257,
+      "first500msMaxWindowRms": 0.09613190796111053,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "2093.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 396,
+      "playbackStartSeconds": 0.008979591836734694,
+      "thresholdRms": 0.002425715656600597,
+      "first500msMaxWindowRms": 0.0767078643078874,
+      "thresholdCrossingFrame": 484,
+      "proposedFrameBeforeMateriality": 396
+    },
+    {
+      "clipName": "2217.46",
+      "sampleRate": 44100,
+      "playbackStartFrame": 792,
+      "playbackStartSeconds": 0.017959183673469388,
+      "thresholdRms": 0.0023822399153526816,
+      "first500msMaxWindowRms": 0.07533304065481197,
+      "thresholdCrossingFrame": 880,
+      "proposedFrameBeforeMateriality": 792
+    },
+    {
+      "clipName": "2349.32",
+      "sampleRate": 44100,
+      "playbackStartFrame": 352,
+      "playbackStartSeconds": 0.00798185941043084,
+      "thresholdRms": 0.002656008702886897,
+      "first500msMaxWindowRms": 0.0839903698635203,
+      "thresholdCrossingFrame": 440,
+      "proposedFrameBeforeMateriality": 352
+    },
+    {
+      "clipName": "2489.02",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.003679537067814658,
+      "first500msMaxWindowRms": 0.11635717869311757,
+      "thresholdCrossingFrame": 132,
+      "proposedFrameBeforeMateriality": 44
+    },
+    {
+      "clipName": "2637.02",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0026108777004487855,
+      "first500msMaxWindowRms": 0.08256320225560984,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "2793.83",
+      "sampleRate": 44100,
+      "playbackStartFrame": 484,
+      "playbackStartSeconds": 0.010975056689342403,
+      "thresholdRms": 0.0015995938492919311,
+      "first500msMaxWindowRms": 0.050583598949586195,
+      "thresholdCrossingFrame": 572,
+      "proposedFrameBeforeMateriality": 484
+    },
+    {
+      "clipName": "2959.96",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0013218525465723456,
+      "first500msMaxWindowRms": 0.04180064778062411,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "3135.96",
+      "sampleRate": 44100,
+      "playbackStartFrame": 572,
+      "playbackStartSeconds": 0.012970521541950114,
+      "thresholdRms": 0.002081295133435179,
+      "first500msMaxWindowRms": 0.06581633104679234,
+      "thresholdCrossingFrame": 660,
+      "proposedFrameBeforeMateriality": 572
+    },
+    {
+      "clipName": "3322.44",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0014292278305445792,
+      "first500msMaxWindowRms": 0.04519615239822041,
+      "thresholdCrossingFrame": 0,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "3520.00",
+      "sampleRate": 44100,
+      "playbackStartFrame": 0,
+      "playbackStartSeconds": 0.0,
+      "thresholdRms": 0.0010458907576304292,
+      "first500msMaxWindowRms": 0.033073969778312874,
+      "thresholdCrossingFrame": 88,
+      "proposedFrameBeforeMateriality": 0
+    },
+    {
+      "clipName": "3729.31",
+      "sampleRate": 44100,
+      "playbackStartFrame": 264,
+      "playbackStartSeconds": 0.00598639455782313,
+      "thresholdRms": 0.0013526364512375243,
+      "first500msMaxWindowRms": 0.04277412032077859,
+      "thresholdCrossingFrame": 352,
+      "proposedFrameBeforeMateriality": 264
+    },
+    {
+      "clipName": "3951.07",
+      "sampleRate": 44100,
+      "playbackStartFrame": 572,
+      "playbackStartSeconds": 0.012970521541950114,
+      "thresholdRms": 0.0014746997218857063,
+      "first500msMaxWindowRms": 0.04663409985975691,
+      "thresholdCrossingFrame": 660,
+      "proposedFrameBeforeMateriality": 572
+    },
+    {
+      "clipName": "4186.01",
+      "sampleRate": 44100,
+      "playbackStartFrame": 572,
+      "playbackStartSeconds": 0.012970521541950114,
+      "thresholdRms": 0.0011426167923579375,
+      "first500msMaxWindowRms": 0.03613271556606758,
+      "thresholdCrossingFrame": 660,
+      "proposedFrameBeforeMateriality": 572
+    }
+  ]
+}

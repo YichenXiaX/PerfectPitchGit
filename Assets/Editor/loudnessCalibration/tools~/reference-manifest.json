@@ -1,0 +1,55 @@
+{
+  "repository": "https://github.com/Eomys/MoSQITo",
+  "tag": "v1.2.1",
+  "commit": "a14daeafcf0a37f36e4a29314ea42bc68b304c0e",
+  "files": [
+    {
+      "path": "CITATION.cff",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/CITATION.cff",
+      "sha256": "8a6f35dc132bb77baf887d5935690d8a26bef779445ac7398bd97263930fb3f8",
+      "bytes": 384
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "path": "tests/input/Results and tests for synthetic signals (time varying loudness).xlsx",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/tests/input/Results%20and%20tests%20for%20synthetic%20signals%20%28time%20varying%20loudness%29.xlsx",
+      "sha256": "0a6365c914a58de3e2c91b60d01122eb78067b87c9a7faae91fc619bf282768e",
+      "bytes": 10113781
+    },
+    {
+      "path": "tests/input/Test signal 10 (tone pulse 1 kHz 10 ms 70 dB).wav",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/tests/input/Test%20signal%2010%20%28tone%20pulse%201%20kHz%2010%20ms%2070%20dB%29.wav",
+      "sha256": "06c92f24a6991785a75a53153f39f8271f3265c29d411921e3309243a9c4f907",
+      "bytes": 96044
+    },
+    {
+      "path": "tests/sq_metrics/loudness/test_loudness_zwtv.py",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/tests/sq_metrics/loudness/test_loudness_zwtv.py",
+      "sha256": "068ad119a90a74870bbff81f99db67845174639b96878f6bd89b6623ca791d29",
+      "bytes": 1849
+    },
+    {
+      "path": "validations/sq_metrics/loudness_zwtv/input/ISO_532-1/Annex B.4/Results and tests for synthetic signals (time varying loudness).xlsx",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/validations/sq_metrics/loudness_zwtv/input/ISO_532-1/Annex%20B.4/Results%20and%20tests%20for%20synthetic%20signals%20%28time%20varying%20loudness%29.xlsx",
+      "sha256": "0a6365c914a58de3e2c91b60d01122eb78067b87c9a7faae91fc619bf282768e",
+      "bytes": 10113781
+    },
+    {
+      "path": "validations/sq_metrics/loudness_zwtv/input/ISO_532-1/Annex B.4/Test signal 10 (tone pulse 1 kHz 10 ms 70 dB).wav",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/validations/sq_metrics/loudness_zwtv/input/ISO_532-1/Annex%20B.4/Test%20signal%2010%20%28tone%20pulse%201%20kHz%2010%20ms%2070%20dB%29.wav",
+      "sha256": "06c92f24a6991785a75a53153f39f8271f3265c29d411921e3309243a9c4f907",
+      "bytes": 96044
+    },
+    {
+      "path": "validations/sq_metrics/loudness_zwtv/validation_loudness_zwtv.py",
+      "url": "https://raw.githubusercontent.com/Eomys/MoSQITo/a14daeafcf0a37f36e4a29314ea42bc68b304c0e/validations/sq_metrics/loudness_zwtv/validation_loudness_zwtv.py",
+      "sha256": "2cb618f24754b6ec256b90ebb72fb7c556c2ee8fa41bf1ab3d2585d7ee1a07e2",
+      "bytes": 16085
+    }
+  ]
+}

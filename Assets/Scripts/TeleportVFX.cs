@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TeleportVFX : MonoBehaviour
+public class teleportVfx : MonoBehaviour
 {
     [Header("References")]
     public Transform ship;
@@ -21,18 +21,18 @@ public class TeleportVFX : MonoBehaviour
     public float boltNoise = 0.3f;
     public float effectDuration = 0.35f;
 
-    public void Teleport(Vector3 targetPos)
+    public void teleport(Vector3 targetPos)
     {
-        StartCoroutine(TeleportSequence(targetPos));
+        StartCoroutine(teleportSequence(targetPos));
     }
 
-    IEnumerator TeleportSequence(Vector3 targetPos)
+    IEnumerator teleportSequence(Vector3 targetPos)
     {
         Vector3 originPos = ship.position;
 
         // ©¤©¤ PHASE 1: Charge up at origin (quick) ©¤©¤
-        GameObject originFX = CreateElectricBurst(originPos);
-        GameObject ghost = CreateGhost(originPos);
+        GameObject originFx = createElectricBurst(originPos);
+        GameObject ghost = createGhost(originPos);
 
         // Flash the ship white
         Color originalColor = shipSprite.color;
@@ -44,24 +44,24 @@ public class TeleportVFX : MonoBehaviour
         ship.position = targetPos;
 
         // ©¤©¤ PHASE 3: Electric burst at destination ©¤©¤
-        GameObject destFX = CreateElectricBurst(targetPos);
-        GameObject destFlash = CreateFlashCircle(targetPos);
+        GameObject destFx = createElectricBurst(targetPos);
+        GameObject destFlash = createFlashCircle(targetPos);
 
         // Ship flickers in
-        StartCoroutine(ShipFlicker(originalColor));
+        StartCoroutine(shipFlicker(originalColor));
 
         // ©¤©¤ PHASE 4: Connecting arc between origin and dest (optional cool touch) ©¤©¤
         GameObject arc = null;
         float dist = Vector3.Distance(originPos, targetPos);
         if (dist > 0.5f && dist < 15f)
         {
-            arc = CreateConnectingArc(originPos, targetPos);
+            arc = createConnectingArc(originPos, targetPos);
         }
 
         // ©¤©¤ PHASE 5: Animate everything ©¤©¤
         float t = 0f;
-        List<LineRenderer> originBolts = GetBolts(originFX);
-        List<LineRenderer> destBolts = GetBolts(destFX);
+        List<LineRenderer> originBolts = getBolts(originFx);
+        List<LineRenderer> destBolts = getBolts(destFx);
         LineRenderer arcLine = arc?.GetComponentInChildren<LineRenderer>();
 
         while (t < effectDuration)
@@ -72,19 +72,19 @@ public class TeleportVFX : MonoBehaviour
             float snap = fade * fade; // fast falloff
 
             // Regenerate bolts with new noise each frame
-            RegenerateBolts(originBolts, originPos, snap);
-            RegenerateBolts(destBolts, targetPos, snap);
+            regenerateBolts(originBolts, originPos, snap);
+            regenerateBolts(destBolts, targetPos, snap);
 
             // Shrink bolt widths
-            SetBoltWidths(originBolts, boltWidth * snap);
-            SetBoltWidths(destBolts, boltWidth * snap);
+            setBoltWidths(originBolts, boltWidth * snap);
+            setBoltWidths(destBolts, boltWidth * snap);
 
             // Fade connecting arc
             if (arcLine != null)
             {
-                RegenerateArc(arcLine, originPos, targetPos, boltNoise * fade);
+                regenerateArc(arcLine, originPos, targetPos, boltNoise * fade);
                 arcLine.widthMultiplier = boltWidth * 1.5f * snap;
-                SetLineAlpha(arcLine, fade);
+                setLineAlpha(arcLine, fade);
             }
 
             // Fade ghost
@@ -107,15 +107,15 @@ public class TeleportVFX : MonoBehaviour
             yield return null;
         }
 
-        Destroy(originFX);
-        Destroy(destFX);
+        Destroy(originFx);
+        Destroy(destFx);
         Destroy(destFlash);
         Destroy(ghost);
         if (arc != null) Destroy(arc);
     }
 
     // ©¤©¤©¤ ELECTRIC BURST ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    GameObject CreateElectricBurst(Vector3 pos)
+    GameObject createElectricBurst(Vector3 pos)
     {
         GameObject burst = new GameObject("ElectricBurst");
         burst.transform.position = pos;
@@ -148,13 +148,13 @@ public class TeleportVFX : MonoBehaviour
 
             // Store direction in the name for regeneration
             boltObj.name = $"Bolt_{angle}";
-            SetBoltPositions(lr, pos, dir);
+            setBoltPositions(lr, pos, dir);
         }
 
         return burst;
     }
 
-    void SetBoltPositions(LineRenderer lr, Vector3 origin, Vector3 dir)
+    void setBoltPositions(LineRenderer lr, Vector3 origin, Vector3 dir)
     {
         Vector3 right = Vector3.Cross(dir, Vector3.forward).normalized;
 
@@ -174,7 +174,7 @@ public class TeleportVFX : MonoBehaviour
         }
     }
 
-    void RegenerateBolts(List<LineRenderer> bolts, Vector3 center, float scale)
+    void regenerateBolts(List<LineRenderer> bolts, Vector3 center, float scale)
     {
         foreach (var lr in bolts)
         {
@@ -203,14 +203,14 @@ public class TeleportVFX : MonoBehaviour
         }
     }
 
-    void SetBoltWidths(List<LineRenderer> bolts, float width)
+    void setBoltWidths(List<LineRenderer> bolts, float width)
     {
         foreach (var lr in bolts)
             lr.widthMultiplier = width;
     }
 
     // ©¤©¤©¤ CONNECTING ARC ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    GameObject CreateConnectingArc(Vector3 from, Vector3 to)
+    GameObject createConnectingArc(Vector3 from, Vector3 to)
     {
         GameObject arcObj = new GameObject("ConnectingArc");
 
@@ -229,11 +229,11 @@ public class TeleportVFX : MonoBehaviour
         Material mat = new Material(Shader.Find("Sprites/Default"));
         lr.material = mat;
 
-        RegenerateArc(lr, from, to, boltNoise);
+        regenerateArc(lr, from, to, boltNoise);
         return arcObj;
     }
 
-    void RegenerateArc(LineRenderer lr, Vector3 from, Vector3 to, float noise)
+    void regenerateArc(LineRenderer lr, Vector3 from, Vector3 to, float noise)
     {
         Vector3 dir = (to - from).normalized;
         Vector3 right = Vector3.Cross(dir, Vector3.forward).normalized;
@@ -255,7 +255,7 @@ public class TeleportVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ GHOST (afterimage at old position) ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    GameObject CreateGhost(Vector3 pos)
+    GameObject createGhost(Vector3 pos)
     {
         if (shipSprite == null) return null;
 
@@ -273,7 +273,7 @@ public class TeleportVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ FLASH CIRCLE ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    GameObject CreateFlashCircle(Vector3 pos)
+    GameObject createFlashCircle(Vector3 pos)
     {
         int res = 32;
         Texture2D tex = new Texture2D(res, res);
@@ -304,7 +304,7 @@ public class TeleportVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ SHIP FLICKER ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    IEnumerator ShipFlicker(Color originalColor)
+    IEnumerator shipFlicker(Color originalColor)
     {
         int flicks = 5;
         float flickDuration = 0.12f;
@@ -323,7 +323,7 @@ public class TeleportVFX : MonoBehaviour
     }
 
     // ©¤©¤©¤ HELPERS ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    List<LineRenderer> GetBolts(GameObject parent)
+    List<LineRenderer> getBolts(GameObject parent)
     {
         List<LineRenderer> bolts = new List<LineRenderer>();
         if (parent == null) return bolts;
@@ -335,7 +335,7 @@ public class TeleportVFX : MonoBehaviour
         return bolts;
     }
 
-    void SetLineAlpha(LineRenderer lr, float alpha)
+    void setLineAlpha(LineRenderer lr, float alpha)
     {
         Color s = lr.startColor;
         Color e = lr.endColor;

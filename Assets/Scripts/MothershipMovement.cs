@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MothershipMovement : MonoBehaviour
+public class mothershipMovement : MonoBehaviour
 {
     [Header("Floating")]
     [SerializeField] float floatAmountX = 0.05f;
@@ -51,7 +51,7 @@ public class MothershipMovement : MonoBehaviour
     /// <summary>
     /// Call this from OnTriggerEnter2D when a comet hits.
     /// </summary>
-    public void Hit()
+    public void hit()
     {
         shakeTimer = hitShakeDuration;
     }

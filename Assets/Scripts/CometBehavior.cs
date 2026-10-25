@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CometBehavior : MonoBehaviour
+public class cometBehavior : MonoBehaviour
 {
     private float rotationSpeed; // Speed of rotation (randomized for each comet)
     private float fixedX; // store the spawn X
@@ -21,7 +21,7 @@ public class CometBehavior : MonoBehaviour
     {
         Vector3 pos = transform.position;
         // Move the comet downward continuously
-        pos.y -= GameSettings.Instance.GetCurrentPreset().cometSpeed * Time.deltaTime;
+        pos.y -= gameSettings.instance.getCurrentPreset().cometSpeed * Time.deltaTime;
         pos.x = fixedX; // no horizontal drift ever
         transform.position = pos;
 
@@ -34,9 +34,9 @@ public class CometBehavior : MonoBehaviour
         if (other.CompareTag("Mothership"))
         {
             other.GetComponent<AudioSource>().Play();
-            other.GetComponent<MothershipMovement>().Hit();
-            GameManager.Instance.OnCometHitShip();
-            CometExplosion.Spawn(transform.position, GetComponent<SpriteRenderer>());
+            other.GetComponent<mothershipMovement>().hit();
+            gameManager.instance.onCometHitShip();
+            cometExplosion.spawn(transform.position, GetComponent<SpriteRenderer>());
             Destroy(gameObject);
         }
     }

@@ -1,0 +1,5 @@
+{
+  "maximum_total_error_to_upstream": 0.0,
+  "maximum_specific_error_to_upstream": 0.0,
+  "pass": true
+}

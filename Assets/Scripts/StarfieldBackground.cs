@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StarfieldBackground : MonoBehaviour
+public class starfieldBackground : MonoBehaviour
 {
     [Header("Area (match camera view + buffer)")]
     public float areaWidth = 20f;
@@ -12,7 +12,7 @@ public class StarfieldBackground : MonoBehaviour
     ParticleSystem.Particle[] buf;
 
     // ©¤©¤ layer definitions ©¤©¤
-    struct StarLayer
+    struct starLayer
     {
         public int count;
         public float minSpeed, maxSpeed;
@@ -20,20 +20,20 @@ public class StarfieldBackground : MonoBehaviour
         public float minAlpha, maxAlpha;
     }
 
-    readonly StarLayer[] layers = new[]
+    readonly starLayer[] layers = new[]
     {
         // far background ¨C tons of tiny faint dots, barely moving
-        new StarLayer { count = 160, minSpeed = 0.2f, maxSpeed = 0.8f,
+        new starLayer { count = 160, minSpeed = 0.2f, maxSpeed = 0.8f,
                         minSize = 0.01f, maxSize = 0.03f,
                         minAlpha = 0.15f, maxAlpha = 0.35f },
 
         // mid layer ¨C moderate
-        new StarLayer { count = 60, minSpeed = 0.8f, maxSpeed = 2f,
+        new starLayer { count = 60, minSpeed = 0.8f, maxSpeed = 2f,
                         minSize = 0.03f, maxSize = 0.05f,
                         minAlpha = 0.3f, maxAlpha = 0.6f },
 
         // near layer ¨C few bright stars
-        new StarLayer { count = 15, minSpeed = 2f, maxSpeed = 4f,
+        new starLayer { count = 15, minSpeed = 2f, maxSpeed = 4f,
                         minSize = 0.05f, maxSize = 0.09f,
                         minAlpha = 0.7f, maxAlpha = 1f },
     };
@@ -43,11 +43,11 @@ public class StarfieldBackground : MonoBehaviour
     void Start()
     {
         foreach (var l in layers) totalCount += l.count;
-        BuildSystem();
-        Seed();
+        buildSystem();
+        seed();
     }
 
-    void BuildSystem()
+    void buildSystem()
     {
         ps = gameObject.AddComponent<ParticleSystem>();
         var psr = GetComponent<ParticleSystemRenderer>();
@@ -96,7 +96,7 @@ public class StarfieldBackground : MonoBehaviour
         ps.Play();
     }
 
-    void EmitStar(StarLayer layer, float x, float y)
+    void emitStar(starLayer layer, float x, float y)
     {
         float speed = Random.Range(layer.minSpeed, layer.maxSpeed);
         float alpha = Random.Range(layer.minAlpha, layer.maxAlpha);
@@ -117,11 +117,11 @@ public class StarfieldBackground : MonoBehaviour
         ps.Emit(ep, 1);
     }
 
-    void Seed()
+    void seed()
     {
         foreach (var layer in layers)
             for (int i = 0; i < layer.count; i++)
-                EmitStar(layer,
+                emitStar(layer,
                     Random.Range(-areaWidth / 2f, areaWidth / 2f),
                     Random.Range(-areaHeight / 2f, areaHeight / 2f));
     }
@@ -142,7 +142,7 @@ public class StarfieldBackground : MonoBehaviour
             else spawns = Mathf.FloorToInt(spawns);
 
             for (int i = 0; i < (int)spawns; i++)
-                EmitStar(layer,
+                emitStar(layer,
                     Random.Range(-areaWidth / 2f, areaWidth / 2f),
                     topY);
         }

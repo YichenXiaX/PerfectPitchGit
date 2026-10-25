@@ -1,0 +1,5572 @@
+{
+  "noteDuration": 0.1,
+  "cases": [
+    {
+      "clipName": "27.50",
+      "pitch": 0.2889659090909091,
+      "gain": 0.1,
+      "peakSones": 0.03332567717689761,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 0.2889659090909091,
+      "gain": 0.8,
+      "peakSones": 0.4605335326450505,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 0.2889659090909091,
+      "gain": 1.0,
+      "peakSones": 0.5588703911217825,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.4262513975825517,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.395156458737906,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.7872062128933592,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 1.029386401521005,
+      "gain": 0.1,
+      "peakSones": 0.4382236058091548,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 1.029386401521005,
+      "gain": 0.8,
+      "peakSones": 2.440059603562713,
+      "startFrame": 572
+    },
+    {
+      "clipName": "27.50",
+      "pitch": 1.029386401521005,
+      "gain": 1.0,
+      "peakSones": 2.8365404405498142,
+      "startFrame": 572
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 0.9714525065829662,
+      "gain": 0.1,
+      "peakSones": 0.13187551523626673,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 0.9714525065829662,
+      "gain": 0.8,
+      "peakSones": 1.3859413899368813,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 0.9714525065829662,
+      "gain": 1.0,
+      "peakSones": 1.6616431588432445,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.13645375733339854,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 1.429039974155585,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 1.7109572315405552,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 1.0292563167382758,
+      "gain": 0.1,
+      "peakSones": 0.1413258981760992,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 1.0292563167382758,
+      "gain": 0.8,
+      "peakSones": 1.4712431864502047,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "29.14",
+      "pitch": 1.0292563167382758,
+      "gain": 1.0,
+      "peakSones": 1.7585505069314036,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 0.9715752857062959,
+      "gain": 0.1,
+      "peakSones": 0.16731101673378226,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 0.9715752857062959,
+      "gain": 0.8,
+      "peakSones": 1.6309122328813093,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 0.9715752857062959,
+      "gain": 1.0,
+      "peakSones": 1.9389895569394762,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.17350447426557203,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 1.6744679695143356,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 1.986926804728935,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 1.0292137072538543,
+      "gain": 0.1,
+      "peakSones": 0.17783059877139237,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 1.0292137072538543,
+      "gain": 0.8,
+      "peakSones": 1.6990837980944669,
+      "startFrame": 0
+    },
+    {
+      "clipName": "30.87",
+      "pitch": 1.0292137072538543,
+      "gain": 1.0,
+      "peakSones": 2.0143391577352396,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 0.9716155089579964,
+      "gain": 0.1,
+      "peakSones": 0.5068963768687551,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 0.9716155089579964,
+      "gain": 0.8,
+      "peakSones": 3.0378387210957483,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 0.9716155089579964,
+      "gain": 1.0,
+      "peakSones": 3.52109430691626,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5225982893008128,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.100578387664685,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.592224029635969,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 1.0293847810818535,
+      "gain": 0.1,
+      "peakSones": 0.5404697998731753,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 1.0293847810818535,
+      "gain": 0.8,
+      "peakSones": 3.1567873909343764,
+      "startFrame": 0
+    },
+    {
+      "clipName": "32.70",
+      "pitch": 1.0293847810818535,
+      "gain": 1.0,
+      "peakSones": 3.6542774602789025,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 0.971454035826165,
+      "gain": 0.1,
+      "peakSones": 0.3379219957061448,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 0.971454035826165,
+      "gain": 0.8,
+      "peakSones": 2.3042569946308955,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 0.971454035826165,
+      "gain": 1.0,
+      "peakSones": 2.6884154799599393,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.3465189022999412,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.3434075247814534,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.735062799658599,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 1.0292966819394977,
+      "gain": 0.1,
+      "peakSones": 0.3610224474635977,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 1.0292966819394977,
+      "gain": 0.8,
+      "peakSones": 2.395552084963353,
+      "startFrame": 0
+    },
+    {
+      "clipName": "34.65",
+      "pitch": 1.0292966819394977,
+      "gain": 1.0,
+      "peakSones": 2.794102032278098,
+      "startFrame": 0
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 0.9715371841243148,
+      "gain": 0.1,
+      "peakSones": 0.2668478481325832,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 0.9715371841243148,
+      "gain": 0.8,
+      "peakSones": 1.9273576962232188,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 0.9715371841243148,
+      "gain": 1.0,
+      "peakSones": 2.266862114030201,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.2693809936146573,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 1.9746966381911994,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.3213191463387446,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 1.0292639913712776,
+      "gain": 0.1,
+      "peakSones": 0.27178056907338316,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 1.0292639913712776,
+      "gain": 0.8,
+      "peakSones": 2.0129735668834643,
+      "startFrame": 792
+    },
+    {
+      "clipName": "36.71",
+      "pitch": 1.0292639913712776,
+      "gain": 1.0,
+      "peakSones": 2.3657057834597133,
+      "startFrame": 792
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 0.9715680412249832,
+      "gain": 0.1,
+      "peakSones": 0.24382065481983167,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 0.9715680412249832,
+      "gain": 0.8,
+      "peakSones": 1.87333309850967,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 0.9715680412249832,
+      "gain": 1.0,
+      "peakSones": 2.2034134537818706,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.24604500128781012,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 1.9256010620051978,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.2645384185929736,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 1.029270762678913,
+      "gain": 0.1,
+      "peakSones": 0.24907869418795928,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 1.029270762678913,
+      "gain": 0.8,
+      "peakSones": 1.9753077362023723,
+      "startFrame": 0
+    },
+    {
+      "clipName": "38.89",
+      "pitch": 1.029270762678913,
+      "gain": 1.0,
+      "peakSones": 2.322302004286303,
+      "startFrame": 0
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 0.9715616495287118,
+      "gain": 0.1,
+      "peakSones": 0.30337253576403944,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 0.9715616495287118,
+      "gain": 0.8,
+      "peakSones": 2.1183129850272167,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 0.9715616495287118,
+      "gain": 1.0,
+      "peakSones": 2.480249507718486,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.32463151950219277,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.218937101080037,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.5964332455796373,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 1.0293036575362373,
+      "gain": 0.1,
+      "peakSones": 0.3413550498011113,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 1.0293036575362373,
+      "gain": 0.8,
+      "peakSones": 2.306420705873581,
+      "startFrame": 484
+    },
+    {
+      "clipName": "41.20",
+      "pitch": 1.0293036575362373,
+      "gain": 1.0,
+      "peakSones": 2.692898150576583,
+      "startFrame": 484
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 0.9715306000112939,
+      "gain": 0.1,
+      "peakSones": 0.34726815463869587,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 0.9715306000112939,
+      "gain": 0.8,
+      "peakSones": 2.1068373754115957,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 0.9715306000112939,
+      "gain": 1.0,
+      "peakSones": 2.4588902161868877,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.3605320086079278,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.155464883129141,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.5123338924661747,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 1.0293516014261277,
+      "gain": 0.1,
+      "peakSones": 0.36764086832160026,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 1.0293516014261277,
+      "gain": 0.8,
+      "peakSones": 2.1959489632860985,
+      "startFrame": 440
+    },
+    {
+      "clipName": "43.65",
+      "pitch": 1.0293516014261277,
+      "gain": 1.0,
+      "peakSones": 2.5576600367535796,
+      "startFrame": 440
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 0.9714853492378481,
+      "gain": 0.1,
+      "peakSones": 0.6508072111785002,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 0.9714853492378481,
+      "gain": 0.8,
+      "peakSones": 3.2292098565527523,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 0.9714853492378481,
+      "gain": 1.0,
+      "peakSones": 3.7175680128623583,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6514743720486422,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.2147375073682163,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.697858717052841,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 1.029300470931331,
+      "gain": 0.1,
+      "peakSones": 0.6556603820104865,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 1.029300470931331,
+      "gain": 0.8,
+      "peakSones": 3.2613543459223937,
+      "startFrame": 0
+    },
+    {
+      "clipName": "46.25",
+      "pitch": 1.029300470931331,
+      "gain": 1.0,
+      "peakSones": 3.7627118741324788,
+      "startFrame": 0
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 0.9715336077668174,
+      "gain": 0.1,
+      "peakSones": 0.47833151602542406,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 0.9715336077668174,
+      "gain": 0.8,
+      "peakSones": 2.630206681909165,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 0.9715336077668174,
+      "gain": 1.0,
+      "peakSones": 3.0474360518399903,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.4869197888732794,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.6659838934294795,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.0904618753900226,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 1.0292656387454313,
+      "gain": 0.1,
+      "peakSones": 0.4991843860137174,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 1.0292656387454313,
+      "gain": 0.8,
+      "peakSones": 2.7141558924394067,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "49.00",
+      "pitch": 1.0292656387454313,
+      "gain": 1.0,
+      "peakSones": 3.1506421368030013,
+      "startFrame": 1100
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 0.971566486197768,
+      "gain": 0.1,
+      "peakSones": 0.3236762830106538,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 0.971566486197768,
+      "gain": 0.8,
+      "peakSones": 2.0543995149858336,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 0.971566486197768,
+      "gain": 1.0,
+      "peakSones": 2.393812060418532,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.3359111323474692,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.1122459549910984,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.461134139357932,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0293328435789624,
+      "gain": 0.1,
+      "peakSones": 0.3457106131334098,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0293328435789624,
+      "gain": 0.8,
+      "peakSones": 2.150604976728432,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "51.91",
+      "pitch": 1.0293328435789624,
+      "gain": 1.0,
+      "peakSones": 2.5095841840810382,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 0.9715030529124351,
+      "gain": 0.1,
+      "peakSones": 0.2676084034581183,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 0.9715030529124351,
+      "gain": 0.8,
+      "peakSones": 1.840675122122439,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 0.9715030529124351,
+      "gain": 1.0,
+      "peakSones": 2.1524174803209073,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.27719575629161564,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 1.8873954209293156,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.2059272711471207,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.1,
+      "peakSones": 0.2784617322654741,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.8,
+      "peakSones": 1.907943365776386,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "55.00",
+      "pitch": 1.0292980838681016,
+      "gain": 1.0,
+      "peakSones": 2.22955283860225,
+      "startFrame": 2728
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 0.9715358608674376,
+      "gain": 0.1,
+      "peakSones": 0.3452159313106591,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 0.9715358608674376,
+      "gain": 0.8,
+      "peakSones": 2.222098147439485,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 0.9715358608674376,
+      "gain": 1.0,
+      "peakSones": 2.585664295605233,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.35081202798574845,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.2284535521223714,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.5930077881322693,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 1.029344630807402,
+      "gain": 0.1,
+      "peakSones": 0.3533665036994341,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 1.029344630807402,
+      "gain": 0.8,
+      "peakSones": 2.244932595056701,
+      "startFrame": 0
+    },
+    {
+      "clipName": "58.27",
+      "pitch": 1.029344630807402,
+      "gain": 1.0,
+      "peakSones": 2.6135628519207095,
+      "startFrame": 0
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 0.9714919280393152,
+      "gain": 0.1,
+      "peakSones": 0.2926281300772069,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 0.9714919280393152,
+      "gain": 0.8,
+      "peakSones": 2.0230178494996385,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 0.9714919280393152,
+      "gain": 1.0,
+      "peakSones": 2.36703952935674,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.3044412392293082,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.066118123361602,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.41284009759839,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 1.0292923903094529,
+      "gain": 0.1,
+      "peakSones": 0.322894096659279,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 1.0292923903094529,
+      "gain": 0.8,
+      "peakSones": 2.102763444918825,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "61.74",
+      "pitch": 1.0292923903094529,
+      "gain": 1.0,
+      "peakSones": 2.450005694435842,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 0.9715412349442841,
+      "gain": 0.1,
+      "peakSones": 0.40923559539247895,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 0.9715412349442841,
+      "gain": 0.8,
+      "peakSones": 2.466235962257082,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 0.9715412349442841,
+      "gain": 1.0,
+      "peakSones": 2.870397746757266,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.4198780699961718,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.52661206673518,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.9374984533581325,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 1.0293060909635503,
+      "gain": 0.1,
+      "peakSones": 0.4332073208028212,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 1.0293060909635503,
+      "gain": 0.8,
+      "peakSones": 2.5984633255864815,
+      "startFrame": 0
+    },
+    {
+      "clipName": "65.41",
+      "pitch": 1.0293060909635503,
+      "gain": 1.0,
+      "peakSones": 3.021780250001121,
+      "startFrame": 0
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 0.9715283031735328,
+      "gain": 0.1,
+      "peakSones": 0.4723901063927245,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 0.9715283031735328,
+      "gain": 0.8,
+      "peakSones": 2.7912577136698573,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 0.9715283031735328,
+      "gain": 1.0,
+      "peakSones": 3.240318771634988,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.4877653053354534,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.8674213176048635,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.326095969694296,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 1.0292966819394977,
+      "gain": 0.1,
+      "peakSones": 0.49825885145423,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 1.0292966819394977,
+      "gain": 0.8,
+      "peakSones": 2.931368658016419,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "69.30",
+      "pitch": 1.0292966819394977,
+      "gain": 1.0,
+      "peakSones": 3.3975966132925794,
+      "startFrame": 1188
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 0.9715371841243148,
+      "gain": 0.1,
+      "peakSones": 0.3343485478655902,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 0.9715371841243148,
+      "gain": 0.8,
+      "peakSones": 2.220100892137394,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 0.9715371841243148,
+      "gain": 1.0,
+      "peakSones": 2.5908831379607378,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.3454596478466704,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.2739198012805533,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.6549636242717716,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 1.0292639913712776,
+      "gain": 0.1,
+      "peakSones": 0.36537291650880166,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 1.0292639913712776,
+      "gain": 0.8,
+      "peakSones": 2.3502039845949056,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "73.42",
+      "pitch": 1.0292639913712776,
+      "gain": 1.0,
+      "peakSones": 2.7394141095132456,
+      "startFrame": 1364
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 0.9715680412249832,
+      "gain": 0.1,
+      "peakSones": 0.504484625211583,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 0.9715680412249832,
+      "gain": 0.8,
+      "peakSones": 2.718087611589983,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 0.9715680412249832,
+      "gain": 1.0,
+      "peakSones": 3.1466467531039335,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5170121562199188,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.7482757914309164,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.1796031503093394,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0293332165342952,
+      "gain": 0.1,
+      "peakSones": 0.5268640799299171,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0293332165342952,
+      "gain": 0.8,
+      "peakSones": 2.793628496651066,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "77.78",
+      "pitch": 1.0293332165342952,
+      "gain": 1.0,
+      "peakSones": 3.224149494563603,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 0.9715027009105386,
+      "gain": 0.1,
+      "peakSones": 0.6214047586144028,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 0.9715027009105386,
+      "gain": 0.8,
+      "peakSones": 3.1009932312851323,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 0.9715027009105386,
+      "gain": 1.0,
+      "peakSones": 3.5713862613753578,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6455123179923771,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.168756011232134,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.64553930801953,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 1.0293001523089653,
+      "gain": 0.1,
+      "peakSones": 0.6570076764729169,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 1.0293001523089653,
+      "gain": 0.8,
+      "peakSones": 3.205671618610468,
+      "startFrame": 0
+    },
+    {
+      "clipName": "82.41",
+      "pitch": 1.0293001523089653,
+      "gain": 1.0,
+      "peakSones": 3.691459559095775,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 0.9715339085074085,
+      "gain": 0.1,
+      "peakSones": 0.7998620304440733,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 0.9715339085074085,
+      "gain": 0.8,
+      "peakSones": 3.934750370999471,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 0.9715339085074085,
+      "gain": 1.0,
+      "peakSones": 4.534450563975533,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8087645749188404,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.99008500152534,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.598868829693579,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 1.0292926516450511,
+      "gain": 0.1,
+      "peakSones": 0.821442012852115,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 1.0292926516450511,
+      "gain": 0.8,
+      "peakSones": 4.049790398331503,
+      "startFrame": 0
+    },
+    {
+      "clipName": "87.31",
+      "pitch": 1.0292926516450511,
+      "gain": 1.0,
+      "peakSones": 4.669050881382612,
+      "startFrame": 0
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 0.9715409882716693,
+      "gain": 0.1,
+      "peakSones": 0.5605932111207188,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 0.9715409882716693,
+      "gain": 0.8,
+      "peakSones": 3.013624562554596,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 0.9715409882716693,
+      "gain": 1.0,
+      "peakSones": 3.4822032234211924,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5664928014569506,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.0528813706098594,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.5273332698550934,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 1.029300470931331,
+      "gain": 0.1,
+      "peakSones": 0.5911303382016095,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 1.029300470931331,
+      "gain": 0.8,
+      "peakSones": 3.1101358185054977,
+      "startFrame": 968
+    },
+    {
+      "clipName": "92.50",
+      "pitch": 1.029300470931331,
+      "gain": 1.0,
+      "peakSones": 3.5886999326559885,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 0.9715336077668174,
+      "gain": 0.1,
+      "peakSones": 0.5783589596755554,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 0.9715336077668174,
+      "gain": 0.8,
+      "peakSones": 3.1677266702164557,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 0.9715336077668174,
+      "gain": 1.0,
+      "peakSones": 3.649338846383367,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6020394231021176,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.195064384974901,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.682282081877738,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 1.0293152072705267,
+      "gain": 0.1,
+      "peakSones": 0.6125326755381746,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 1.0293152072705267,
+      "gain": 0.8,
+      "peakSones": 3.202979333261638,
+      "startFrame": 968
+    },
+    {
+      "clipName": "98.00",
+      "pitch": 1.0293152072705267,
+      "gain": 1.0,
+      "peakSones": 3.691603156783963,
+      "startFrame": 968
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 0.9715196986662007,
+      "gain": 0.1,
+      "peakSones": 0.6982899330406719,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 0.9715196986662007,
+      "gain": 0.8,
+      "peakSones": 3.6032334391613188,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 0.9715196986662007,
+      "gain": 1.0,
+      "peakSones": 4.156933851802598,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7195445102482986,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.65394308631753,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.214320266308367,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0292832742045588,
+      "gain": 0.1,
+      "peakSones": 0.735425444203566,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0292832742045588,
+      "gain": 0.8,
+      "peakSones": 3.691261449801481,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "103.83",
+      "pitch": 1.0292832742045588,
+      "gain": 1.0,
+      "peakSones": 4.253814590747076,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 0.9715498396423576,
+      "gain": 0.1,
+      "peakSones": 0.5712752336942419,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 0.9715498396423576,
+      "gain": 0.8,
+      "peakSones": 3.014036660617964,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 0.9715498396423576,
+      "gain": 1.0,
+      "peakSones": 3.4824798433607094,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5702371304787347,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.0478231994075538,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.5230138906420714,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.1,
+      "peakSones": 0.5735364122865036,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.8,
+      "peakSones": 3.104218936863721,
+      "startFrame": 0
+    },
+    {
+      "clipName": "110.00",
+      "pitch": 1.0292980838681016,
+      "gain": 1.0,
+      "peakSones": 3.587485168701848,
+      "startFrame": 0
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 0.9715358608674376,
+      "gain": 0.1,
+      "peakSones": 0.6091425727225717,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 0.9715358608674376,
+      "gain": 0.8,
+      "peakSones": 3.202223143140251,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 0.9715358608674376,
+      "gain": 1.0,
+      "peakSones": 3.6978529196519423,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6243705862912741,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.2896143122867874,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.8013402548392086,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 1.029302949341903,
+      "gain": 0.1,
+      "peakSones": 0.6690950365135392,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 1.029302949341903,
+      "gain": 0.8,
+      "peakSones": 3.4369398866209107,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "116.54",
+      "pitch": 1.029302949341903,
+      "gain": 1.0,
+      "peakSones": 3.9655290834773633,
+      "startFrame": 2860
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 0.9715312684563489,
+      "gain": 0.1,
+      "peakSones": 0.5969564402765468,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 0.9715312684563489,
+      "gain": 0.8,
+      "peakSones": 3.2523292330112326,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 0.9715312684563489,
+      "gain": 1.0,
+      "peakSones": 3.7537601133719933,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6271028039341002,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.3509490609184747,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.8648995914448445,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 1.0292947289783505,
+      "gain": 0.1,
+      "peakSones": 0.64455756867844,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 1.0292947289783505,
+      "gain": 0.8,
+      "peakSones": 3.400550545710721,
+      "startFrame": 0
+    },
+    {
+      "clipName": "123.47",
+      "pitch": 1.0292947289783505,
+      "gain": 1.0,
+      "peakSones": 3.9217236249874743,
+      "startFrame": 0
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 0.9715390274975685,
+      "gain": 0.1,
+      "peakSones": 0.7521464998218098,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 0.9715390274975685,
+      "gain": 0.8,
+      "peakSones": 3.6679581573137656,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 0.9715390274975685,
+      "gain": 1.0,
+      "peakSones": 4.21790177061701,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7702872569485522,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.7125547759346924,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.2650144804589765,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 1.0293082994233702,
+      "gain": 0.1,
+      "peakSones": 0.7669388031935171,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 1.0293082994233702,
+      "gain": 0.8,
+      "peakSones": 3.7031322375769746,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "130.81",
+      "pitch": 1.0293082994233702,
+      "gain": 1.0,
+      "peakSones": 4.252874422856369,
+      "startFrame": 2992
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 0.9715262186851219,
+      "gain": 0.1,
+      "peakSones": 0.6365278739330155,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 0.9715262186851219,
+      "gain": 0.8,
+      "peakSones": 3.2871558084961707,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 0.9715262186851219,
+      "gain": 1.0,
+      "peakSones": 3.786530259192811,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6413669151027934,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.333676621348192,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.8456182276133783,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 1.029298765763704,
+      "gain": 0.1,
+      "peakSones": 0.6589801619575317,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 1.029298765763704,
+      "gain": 0.8,
+      "peakSones": 3.425774865237916,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "138.59",
+      "pitch": 1.029298765763704,
+      "gain": 1.0,
+      "peakSones": 3.946558717907868,
+      "startFrame": 1540
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 0.9715352172389274,
+      "gain": 0.1,
+      "peakSones": 0.5116497300768333,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 0.9715352172389274,
+      "gain": 0.8,
+      "peakSones": 2.805814730261475,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 0.9715352172389274,
+      "gain": 1.0,
+      "peakSones": 3.2452421873088344,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5128521428943489,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.8404503287232545,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.2868226337498587,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 1.029299040287276,
+      "gain": 0.1,
+      "peakSones": 0.5497266443029516,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 1.029299040287276,
+      "gain": 0.8,
+      "peakSones": 2.9468153456154975,
+      "startFrame": 704
+    },
+    {
+      "clipName": "146.83",
+      "pitch": 1.029299040287276,
+      "gain": 1.0,
+      "peakSones": 3.39790712522787,
+      "startFrame": 704
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 0.9715349581215013,
+      "gain": 0.1,
+      "peakSones": 0.6329670855858704,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 0.9715349581215013,
+      "gain": 0.8,
+      "peakSones": 3.35785495845628,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 0.9715349581215013,
+      "gain": 1.0,
+      "peakSones": 3.8721927423609994,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6370027592185243,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.394269390460021,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.913809986635339,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 1.029301990080285,
+      "gain": 0.1,
+      "peakSones": 0.6369386843234734,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 1.029301990080285,
+      "gain": 0.8,
+      "peakSones": 3.416034452106538,
+      "startFrame": 0
+    },
+    {
+      "clipName": "155.56",
+      "pitch": 1.029301990080285,
+      "gain": 1.0,
+      "peakSones": 3.937580798496837,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 0.9715321738783393,
+      "gain": 0.1,
+      "peakSones": 0.7780363625117497,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 0.9715321738783393,
+      "gain": 0.8,
+      "peakSones": 3.8703757071686002,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 0.9715321738783393,
+      "gain": 1.0,
+      "peakSones": 4.453556089163208,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7905097789382516,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.8994324166186534,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.483890135544899,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 1.029301904817752,
+      "gain": 0.1,
+      "peakSones": 0.785508828913436,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 1.029301904817752,
+      "gain": 0.8,
+      "peakSones": 3.8899890447817915,
+      "startFrame": 0
+    },
+    {
+      "clipName": "164.81",
+      "pitch": 1.029301904817752,
+      "gain": 1.0,
+      "peakSones": 4.478959613685449,
+      "startFrame": 0
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 0.9715322543554992,
+      "gain": 0.1,
+      "peakSones": 0.61510574281279,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 0.9715322543554992,
+      "gain": 0.8,
+      "peakSones": 3.2070074858284756,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 0.9715322543554992,
+      "gain": 1.0,
+      "peakSones": 3.70437456369969,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6179954454986987,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.2378206110522103,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.7380935400142707,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 1.0293221252695584,
+      "gain": 0.1,
+      "peakSones": 0.6374018835180009,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 1.0293221252695584,
+      "gain": 0.8,
+      "peakSones": 3.3192808066587927,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "174.61",
+      "pitch": 1.0293221252695584,
+      "gain": 1.0,
+      "peakSones": 3.83470649272054,
+      "startFrame": 3740
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 0.9715131691530681,
+      "gain": 0.1,
+      "peakSones": 0.7800584266479209,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 0.9715131691530681,
+      "gain": 0.8,
+      "peakSones": 3.8182387069218056,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 0.9715131691530681,
+      "gain": 1.0,
+      "peakSones": 4.393481025582974,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7937680334304544,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.876739204085102,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.464227609587975,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 1.029300470931331,
+      "gain": 0.1,
+      "peakSones": 0.828367828185175,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 1.029300470931331,
+      "gain": 0.8,
+      "peakSones": 4.011012265425684,
+      "startFrame": 0
+    },
+    {
+      "clipName": "185.00",
+      "pitch": 1.029300470931331,
+      "gain": 1.0,
+      "peakSones": 4.611442090620537,
+      "startFrame": 0
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 0.9715336077668174,
+      "gain": 0.1,
+      "peakSones": 0.5407987376665525,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 0.9715336077668174,
+      "gain": 0.8,
+      "peakSones": 3.044036806346031,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 0.9715336077668174,
+      "gain": 1.0,
+      "peakSones": 3.523992912845789,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5651505312336478,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.1218907189162195,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.614459265682849,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 1.0292904233063689,
+      "gain": 0.1,
+      "peakSones": 0.589204857595022,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 1.0292904233063689,
+      "gain": 0.8,
+      "peakSones": 3.1786969078062057,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "196.00",
+      "pitch": 1.0292904233063689,
+      "gain": 1.0,
+      "peakSones": 3.675062439229514,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 0.9715430915870373,
+      "gain": 0.1,
+      "peakSones": 0.5943469605967386,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 0.9715430915870373,
+      "gain": 0.8,
+      "peakSones": 3.1185064295994533,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 0.9715430915870373,
+      "gain": 1.0,
+      "peakSones": 3.6066179697051717,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6156999002803846,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.181641555907591,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.679358978820504,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 1.0293080579965757,
+      "gain": 0.1,
+      "peakSones": 0.6221618745392804,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 1.0293080579965757,
+      "gain": 0.8,
+      "peakSones": 3.2160007962694577,
+      "startFrame": 792
+    },
+    {
+      "clipName": "207.65",
+      "pitch": 1.0293080579965757,
+      "gain": 1.0,
+      "peakSones": 3.7179041184647947,
+      "startFrame": 792
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 0.9715264465590406,
+      "gain": 0.1,
+      "peakSones": 0.7616750498198863,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 0.9715264465590406,
+      "gain": 0.8,
+      "peakSones": 3.6478243992829826,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 0.9715264465590406,
+      "gain": 1.0,
+      "peakSones": 4.204128371083948,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7656685384538562,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.6829070029407953,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.2457628987759835,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.1,
+      "peakSones": 0.79485293855006,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.8,
+      "peakSones": 3.7495160254405375,
+      "startFrame": 0
+    },
+    {
+      "clipName": "220.00",
+      "pitch": 1.0292980838681016,
+      "gain": 1.0,
+      "peakSones": 4.320118968488484,
+      "startFrame": 0
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 0.9715358608674376,
+      "gain": 0.1,
+      "peakSones": 0.7290854391765195,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 0.9715358608674376,
+      "gain": 0.8,
+      "peakSones": 3.5550973526293532,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 0.9715358608674376,
+      "gain": 1.0,
+      "peakSones": 4.103445949075962,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7637331430594957,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.64517934431188,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.210858079064145,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 1.029302949341903,
+      "gain": 0.1,
+      "peakSones": 0.774943978935065,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 1.029302949341903,
+      "gain": 0.8,
+      "peakSones": 3.672885993734496,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "233.08",
+      "pitch": 1.029302949341903,
+      "gain": 1.0,
+      "peakSones": 4.240392164312405,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 0.9715312684563489,
+      "gain": 0.1,
+      "peakSones": 0.8179729424020545,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 0.9715312684563489,
+      "gain": 0.8,
+      "peakSones": 3.843932067636352,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 0.9715312684563489,
+      "gain": 1.0,
+      "peakSones": 4.430683179109651,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8305718782406142,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.8774715006144023,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.4683444192881,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 1.0293144003508257,
+      "gain": 0.1,
+      "peakSones": 0.8464733536475744,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 1.0293144003508257,
+      "gain": 0.8,
+      "peakSones": 3.931365219730901,
+      "startFrame": 308
+    },
+    {
+      "clipName": "246.94",
+      "pitch": 1.0293144003508257,
+      "gain": 1.0,
+      "peakSones": 4.525273688224819,
+      "startFrame": 308
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 0.9715204602783812,
+      "gain": 0.1,
+      "peakSones": 0.8592628394092265,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 0.9715204602783812,
+      "gain": 0.8,
+      "peakSones": 4.00551428255773,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 0.9715204602783812,
+      "gain": 1.0,
+      "peakSones": 4.612462170898797,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8734504722735283,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.042898969262287,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.656770497741222,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 1.0292886281674907,
+      "gain": 0.1,
+      "peakSones": 0.8835522908156199,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 1.0292886281674907,
+      "gain": 0.8,
+      "peakSones": 4.090102121674754,
+      "startFrame": 0
+    },
+    {
+      "clipName": "261.63",
+      "pitch": 1.0292886281674907,
+      "gain": 1.0,
+      "peakSones": 4.702643408023317,
+      "startFrame": 0
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 0.971544786014361,
+      "gain": 0.1,
+      "peakSones": 0.8253872788871758,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 0.971544786014361,
+      "gain": 0.8,
+      "peakSones": 3.883378710206574,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 0.971544786014361,
+      "gain": 1.0,
+      "peakSones": 4.473347218362258,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8329590034093869,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.946926197562907,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.543540277296158,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.029298765763704,
+      "gain": 0.1,
+      "peakSones": 0.90919374473502,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.029298765763704,
+      "gain": 0.8,
+      "peakSones": 4.110679181209951,
+      "startFrame": 308
+    },
+    {
+      "clipName": "277.18",
+      "pitch": 1.029298765763704,
+      "gain": 1.0,
+      "peakSones": 4.723571050535671,
+      "startFrame": 308
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 0.9715352172389274,
+      "gain": 0.1,
+      "peakSones": 0.9298124554511931,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 0.9715352172389274,
+      "gain": 0.8,
+      "peakSones": 4.1158301000357955,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 0.9715352172389274,
+      "gain": 1.0,
+      "peakSones": 4.731679097752974,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9572177337055355,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.172873594551719,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.788926556820546,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 1.029315581987737,
+      "gain": 0.1,
+      "peakSones": 0.9678941501914096,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 1.029315581987737,
+      "gain": 0.8,
+      "peakSones": 4.183291363620345,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "293.66",
+      "pitch": 1.029315581987737,
+      "gain": 1.0,
+      "peakSones": 4.800193123044802,
+      "startFrame": 1012
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 0.9715193449892936,
+      "gain": 0.1,
+      "peakSones": 1.105986310631986,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 0.9715193449892936,
+      "gain": 0.8,
+      "peakSones": 4.666916704425346,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 0.9715193449892936,
+      "gain": 1.0,
+      "peakSones": 5.353798379856731,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.1007254592777622,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.647731311781451,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 5.332519717445235,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 1.0293010616927578,
+      "gain": 0.1,
+      "peakSones": 1.1012471382872537,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 1.0293010616927578,
+      "gain": 0.8,
+      "peakSones": 4.63517912593171,
+      "startFrame": 0
+    },
+    {
+      "clipName": "311.13",
+      "pitch": 1.0293010616927578,
+      "gain": 1.0,
+      "peakSones": 5.318171780679329,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 0.9715330501606885,
+      "gain": 0.1,
+      "peakSones": 0.6540034951904483,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 0.9715330501606885,
+      "gain": 0.8,
+      "peakSones": 3.1841386946891506,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 0.9715330501606885,
+      "gain": 1.0,
+      "peakSones": 3.6699533343230133,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6607384179793757,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.209538199822856,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.702683143920115,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 1.0293010285371487,
+      "gain": 0.1,
+      "peakSones": 0.6668539641341623,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 1.0293010285371487,
+      "gain": 0.8,
+      "peakSones": 3.3114828911777026,
+      "startFrame": 0
+    },
+    {
+      "clipName": "329.63",
+      "pitch": 1.0293010285371487,
+      "gain": 1.0,
+      "peakSones": 3.8203333137049222,
+      "startFrame": 0
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 0.9715330814554887,
+      "gain": 0.1,
+      "peakSones": 0.6743358119629531,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 0.9715330814554887,
+      "gain": 0.8,
+      "peakSones": 3.446322801940778,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 0.9715330814554887,
+      "gain": 1.0,
+      "peakSones": 3.981819426546918,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.704882488428467,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.578938366977826,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.127863929685519,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 1.0292934784875356,
+      "gain": 0.1,
+      "peakSones": 0.781363402049934,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 1.0292934784875356,
+      "gain": 0.8,
+      "peakSones": 3.7733525473281295,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "349.23",
+      "pitch": 1.0292934784875356,
+      "gain": 1.0,
+      "peakSones": 4.3448159905881685,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 0.9715402078223792,
+      "gain": 0.1,
+      "peakSones": 0.8679474779107963,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 0.9715402078223792,
+      "gain": 0.8,
+      "peakSones": 3.975300023675367,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 0.9715402078223792,
+      "gain": 1.0,
+      "peakSones": 4.5710187026922,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8943547510237286,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.032684131970326,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.640429509138102,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 1.0293143806791092,
+      "gain": 0.1,
+      "peakSones": 0.8992470473782123,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 1.0293143806791092,
+      "gain": 0.8,
+      "peakSones": 4.028778052558289,
+      "startFrame": 924
+    },
+    {
+      "clipName": "369.99",
+      "pitch": 1.0293143806791092,
+      "gain": 1.0,
+      "peakSones": 4.637203218649468,
+      "startFrame": 924
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 0.9715204788455705,
+      "gain": 0.1,
+      "peakSones": 0.9160943826171247,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 0.9715204788455705,
+      "gain": 0.8,
+      "peakSones": 4.061064188631197,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 0.9715204788455705,
+      "gain": 1.0,
+      "peakSones": 4.664098772567986,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9203187679292629,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.0664213002602345,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.670990285878287,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 1.0292904233063689,
+      "gain": 0.1,
+      "peakSones": 0.9206145170807256,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 1.0292904233063689,
+      "gain": 0.8,
+      "peakSones": 4.069206720687677,
+      "startFrame": 0
+    },
+    {
+      "clipName": "392.00",
+      "pitch": 1.0292904233063689,
+      "gain": 1.0,
+      "peakSones": 4.6749248701705275,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 0.9715430915870373,
+      "gain": 0.1,
+      "peakSones": 1.2804142028116703,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 0.9715430915870373,
+      "gain": 0.8,
+      "peakSones": 5.216674775324112,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 0.9715430915870373,
+      "gain": 1.0,
+      "peakSones": 5.980955649988454,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.2818958800487326,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 5.235239769513045,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 6.002625746009541,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 1.0293080579965757,
+      "gain": 0.1,
+      "peakSones": 1.2686877073316707,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 1.0293080579965757,
+      "gain": 0.8,
+      "peakSones": 5.241210542726321,
+      "startFrame": 0
+    },
+    {
+      "clipName": "415.30",
+      "pitch": 1.0293080579965757,
+      "gain": 1.0,
+      "peakSones": 6.002246192722463,
+      "startFrame": 0
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 0.9715264465590406,
+      "gain": 0.1,
+      "peakSones": 0.9307241748875947,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 0.9715264465590406,
+      "gain": 0.8,
+      "peakSones": 3.9662303751555,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 0.9715264465590406,
+      "gain": 1.0,
+      "peakSones": 4.556198703019981,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9531512977677725,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.062593300934049,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.659634768091389,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.1,
+      "peakSones": 1.0196818136788197,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 1.0292980838681016,
+      "gain": 0.8,
+      "peakSones": 4.253390957944424,
+      "startFrame": 792
+    },
+    {
+      "clipName": "440.00",
+      "pitch": 1.0292980838681016,
+      "gain": 1.0,
+      "peakSones": 4.874825003777986,
+      "startFrame": 792
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 0.9715358608674376,
+      "gain": 0.1,
+      "peakSones": 1.2244619475598602,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 0.9715358608674376,
+      "gain": 0.8,
+      "peakSones": 5.043530956978184,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 0.9715358608674376,
+      "gain": 1.0,
+      "peakSones": 5.78284894012717,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.2811734888916542,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 5.134916126614245,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 5.892955323815676,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 1.029302949341903,
+      "gain": 0.1,
+      "peakSones": 1.3104472281642265,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 1.029302949341903,
+      "gain": 0.8,
+      "peakSones": 5.172712227024457,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "466.16",
+      "pitch": 1.029302949341903,
+      "gain": 1.0,
+      "peakSones": 5.9326816022233455,
+      "startFrame": 1408
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 0.9715312684563489,
+      "gain": 0.1,
+      "peakSones": 1.262090464190941,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 0.9715312684563489,
+      "gain": 0.8,
+      "peakSones": 5.141588317754845,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 0.9715312684563489,
+      "gain": 1.0,
+      "peakSones": 5.915977029325612,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.2492932932278804,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 5.1031946888533275,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 5.868374642683319,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 1.0293045647115813,
+      "gain": 0.1,
+      "peakSones": 1.2407976035621613,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 1.0293045647115813,
+      "gain": 0.8,
+      "peakSones": 5.083992907787001,
+      "startFrame": 0
+    },
+    {
+      "clipName": "493.88",
+      "pitch": 1.0293045647115813,
+      "gain": 1.0,
+      "peakSones": 5.84586809589834,
+      "startFrame": 0
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 0.9715297437549083,
+      "gain": 0.1,
+      "peakSones": 1.1690936160305927,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 0.9715297437549083,
+      "gain": 0.8,
+      "peakSones": 4.750312174802274,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 0.9715297437549083,
+      "gain": 1.0,
+      "peakSones": 5.459925251358431,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.151767890825944,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.720277204709542,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 5.423812123424595,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 1.0293077472772045,
+      "gain": 0.1,
+      "peakSones": 1.1551346820483874,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 1.0293077472772045,
+      "gain": 0.8,
+      "peakSones": 4.745086591903154,
+      "startFrame": 748
+    },
+    {
+      "clipName": "523.25",
+      "pitch": 1.0293077472772045,
+      "gain": 1.0,
+      "peakSones": 5.440462720267536,
+      "startFrame": 748
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 0.9715267398358447,
+      "gain": 0.1,
+      "peakSones": 0.7192980279808954,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 0.9715267398358447,
+      "gain": 0.8,
+      "peakSones": 3.2995731549958123,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 0.9715267398358447,
+      "gain": 1.0,
+      "peakSones": 3.8070079634306073,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7320295620173469,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.346521418062129,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.851643103933899,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 1.029298244779856,
+      "gain": 0.1,
+      "peakSones": 0.7770228932699825,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 1.029298244779856,
+      "gain": 0.8,
+      "peakSones": 3.4678873964449375,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "554.37",
+      "pitch": 1.029298244779856,
+      "gain": 1.0,
+      "peakSones": 3.9868302646191474,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 0.971535708985764,
+      "gain": 0.1,
+      "peakSones": 0.7274052112001995,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 0.971535708985764,
+      "gain": 0.8,
+      "peakSones": 3.3772988533416846,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 0.971535708985764,
+      "gain": 1.0,
+      "peakSones": 3.8844752771347615,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7445050215675785,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.398266893323385,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.909150935379026,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 1.0292985485356545,
+      "gain": 0.1,
+      "peakSones": 0.7475280346765277,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 1.0292985485356545,
+      "gain": 0.8,
+      "peakSones": 3.3907762862933484,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "587.33",
+      "pitch": 1.0292985485356545,
+      "gain": 1.0,
+      "peakSones": 3.899624414011009,
+      "startFrame": 1452
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 0.9715354222763294,
+      "gain": 0.1,
+      "peakSones": 0.8692305275606002,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 0.9715354222763294,
+      "gain": 0.8,
+      "peakSones": 3.747627933650664,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 0.9715354222763294,
+      "gain": 1.0,
+      "peakSones": 4.317461477003032,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8604645983000785,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.711336072556006,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.275050362827452,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 1.0293093324595424,
+      "gain": 0.1,
+      "peakSones": 0.8558639483707189,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 1.0293093324595424,
+      "gain": 0.8,
+      "peakSones": 3.695756025890322,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "622.25",
+      "pitch": 1.0293093324595424,
+      "gain": 1.0,
+      "peakSones": 4.252386320320591,
+      "startFrame": 2068
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 0.9715252436412799,
+      "gain": 0.1,
+      "peakSones": 0.9445374142764221,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 0.9715252436412799,
+      "gain": 0.8,
+      "peakSones": 4.017428471261876,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 0.9715252436412799,
+      "gain": 1.0,
+      "peakSones": 4.623297575677869,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9403501014375644,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.021014334562982,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.626858745619749,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 1.0293010285371487,
+      "gain": 0.1,
+      "peakSones": 0.9459553939763022,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 1.0293010285371487,
+      "gain": 0.8,
+      "peakSones": 4.06783138390583,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "659.26",
+      "pitch": 1.0293010285371487,
+      "gain": 1.0,
+      "peakSones": 4.666714301167177,
+      "startFrame": 2156
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 0.9715330814554887,
+      "gain": 0.1,
+      "peakSones": 0.9415685548272872,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 0.9715330814554887,
+      "gain": 0.8,
+      "peakSones": 4.028012793760768,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 0.9715330814554887,
+      "gain": 1.0,
+      "peakSones": 4.625432547078129,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.000722273669504,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.183814905725681,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.80124194167188,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 1.0293004333376738,
+      "gain": 0.1,
+      "peakSones": 1.074720016353762,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 1.0293004333376738,
+      "gain": 0.8,
+      "peakSones": 4.37301045273316,
+      "startFrame": 308
+    },
+    {
+      "clipName": "698.46",
+      "pitch": 1.0293004333376738,
+      "gain": 1.0,
+      "peakSones": 5.010721221975882,
+      "startFrame": 308
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 0.9715336432506274,
+      "gain": 0.1,
+      "peakSones": 1.2151455855950293,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 0.9715336432506274,
+      "gain": 0.8,
+      "peakSones": 4.782498222144568,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 0.9715336432506274,
+      "gain": 1.0,
+      "peakSones": 5.475476921662452,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 1.2177059208574188,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 4.796140766401775,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 5.49159068235031,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 1.0293008612531744,
+      "gain": 0.1,
+      "peakSones": 1.1837769478358195,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 1.0293008612531744,
+      "gain": 0.8,
+      "peakSones": 4.688017493427486,
+      "startFrame": 396
+    },
+    {
+      "clipName": "739.99",
+      "pitch": 1.0293008612531744,
+      "gain": 1.0,
+      "peakSones": 5.369222875013657,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 0.9715332393509312,
+      "gain": 0.1,
+      "peakSones": 1.0004115720251652,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 0.9715332393509312,
+      "gain": 0.8,
+      "peakSones": 3.9989221036533067,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 0.9715332393509312,
+      "gain": 1.0,
+      "peakSones": 4.589721075384933,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9788464218952487,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.9179503227394643,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.499542994391911,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 1.0293031838078577,
+      "gain": 0.1,
+      "peakSones": 0.9637271042910427,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 1.0293031838078577,
+      "gain": 0.8,
+      "peakSones": 3.8646694179909398,
+      "startFrame": 396
+    },
+    {
+      "clipName": "783.99",
+      "pitch": 1.0293031838078577,
+      "gain": 1.0,
+      "peakSones": 4.439453950841941,
+      "startFrame": 396
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 0.9715310471503139,
+      "gain": 0.1,
+      "peakSones": 0.6221434897111646,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 0.9715310471503139,
+      "gain": 0.8,
+      "peakSones": 2.8033431865363134,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 0.9715310471503139,
+      "gain": 1.0,
+      "peakSones": 3.232445658452566,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6170958053388726,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.7961421119718963,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.2250713185769375,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0293018618807326,
+      "gain": 0.1,
+      "peakSones": 0.6069674728298872,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0293018618807326,
+      "gain": 0.8,
+      "peakSones": 2.799679198309776,
+      "startFrame": 616
+    },
+    {
+      "clipName": "830.61",
+      "pitch": 1.0293018618807326,
+      "gain": 1.0,
+      "peakSones": 3.228956974285123,
+      "startFrame": 616
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 0.9715322948826766,
+      "gain": 0.1,
+      "peakSones": 0.699761852136253,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 0.9715322948826766,
+      "gain": 0.8,
+      "peakSones": 3.025024040845024,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 0.9715322948826766,
+      "gain": 1.0,
+      "peakSones": 3.4787377439876233,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7320478918503297,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.118312655276182,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.574405839952731,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 1.0293036039434182,
+      "gain": 0.1,
+      "peakSones": 0.7584606458285612,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 1.0293036039434182,
+      "gain": 0.8,
+      "peakSones": 3.1589617668242767,
+      "startFrame": 572
+    },
+    {
+      "clipName": "880.00",
+      "pitch": 1.0293036039434182,
+      "gain": 1.0,
+      "peakSones": 3.621669533545452,
+      "startFrame": 572
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 0.9715306505960422,
+      "gain": 0.1,
+      "peakSones": 0.9249113047699078,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 0.9715306505960422,
+      "gain": 0.8,
+      "peakSones": 3.8037497688024464,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 0.9715306505960422,
+      "gain": 1.0,
+      "peakSones": 4.374810570972755,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9201090490113933,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.8059792733209754,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.376707009322414,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 1.0293026395176479,
+      "gain": 0.1,
+      "peakSones": 0.8940946051809657,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 1.0293026395176479,
+      "gain": 0.8,
+      "peakSones": 3.7311002859181106,
+      "startFrame": 0
+    },
+    {
+      "clipName": "932.33",
+      "pitch": 1.0293026395176479,
+      "gain": 1.0,
+      "peakSones": 4.291483877298864,
+      "startFrame": 0
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 0.9715315608911879,
+      "gain": 0.1,
+      "peakSones": 0.9114127475760063,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 0.9715315608911879,
+      "gain": 0.8,
+      "peakSones": 3.592407612192929,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 0.9715315608911879,
+      "gain": 1.0,
+      "peakSones": 4.127135460102183,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8807214048551917,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.492648693627932,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.014560222562604,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 1.0292993544542854,
+      "gain": 0.1,
+      "peakSones": 0.8598716855775088,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 1.0292993544542854,
+      "gain": 0.8,
+      "peakSones": 3.440644786033273,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "987.77",
+      "pitch": 1.0292993544542854,
+      "gain": 1.0,
+      "peakSones": 3.955597474626101,
+      "startFrame": 1276
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 0.97153466158558,
+      "gain": 0.1,
+      "peakSones": 0.6742345454572685,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 0.97153466158558,
+      "gain": 0.8,
+      "peakSones": 2.9371868758556268,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 0.97153466158558,
+      "gain": 1.0,
+      "peakSones": 3.384706851748998,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6686745372929519,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.9352696086044254,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.379179198633344,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 1.0293031054762944,
+      "gain": 0.1,
+      "peakSones": 0.6706933756011537,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 1.0293031054762944,
+      "gain": 0.8,
+      "peakSones": 3.003450171153837,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1046.50",
+      "pitch": 1.0293031054762944,
+      "gain": 1.0,
+      "peakSones": 3.4556995788309868,
+      "startFrame": 1144
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 0.9715311210853338,
+      "gain": 0.1,
+      "peakSones": 0.6418517518592953,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 0.9715311210853338,
+      "gain": 0.8,
+      "peakSones": 2.986222398279689,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 0.9715311210853338,
+      "gain": 1.0,
+      "peakSones": 3.441954680781105,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6709457860235166,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.0987148882965196,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.5590007575552307,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 1.029302886558846,
+      "gain": 0.1,
+      "peakSones": 0.7158122086668295,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 1.029302886558846,
+      "gain": 0.8,
+      "peakSones": 3.180580244759294,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1108.73",
+      "pitch": 1.029302886558846,
+      "gain": 1.0,
+      "peakSones": 3.6582488751052002,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 0.9715313277155851,
+      "gain": 0.1,
+      "peakSones": 0.8902658514685085,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 0.9715313277155851,
+      "gain": 0.8,
+      "peakSones": 3.4662666010875474,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 0.9715313277155851,
+      "gain": 1.0,
+      "peakSones": 3.977121257842792,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8649788458660957,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.423214714316712,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.932416073422594,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 1.029302683917257,
+      "gain": 0.1,
+      "peakSones": 0.8315362692253768,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 1.029302683917257,
+      "gain": 0.8,
+      "peakSones": 3.332934615275105,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1174.66",
+      "pitch": 1.029302683917257,
+      "gain": 1.0,
+      "peakSones": 3.832333418794698,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 0.9715315189835719,
+      "gain": 0.1,
+      "peakSones": 0.7886659156244328,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 0.9715315189835719,
+      "gain": 0.8,
+      "peakSones": 3.211162409135013,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 0.9715315189835719,
+      "gain": 1.0,
+      "peakSones": 3.6868010408443386,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7672003484838101,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.147468204063218,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.6163703702685783,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 1.0293012937841233,
+      "gain": 0.1,
+      "peakSones": 0.7551596479084339,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 1.0293012937841233,
+      "gain": 0.8,
+      "peakSones": 3.126997752512361,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1244.51",
+      "pitch": 1.0293012937841233,
+      "gain": 1.0,
+      "peakSones": 3.5930815914140295,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 0.9715328310951599,
+      "gain": 0.1,
+      "peakSones": 0.9106359476686683,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 0.9715328310951599,
+      "gain": 0.8,
+      "peakSones": 3.6351604781924935,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 0.9715328310951599,
+      "gain": 1.0,
+      "peakSones": 4.16830168005181,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.9155399383863105,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.6941911425824028,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.231681025029076,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 1.029301247602385,
+      "gain": 0.1,
+      "peakSones": 0.973246627232446,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 1.029301247602385,
+      "gain": 0.8,
+      "peakSones": 3.8754716572083714,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1318.51",
+      "pitch": 1.029301247602385,
+      "gain": 1.0,
+      "peakSones": 4.432669961767711,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 0.971532874684998,
+      "gain": 0.1,
+      "peakSones": 0.7526215914157588,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 0.971532874684998,
+      "gain": 0.8,
+      "peakSones": 3.3415201781381247,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 0.971532874684998,
+      "gain": 1.0,
+      "peakSones": 3.8416867893844953,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8251575773738719,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.5585889117059066,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.07902443865636,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 1.0293041175356226,
+      "gain": 0.1,
+      "peakSones": 0.8994588682935983,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 1.0293041175356226,
+      "gain": 0.8,
+      "peakSones": 3.746309651736591,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1396.91",
+      "pitch": 1.0293041175356226,
+      "gain": 1.0,
+      "peakSones": 4.293290117239714,
+      "startFrame": 836
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 0.9715301658310832,
+      "gain": 0.1,
+      "peakSones": 0.7540323886855127,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 0.9715301658310832,
+      "gain": 0.8,
+      "peakSones": 3.2746455993841086,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 0.9715301658310832,
+      "gain": 1.0,
+      "peakSones": 3.7555924575314483,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7560617646690202,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.2694429866525208,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.7558505319846685,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 1.0293008612531744,
+      "gain": 0.1,
+      "peakSones": 0.7334824482383948,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 1.0293008612531744,
+      "gain": 0.8,
+      "peakSones": 3.20622312697024,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1479.98",
+      "pitch": 1.0293008612531744,
+      "gain": 1.0,
+      "peakSones": 3.686686764785663,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 0.9715332393509312,
+      "gain": 0.1,
+      "peakSones": 0.7080879292021871,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 0.9715332393509312,
+      "gain": 0.8,
+      "peakSones": 3.0953780800643997,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 0.9715332393509312,
+      "gain": 1.0,
+      "peakSones": 3.554102819963532,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6981176687599596,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.040467465247599,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.490772083089598,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 1.0293031838078577,
+      "gain": 0.1,
+      "peakSones": 0.6898378281849891,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 1.0293031838078577,
+      "gain": 0.8,
+      "peakSones": 3.012183797589923,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1567.98",
+      "pitch": 1.0293031838078577,
+      "gain": 1.0,
+      "peakSones": 3.4581043473858806,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 0.9715310471503139,
+      "gain": 0.1,
+      "peakSones": 0.6751268511616696,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 0.9715310471503139,
+      "gain": 0.8,
+      "peakSones": 2.9247158731938305,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 0.9715310471503139,
+      "gain": 1.0,
+      "peakSones": 3.384398888820458,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6774815560909322,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.998048485847171,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.460596727374006,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 1.0293018618807326,
+      "gain": 0.1,
+      "peakSones": 0.7136450785113175,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 1.0293018618807326,
+      "gain": 0.8,
+      "peakSones": 3.121129748678592,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1661.22",
+      "pitch": 1.0293018618807326,
+      "gain": 1.0,
+      "peakSones": 3.6028777991634673,
+      "startFrame": 1056
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 0.9715322948826766,
+      "gain": 0.1,
+      "peakSones": 0.7818580633822774,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 0.9715322948826766,
+      "gain": 0.8,
+      "peakSones": 3.2669622389709536,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 0.9715322948826766,
+      "gain": 1.0,
+      "peakSones": 3.747936573901771,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8448142352643342,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.4422949907154363,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.9433289858714886,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 1.0293036039434182,
+      "gain": 0.1,
+      "peakSones": 0.8760853127101657,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 1.0293036039434182,
+      "gain": 0.8,
+      "peakSones": 3.539079461295071,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1760.00",
+      "pitch": 1.0293036039434182,
+      "gain": 1.0,
+      "peakSones": 4.060479760474781,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 0.9715306505960422,
+      "gain": 0.1,
+      "peakSones": 1.0002644268576957,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 0.9715306505960422,
+      "gain": 0.8,
+      "peakSones": 4.070215344913038,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 0.9715306505960422,
+      "gain": 1.0,
+      "peakSones": 4.6524916449837574,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.983370633391047,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.997342499441015,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.568565922495582,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 1.0293000343971692,
+      "gain": 0.1,
+      "peakSones": 0.9584696065444569,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 1.0293000343971692,
+      "gain": 0.8,
+      "peakSones": 3.9107291892659273,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1864.66",
+      "pitch": 1.0293000343971692,
+      "gain": 1.0,
+      "peakSones": 4.473127969082386,
+      "startFrame": 704
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 0.9715340198017876,
+      "gain": 0.1,
+      "peakSones": 0.7213182756839664,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 0.9715340198017876,
+      "gain": 0.8,
+      "peakSones": 2.9700875156964086,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 0.9715340198017876,
+      "gain": 1.0,
+      "peakSones": 3.410670988628837,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7013005968159212,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.9018378560114777,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.3309319746931996,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 1.029301959573043,
+      "gain": 0.1,
+      "peakSones": 0.6855082961202912,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 1.029301959573043,
+      "gain": 0.8,
+      "peakSones": 2.8856900212396326,
+      "startFrame": 0
+    },
+    {
+      "clipName": "1975.53",
+      "pitch": 1.029301959573043,
+      "gain": 1.0,
+      "peakSones": 3.3193344810984553,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 0.9715322026733558,
+      "gain": 0.1,
+      "peakSones": 0.6030083506694575,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 0.9715322026733558,
+      "gain": 0.8,
+      "peakSones": 2.6843599467808956,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 0.9715322026733558,
+      "gain": 1.0,
+      "peakSones": 3.09482622591709,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6007331702925491,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.7123684424506864,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.1259341117109036,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 1.0293031054762944,
+      "gain": 0.1,
+      "peakSones": 0.6112846857438048,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 1.0293031054762944,
+      "gain": 0.8,
+      "peakSones": 2.761862825339003,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2093.00",
+      "pitch": 1.0293031054762944,
+      "gain": 1.0,
+      "peakSones": 3.177191754802718,
+      "startFrame": 396
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 0.9715311210853338,
+      "gain": 0.1,
+      "peakSones": 0.6388002452342287,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 0.9715311210853338,
+      "gain": 0.8,
+      "peakSones": 2.9413204089925333,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 0.9715311210853338,
+      "gain": 1.0,
+      "peakSones": 3.3806823852778556,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.6841667310449312,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.0629168912485407,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.5241310229916802,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.029302886558846,
+      "gain": 0.1,
+      "peakSones": 0.7087251422773483,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.029302886558846,
+      "gain": 0.8,
+      "peakSones": 3.1298888232775797,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2217.46",
+      "pitch": 1.029302886558846,
+      "gain": 1.0,
+      "peakSones": 3.6005129731995185,
+      "startFrame": 792
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 0.9715313277155851,
+      "gain": 0.1,
+      "peakSones": 0.8055042636005927,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 0.9715313277155851,
+      "gain": 0.8,
+      "peakSones": 3.3890731639491762,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 0.9715313277155851,
+      "gain": 1.0,
+      "peakSones": 3.8891757903790665,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7931796607832531,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.3332883977716206,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.8259743795318917,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 1.029302683917257,
+      "gain": 0.1,
+      "peakSones": 0.7743285750144526,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 1.029302683917257,
+      "gain": 0.8,
+      "peakSones": 3.25453532642388,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2349.32",
+      "pitch": 1.029302683917257,
+      "gain": 1.0,
+      "peakSones": 3.7363931356614426,
+      "startFrame": 352
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 0.9715315189835719,
+      "gain": 0.1,
+      "peakSones": 0.9057279235553113,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 0.9715315189835719,
+      "gain": 0.8,
+      "peakSones": 3.7520021734582554,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 0.9715315189835719,
+      "gain": 1.0,
+      "peakSones": 4.300698528838838,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.8907571725824917,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.690435640624141,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 4.227737685575538,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 1.0293012937841233,
+      "gain": 0.1,
+      "peakSones": 0.8788666965633966,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 1.0293012937841233,
+      "gain": 0.8,
+      "peakSones": 3.662827560772648,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2489.02",
+      "pitch": 1.0293012937841233,
+      "gain": 1.0,
+      "peakSones": 4.193735904989719,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 0.9715328310951599,
+      "gain": 0.1,
+      "peakSones": 0.691394046192386,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 0.9715328310951599,
+      "gain": 0.8,
+      "peakSones": 3.062952486567343,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 0.9715328310951599,
+      "gain": 1.0,
+      "peakSones": 3.515785033861444,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7053655861327113,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.1469219123905505,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.610431338967993,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 1.0293030897044648,
+      "gain": 0.1,
+      "peakSones": 0.7629860895901595,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 1.0293030897044648,
+      "gain": 0.8,
+      "peakSones": 3.3014216534565275,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2637.02",
+      "pitch": 1.0293030897044648,
+      "gain": 1.0,
+      "peakSones": 3.781588482004672,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 0.9715311359719337,
+      "gain": 0.1,
+      "peakSones": 0.48966512802896967,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 0.9715311359719337,
+      "gain": 0.8,
+      "peakSones": 2.616713844801596,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 0.9715311359719337,
+      "gain": 1.0,
+      "peakSones": 3.0169558818926134,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5271168479771324,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.711881518342577,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.1178884196174956,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 1.0293022754317032,
+      "gain": 0.1,
+      "peakSones": 0.5598725942289056,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 1.0293022754317032,
+      "gain": 0.8,
+      "peakSones": 2.7734064540440633,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2793.83",
+      "pitch": 1.0293022754317032,
+      "gain": 1.0,
+      "peakSones": 3.1895405800924834,
+      "startFrame": 484
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 0.9715319045424111,
+      "gain": 0.1,
+      "peakSones": 0.5344282735816688,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 0.9715319045424111,
+      "gain": 0.8,
+      "peakSones": 2.750660615326458,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 0.9715319045424111,
+      "gain": 1.0,
+      "peakSones": 3.1691010925984413,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5282633772539402,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.716503910430328,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.130419580585392,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0293008612531744,
+      "gain": 0.1,
+      "peakSones": 0.5288649882549598,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0293008612531744,
+      "gain": 0.8,
+      "peakSones": 2.681634288602218,
+      "startFrame": 0
+    },
+    {
+      "clipName": "2959.96",
+      "pitch": 1.0293008612531744,
+      "gain": 1.0,
+      "peakSones": 3.0880053286624394,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 0.9715332393509312,
+      "gain": 0.1,
+      "peakSones": 0.76345081409544,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 0.9715332393509312,
+      "gain": 0.8,
+      "peakSones": 3.304856617018358,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 0.9715332393509312,
+      "gain": 1.0,
+      "peakSones": 3.7853874856317775,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.7528330790154947,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 3.247169620812418,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.7243961841202413,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 1.0293031838078577,
+      "gain": 0.1,
+      "peakSones": 0.747305119990724,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 1.0293031838078577,
+      "gain": 0.8,
+      "peakSones": 3.2273260364789715,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3135.96",
+      "pitch": 1.0293031838078577,
+      "gain": 1.0,
+      "peakSones": 3.703967788167298,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 0.9715310471503139,
+      "gain": 0.1,
+      "peakSones": 0.566942917691406,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 0.9715310471503139,
+      "gain": 0.8,
+      "peakSones": 2.7160168318563747,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 0.9715310471503139,
+      "gain": 1.0,
+      "peakSones": 3.127799500675051,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5643031000176986,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.761271982095753,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.183368758662999,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 1.0293018618807326,
+      "gain": 0.1,
+      "peakSones": 0.5782027674047723,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 1.0293018618807326,
+      "gain": 0.8,
+      "peakSones": 2.842923902113677,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3322.44",
+      "pitch": 1.0293018618807326,
+      "gain": 1.0,
+      "peakSones": 3.2670506854282704,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 0.9715322948826766,
+      "gain": 0.1,
+      "peakSones": 0.3555379074119346,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 0.9715322948826766,
+      "gain": 0.8,
+      "peakSones": 2.2200140858373407,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 0.9715322948826766,
+      "gain": 1.0,
+      "peakSones": 2.578713026847992,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.37308402328459656,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.2805216902725567,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.6459106148594724,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0293022239273644,
+      "gain": 0.1,
+      "peakSones": 0.3803103647934278,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0293022239273644,
+      "gain": 0.8,
+      "peakSones": 2.290114746892769,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3520.00",
+      "pitch": 1.0293022239273644,
+      "gain": 1.0,
+      "peakSones": 2.6496235577453247,
+      "startFrame": 0
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 0.9715319531560322,
+      "gain": 0.1,
+      "peakSones": 0.4900243441026212,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 0.9715319531560322,
+      "gain": 0.8,
+      "peakSones": 2.6241198797293226,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 0.9715319531560322,
+      "gain": 1.0,
+      "peakSones": 3.0399525920564674,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.48294422987664803,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.5843146581035565,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.9925421569138475,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 1.0293027169730973,
+      "gain": 0.1,
+      "peakSones": 0.4761857102849004,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 1.0293027169730973,
+      "gain": 0.8,
+      "peakSones": 2.566273280209707,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3729.31",
+      "pitch": 1.0293027169730973,
+      "gain": 1.0,
+      "peakSones": 2.9722723661949595,
+      "startFrame": 264
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 0.9715314877830414,
+      "gain": 0.1,
+      "peakSones": 0.5476303735457357,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 0.9715314877830414,
+      "gain": 0.8,
+      "peakSones": 2.7704311250498623,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 0.9715314877830414,
+      "gain": 1.0,
+      "peakSones": 3.198707035729669,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.5450692891664505,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.7588534427250115,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 3.1863168148748775,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 1.0293018864665695,
+      "gain": 0.1,
+      "peakSones": 0.5442172604266441,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 1.0293018864665695,
+      "gain": 0.8,
+      "peakSones": 2.7392775416513535,
+      "startFrame": 572
+    },
+    {
+      "clipName": "3951.07",
+      "pitch": 1.0293018864665695,
+      "gain": 1.0,
+      "peakSones": 3.165500381298433,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 0.9715322716767204,
+      "gain": 0.1,
+      "peakSones": 0.3966268728625426,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 0.9715322716767204,
+      "gain": 0.8,
+      "peakSones": 2.214609643118483,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 0.9715322716767204,
+      "gain": 1.0,
+      "peakSones": 2.564038048567801,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 1.0,
+      "gain": 0.1,
+      "peakSones": 0.3955786429931022,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 1.0,
+      "gain": 0.8,
+      "peakSones": 2.215362395308173,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 1.0,
+      "gain": 1.0,
+      "peakSones": 2.5676834168092615,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 3.0,
+      "gain": 0.1,
+      "peakSones": 0.34136968094062836,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 3.0,
+      "gain": 0.8,
+      "peakSones": 2.0051730785297375,
+      "startFrame": 572
+    },
+    {
+      "clipName": "4186.01",
+      "pitch": 3.0,
+      "gain": 1.0,
+      "peakSones": 2.3271070076142015,
+      "startFrame": 572
+    }
+  ],
+  "minimumByMaster": {
+    "0.1": {
+      "clipName": "27.50",
+      "pitch": 0.2889659090909091,
+      "gain": 0.1,
+      "peakSones": 0.03332567717689761,
+      "startFrame": 572
+    },
+    "0.8": {
+      "clipName": "27.50",
+      "pitch": 0.2889659090909091,
+      "gain": 0.8,
+      "peakSones": 0.4605335326450505,
+      "startFrame": 572
+    },
+    "1.0": {
+      "clipName": "27.50",
+      "pitch": 0.2889659090909091,
+      "gain": 1.0,
+      "peakSones": 0.5588703911217825,
+      "startFrame": 572
+    }
+  }
+}

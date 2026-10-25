@@ -1,0 +1,8 @@
+__pycache__/
+.cache/
+profile-cache/
+.venv/
+decoded/
+bin/
+obj/
+validation-output/

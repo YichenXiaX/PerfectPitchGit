@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RadioactiveDamage : MonoBehaviour
+public class radioactiveDamage : MonoBehaviour
 {
     [Header("Tuning ¡ª ~33 HP total per comet if player does nothing")]
     public float baseDamagePerSecond;
@@ -10,7 +10,7 @@ public class RadioactiveDamage : MonoBehaviour
     private float maxDistance;
     private bool isActive = false;
 
-    public void Initialize(Transform mothership)
+    public void initialize(Transform mothership)
     {
         mothershipTransform = mothership;
         maxDistance = Vector3.Distance(transform.position, mothership.position);
@@ -20,7 +20,7 @@ public class RadioactiveDamage : MonoBehaviour
     void Update()
     {
         if (!isActive || mothershipTransform == null) return;
-        if (GameManager.Instance.CurrentHealth <= 0f) return;
+        if (gameManager.instance.currentHealth <= 0f) return;
 
         float currentDistance = Vector3.Distance(transform.position, mothershipTransform.position);
         float proximity = 1f - Mathf.Clamp01(currentDistance / maxDistance); // 0 at spawn, 1 at mothership
@@ -28,10 +28,10 @@ public class RadioactiveDamage : MonoBehaviour
         float multiplier = 1f + (maxDamageMultiplier - 1f) * (proximity * proximity);
         float damage = baseDamagePerSecond * multiplier * Time.deltaTime;
 
-        GameManager.Instance.CurrentHealth = Mathf.Max(0f, GameManager.Instance.CurrentHealth - damage);
+        gameManager.instance.currentHealth = Mathf.Max(0f, gameManager.instance.currentHealth - damage);
     }
 
-    public void StopDamage()
+    public void stopDamage()
     {
         isActive = false;
     }

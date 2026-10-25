@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
+public class bulletBehavior : MonoBehaviour
 {
-    //public GameManager gameManager;
+    //public gameManager gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,13 +21,13 @@ public class BulletBehavior : MonoBehaviour
         // Check if the comet hits the mothership
         if (other.CompareTag("Comet"))
         {
-            GameManager.Instance.OnCometDestroyedByPlayer();
+            gameManager.instance.onCometDestroyedByPlayer();
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
         if (other.CompareTag("BulletCatcher"))
         {
-            //GameManager.Instance.OnPlayerMissedShot(); -----> no longer evokes penalty
+            //gameManager.instance.onPlayerMissedShot(); -----> no longer evokes penalty
         }
         if (other.CompareTag("BulletDestroyer"))
         {

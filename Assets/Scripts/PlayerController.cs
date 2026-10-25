@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class playerController : MonoBehaviour
 {
     Camera mainCamera;
 
@@ -9,15 +9,18 @@ public class PlayerController : MonoBehaviour
     private float unitWidth;
 
     // In your game manager or wherever you handle correct answers
-    public CelebrationVFX celebrationVFX;
-    public LaserBeamVFX laserVFX;
+    [UnityEngine.Serialization.FormerlySerializedAs("celebrationVFX")]
+    public celebrationVfx celebrationVfx;
+    [UnityEngine.Serialization.FormerlySerializedAs("laserVFX")]
+    public laserBeamVfx laserVfx;
     public GameObject bulletPrefab;
     public GameObject failedPredictionBulletPrefab; //for the single failed prediction shot
     public Transform firePoint;
     public AudioSource correctLaserSound; //Correct laser sound effect
     public AudioSource normalLaserSound; //Normal laser sound effect
 
-    public TeleportVFX teleportVFX;
+    [UnityEngine.Serialization.FormerlySerializedAs("teleportVFX")]
+    public teleportVfx teleportVfx;
 
 
 
@@ -35,13 +38,13 @@ public class PlayerController : MonoBehaviour
 
         mainCamera = Camera.main;
 
-        if (GameSettings.Instance == null)
+        if (gameSettings.instance == null)
         {
-            Debug.LogError("GameSettings.Instance is null in PlayerController!");
+            Debug.LogError("gameSettings.instance is null in playerController!");
         }
         else
         {
-            Debug.Log("GameSettings.Instance is ready.");
+            Debug.Log("gameSettings.instance is ready.");
         }
 
         // Calculate world dimensions
@@ -54,26 +57,26 @@ public class PlayerController : MonoBehaviour
 
 
         // Listen for new rounds to reset prediction lock
-        if (GameManager.Instance != null)
+        if (gameManager.instance != null)
         {
-            GameManager.Instance.OnRoundStart += HandleRoundStart;
+            gameManager.instance.onRoundStart += handleRoundStart;
         }
     }
 
     void Update()
     {
-        HandleInput();
-        HandleShoot();
+        handleInput();
+        handleShoot();
     }
 
-    void HandleInput()
+    void handleInput()
     {
         if (Input.GetKeyDown(KeyCode.Backslash))
         {
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * 3;
             transform.position = tempPosition;
-            MoveShip(tempPosition);
+            moveShip(tempPosition);
             currentQuadrant = 3;
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket))
@@ -81,7 +84,7 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * 1;
             transform.position = tempPosition;
-            MoveShip(tempPosition);
+            moveShip(tempPosition);
             currentQuadrant = 2;
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket))
@@ -89,7 +92,7 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * -1;
             transform.position = tempPosition;
-            MoveShip(tempPosition);
+            moveShip(tempPosition);
             currentQuadrant = 1;
         }
         else if (Input.GetKeyDown(KeyCode.P))
@@ -97,87 +100,102 @@ public class PlayerController : MonoBehaviour
             Vector3 tempPosition = transform.position;
             tempPosition.x = unitWidth * -3;
             transform.position = tempPosition;
-            MoveShip(tempPosition);
+            moveShip(tempPosition);
             currentQuadrant = 0;
         }
     }
 
     void OnDestroy()
     {
-        if (GameManager.Instance != null)
+        if (gameManager.instance != null)
         {
-            GameManager.Instance.OnRoundStart -= HandleRoundStart;
+            gameManager.instance.onRoundStart -= handleRoundStart;
         }
     }
 
-    private void HandleRoundStart(int quadrant)
+    private void handleRoundStart(int quadrant)
     {
         hasPredictedThisRound = false;
     }
 
-    public void HandleShoot()
+    private bool isSelectedQuadrantKeyHeld()
+    {
+        switch (currentQuadrant)
+        {
+            case 0: return Input.GetKey(KeyCode.P);
+            case 1: return Input.GetKey(KeyCode.LeftBracket);
+            case 2: return Input.GetKey(KeyCode.RightBracket);
+            case 3: return Input.GetKey(KeyCode.Backslash);
+            default: return false;
+        }
+    }
+
+    public void handleShoot()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (GameManager.Instance == null || !GameManager.Instance.IsGameActive)
+            if (gameManager.instance == null || !gameManager.instance.isGameActive)
+                return;
+
+            if (!isSelectedQuadrantKeyHeld())
                 return;
 
             // During prediction phase ¡ª one chance only
             if (!hasPredictedThisRound && currentQuadrant >= 0)
             {
                 hasPredictedThisRound = true;
-                GameManager.Instance.OnPlayerPrediction(currentQuadrant);
+                gameManager.instance.onPlayerPrediction(currentQuadrant);
                 Debug.Log($"[Player] Predicted Q{currentQuadrant + 1}");
             }
             else
             {
-                SimpleShot();
+                simpleShot();
                 // --- Second-guess check ---
-                if (GameManager.Instance.IsSecondGuessWindow)
+                if (gameManager.instance.isSecondGuessWindow)
                 {
-                    GameManager.Instance.OnSecondGuess(currentQuadrant);
+                    gameManager.instance.onSecondGuess(currentQuadrant);
                 }
             }
         }
     }
 
-    public void FancyShot()
+    public void fancyShot()
     {
         correctLaserSound.Play(); //play sound effect
-        OnCorrectPrediction();
+        onCorrectPrediction();
     }
 
-    public void OnCorrectPrediction()
+    public void onCorrectPrediction()
     {
         Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(
             Camera.main, firePoint.position
         );
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            celebrationVFX.canvas.GetComponent<RectTransform>(),
+            celebrationVfx.canvas.GetComponent<RectTransform>(),
             screenPos,
-            celebrationVFX.canvas.worldCamera,
+            celebrationVfx.canvas.worldCamera,
             out Vector2 canvasPos
         );
 
-        celebrationVFX.Play(canvasPos);
+        celebrationVfx.play(canvasPos);
 
-        laserVFX.Fire();
+        laserVfx.fire();
     }
 
-    void MoveShip(Vector3 newPosition)
+    void moveShip(Vector3 newPosition)
     {
-        teleportVFX.Teleport(newPosition);
+        teleportVfx.teleport(newPosition);
     }
 
 
-    public void FailedPredictionShot() //calls special bullet prefab
+    public void failedPredictionShot() //calls special bullet prefab
     {
         GameObject failedPredictionBullet = Instantiate(failedPredictionBulletPrefab, firePoint.position, firePoint.rotation);
         normalLaserSound.Play();
     }
 
-    public void SimpleShot()
+    public void simpleShot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         normalLaserSound.Play();
@@ -185,16 +203,16 @@ public class PlayerController : MonoBehaviour
 
 
     //getters & setters
-    public bool GetHasPredictedThisRound()
+    public bool getHasPredictedThisRound()
     {
         return hasPredictedThisRound;
     }
-    public void SetHasPredictedThisRound(bool predicted)
+    public void setHasPredictedThisRound(bool predicted)
     {
         hasPredictedThisRound = predicted;
     }
 
-    public int GetPlayerQuadrant()
+    public int getPlayerQuadrant()
     {
         return currentQuadrant;
     }

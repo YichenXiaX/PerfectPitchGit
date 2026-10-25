@@ -1,0 +1,69 @@
+{
+  "tests": [
+    {
+      "case": "random",
+      "total_error": 0.0,
+      "specific_error": 0.0
+    },
+    {
+      "case": "zero",
+      "total_error": 0.0,
+      "specific_error": 0.0
+    },
+    {
+      "case": "small",
+      "total_error": 0.0,
+      "specific_error": 0.0
+    }
+  ],
+  "timings": [
+    {
+      "file": "440.00.wav",
+      "duration": 0.59,
+      "gain": 1.0,
+      "maximum_error": 0.0,
+      "median_seconds": 0.02476360000218847,
+      "peak_sone": 6.069017862632721
+    },
+    {
+      "file": "440.00.wav",
+      "duration": 0.59,
+      "gain": 0.1,
+      "maximum_error": 0.0,
+      "median_seconds": 0.022466599999461323,
+      "peak_sone": 1.2844052488336453
+    },
+    {
+      "file": "65.41.wav",
+      "duration": 0.1,
+      "gain": 1.0,
+      "maximum_error": 0.0,
+      "median_seconds": 0.007787000002281275,
+      "peak_sone": 2.933169829223856
+    },
+    {
+      "file": "65.41.wav",
+      "duration": 0.1,
+      "gain": 0.1,
+      "maximum_error": 0.0,
+      "median_seconds": 0.007130400001187809,
+      "peak_sone": 0.41785507369323305
+    },
+    {
+      "file": "1975.53.wav",
+      "duration": 3.0,
+      "gain": 1.0,
+      "maximum_error": 0.0,
+      "median_seconds": 0.09902050000164309,
+      "peak_sone": 3.7817149651616964
+    },
+    {
+      "file": "1975.53.wav",
+      "duration": 3.0,
+      "gain": 0.1,
+      "maximum_error": 0.0,
+      "median_seconds": 0.09618590000172844,
+      "peak_sone": 0.7662773364851565
+    }
+  ]
+}

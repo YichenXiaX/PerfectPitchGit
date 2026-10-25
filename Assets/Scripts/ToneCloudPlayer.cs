@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
-public class ToneCloudPlayer : MonoBehaviour
+public class toneCloudPlayer : MonoBehaviour
 {
     [Header("Cloud Settings")]
     public float toneGain = 0.06f;
@@ -16,7 +16,7 @@ public class ToneCloudPlayer : MonoBehaviour
 
     // ©¤©¤ internal ©¤©¤
 
-    private class Tone
+    private class tone
     {
         public float frequency;
         public double startTime;
@@ -26,7 +26,7 @@ public class ToneCloudPlayer : MonoBehaviour
         public double phase;
     }
 
-    private readonly List<Tone> tones = new List<Tone>();
+    private readonly List<tone> tones = new List<tone>();
     private int sampleRate;
     private double nextCleanup;
 
@@ -45,7 +45,7 @@ public class ToneCloudPlayer : MonoBehaviour
     /// <summary>
     /// Schedule a tone cloud that lasts <paramref name="duration"/> seconds.
     /// </summary>
-    public void PlayToneCloud(float duration)
+    public void playToneCloud(float duration)
     {
         double now = AudioSettings.dspTime;
         double end = now + duration;
@@ -55,7 +55,7 @@ public class ToneCloudPlayer : MonoBehaviour
             // steady 440 Hz pulse
             double pulseInterval = 1.0 / pulseRate;
             for (double t = now; t < end; t += pulseInterval)
-                AddTone(baseFrequency, toneDuration, t);
+                addTone(baseFrequency, toneDuration, t);
 
             // random scattered tones
             double randInterval = 1.0 / randomRate;
@@ -64,22 +64,22 @@ public class ToneCloudPlayer : MonoBehaviour
                 float sign = Random.value < 0.5f ? -1f : 1f;
                 float oct = minOctaveOffset + Random.value * (maxOctaveOffset - minOctaveOffset);
                 float freq = baseFrequency * Mathf.Pow(2f, sign * oct);
-                AddTone(freq, toneDuration, t);
+                addTone(freq, toneDuration, t);
             }
         }
     }
 
     /// <summary>Stop all tones immediately.</summary>
-    public void StopCloud()
+    public void stopCloud()
     {
         lock (tones) { tones.Clear(); }
     }
 
 
 
-    private void AddTone(float frequency, float duration, double startTime)
+    private void addTone(float frequency, float duration, double startTime)
     {
-        tones.Add(new Tone
+        tones.Add(new tone
         {
             frequency = frequency,
             startTime = startTime,
@@ -107,7 +107,7 @@ public class ToneCloudPlayer : MonoBehaviour
 
                 for (int j = 0; j < tones.Count; j++)
                 {
-                    Tone tone = tones[j];
+                    tone tone = tones[j];
                     double elapsed = t - tone.startTime;
 
                     if (elapsed < 0 || elapsed > tone.duration) continue;

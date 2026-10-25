@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class healthBar : MonoBehaviour
 {
-    public static HealthBar Instance { get; private set; }
+    public static healthBar instance { get; private set; }
 
     [Header("UI References")]
     public Image fillImage;
@@ -20,22 +20,22 @@ public class HealthBar : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
-    public void Initialize(float max)
+    public void initialize(float max)
     {
         maxHealth = max;
         displayedFill = 1f;
         if (fillImage != null) fillImage.fillAmount = 1f;
-        Debug.Log($"[HealthBar] Initialize called. maxHealth={maxHealth}, fillImage={fillImage}");
+        Debug.Log($"[healthBar] initialize called. maxHealth={maxHealth}, fillImage={fillImage}");
     }
 
     void Update()
     {
         if (maxHealth <= 0f) return;
 
-        float targetFill = Mathf.Clamp01(GameManager.Instance.CurrentHealth / maxHealth);
+        float targetFill = Mathf.Clamp01(gameManager.instance.currentHealth / maxHealth);
         displayedFill = Mathf.Lerp(displayedFill, targetFill, Time.deltaTime * 8f);
 
         if (fillImage != null)
