@@ -65,6 +65,7 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale <= 0 || gameManager.instance == null || !gameManager.instance.isGameActive) return;
         handleInput();
         handleShoot();
     }
@@ -140,7 +141,7 @@ public class playerController : MonoBehaviour
             if (!isSelectedQuadrantKeyHeld())
                 return;
 
-            // During prediction phase ¡ª one chance only
+            // During prediction phase ï¿½ï¿½ one chance only
             if (!hasPredictedThisRound && currentQuadrant >= 0)
             {
                 hasPredictedThisRound = true;

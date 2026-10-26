@@ -1,0 +1,60 @@
+Consent Form for Research Participation
+
+Study Number: IRB25-1851
+
+Study Title: Implicit Learning of Perceptual Categories in a Gamified Environment
+
+Researchers: Shannon Heald, Jackson Collins, Elizabeth McCarthy, Samantha Flores, Sara Afzal
+
+### Purpose
+
+You are invited to take part in a research study investigating whether individuals can learn to recognize musical notes—absolute pitch—through incidental exposure during a video game. This research aims to deepen our understanding of how people learn without explicit instruction.
+
+### Procedures and Time Required
+
+- You will play a web-based video game where you control a spaceship that shoots targets, each associated with clusters of musical tones.
+- You may stop playing at any time.
+- At the conclusion, you will complete a short (~10 minute) tone-identification assessment.
+- You will answer a brief questionnaire including age, gender, and music experience.
+- No audio or video will be recorded at any point.
+
+### Risks
+
+There are minimal risks associated with this study, such as:
+
+- Mild frustration or fatigue while playing.
+- Finding the repeated tones mildly annoying.
+
+You are free to pause or stop participation at any time without penalty.
+
+### Benefits
+
+Although you may not receive direct personal benefit, your participation may contribute to understanding how people learn through interactive, non-instructional tasks and to the development of future educational or cognitive training tools in music education.
+
+### Confidentiality
+
+- You will be assigned a random participant ID. No identifying personal information will be linked to your responses.
+- Data will be stored securely on encrypted University of Chicago servers or approved platforms (e.g., Box).
+- After full anonymization, data may be shared in repositories such as the Open Science Framework (OSF) for scientific transparency.
+- If you withdraw, data collected up to that point may still be included in anonymized analyses.
+- Identifiable data will never be shared outside the research team.
+
+### Voluntary Participation and Right to Withdraw
+
+- Your participation is entirely voluntary.
+- You may decline to participate or stop the game or survey at any point, without explanation or consequence.
+- You may skip any questions you do not wish to answer.
+
+### Optional Follow-Up Survey
+
+Some participants may qualify for an optional 30-minute follow-up survey based on gameplay performance. You may choose whether you wish to be contacted.
+
+### Contacts & Questions
+
+If you have questions about the study, contact Dr. Shannon Heald, Assistant Instructional Professor of Psychology, at smbowdre@uchicago.edu.
+
+If you have questions about your rights as a participant or feel you have been harmed, you may contact the University of Chicago Social & Behavioral Sciences IRB at (773) 702-2915 or sbs-irb@uchicago.edu.
+
+### Consent
+
+By indicating your agreement below and continuing, you consent to participate in this research study under the conditions described above.

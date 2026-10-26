@@ -25,6 +25,9 @@ public class sequenceResult
 [System.Serializable]
 public class gameSessionData
 {
+    // Decision only: names/contact information never enter gameplay records.
+    public string researchConsentStatus = researchConsentState.status;
+    public string researchConsentFormVersion = researchConsentState.formVersion;
     public string playerName;
     public string sessionId;
     public long sessionStartTimestamp;

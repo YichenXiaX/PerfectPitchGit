@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    private static void logDiagnostic(string message) { Debug.Log(message); }
+
     public static gameManager instance { get; private set; }
 
     [Header("References")]
@@ -45,6 +48,7 @@ public class gameManager : MonoBehaviour
     public event Action onHealthChanged;
     public event Action<float> onAuraChanged;
     public event Action<float> onXpChanged;
+    public event Action onGameStarted;
     public event Action<gameSessionData> onGameOver;
     public event Action onLevelAdvanced;
     public event Action<int> onRoundStart;            // passes quadrant index
@@ -88,6 +92,13 @@ public class gameManager : MonoBehaviour
     //kick off the game
     public void startGame()
     {
+        if (isGameActive || cloudAccount.instance == null || cloudAccount.instance.busy) return;
+        if (!frequencyManager.tryPrepareLoudness()) return;
+        cloudAccount.instance.requestStart(beginGame);
+    }
+
+    private void beginGame()
+    {
         if (isGameActive) return;
         if (!frequencyManager.tryPrepareLoudness()) return;
 
@@ -109,12 +120,13 @@ public class gameManager : MonoBehaviour
         sessionData = new gameSessionData
         {
             playerName = settings.playerName,
-            sessionId = Guid.NewGuid().ToString(),
+            sessionId = cloudAccount.instance.activeSessionId,
             sessionStartTimestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
             results = new List<sequenceResult>()
         };
 
-        Debug.Log($"[gameManager] Game started ¡ª Player: {settings.playerName}, Level: {settings.level}");
+        logDiagnostic($"[gameManager] Game started ï¿½ï¿½ Player: {settings.playerName}, Level: {settings.level}");
+        onGameStarted?.Invoke();
         StartCoroutine(gameLoop());
     }
 
@@ -132,13 +144,13 @@ public class gameManager : MonoBehaviour
             }
             var preset = gameSettings.instance.getCurrentPreset();
 
-            // 1 ¡ª Pick a quadrant (no 3+ identical in a row)
+            // 1 ï¿½ï¿½ Pick a quadrant (no 3+ identical in a row)
             currentQuadrant = pickQuadrant();
             recentQuadrants.Add(currentQuadrant);
             if (recentQuadrants.Count > 2)
                 recentQuadrants.RemoveAt(0);
 
-            // 2 ¡ª Reset round
+            // 2 ï¿½ï¿½ Reset round
             roundState = roundStateType.prediction;
             predictedQuadrant = -1;
             roundStartTime = Time.time;
@@ -149,13 +161,13 @@ public class gameManager : MonoBehaviour
             secondGuessRecorded = false;
 
 
-            Debug.Log($"[Round {roundIndex + 1}] Q{currentQuadrant + 1} | Level {gameSettings.instance.level}");
+            logDiagnostic($"[Round {roundIndex + 1}] Q{currentQuadrant + 1} | Level {gameSettings.instance.level}");
             onRoundStart?.Invoke(currentQuadrant);
 
-            // 3 ¡ª Play note sequence
+            // 3 ï¿½ï¿½ Play note sequence
             frequencyManager.playNoteSequence(currentQuadrant);
 
-            // 4 ¡ª Prediction window = sequence length + preSpawnDelay
+            // 4 ï¿½ï¿½ Prediction window = sequence length + preSpawnDelay
             //float sequenceDuration = preset.notesPerSequence
             //                         * (preset.noteDuration + preset.pauseBetweenNotes);
             //float predictionWindow = sequenceDuration + preset.preSpawnDelay;
@@ -166,7 +178,7 @@ public class gameManager : MonoBehaviour
             while (elapsed < predictionWindow && roundState == roundStateType.prediction)
             {
                 elapsed += Time.deltaTime;
-                yield return null;  // ¡û pauses here, waits one frame, then loops again
+                yield return null;  // ï¿½ï¿½ pauses here, waits one frame, then loops again
             }
 
             // Correct prediction already resolved the round
@@ -181,15 +193,15 @@ public class gameManager : MonoBehaviour
                 continue;
             }
 
-            // 5 ¡ª No (correct) prediction ¡ª spawn comet
+            // 5 ï¿½ï¿½ No (correct) prediction ï¿½ï¿½ spawn comet
             if (roundState == roundStateType.prediction)
             {
                 // Timed out with no input at all
                 roundState = roundStateType.cometActive;
                 //frequencyManager.stopSequence();
                 consecutiveCorrectPredictions = 0;  
-                updateXpProgress(); //¡û reset bar when player didn't even try
-                Debug.Log($"[Round {roundIndex + 1}] No prediction ¡ª spawning comet");
+                updateXpProgress(); //ï¿½ï¿½ reset bar when player didn't even try
+                logDiagnostic($"[Round {roundIndex + 1}] No prediction ï¿½ï¿½ spawning comet");
                 spawnComet(currentQuadrant);
                 //onCometSpawn?.Invoke(currentQuadrant);
             }
@@ -239,7 +251,7 @@ public class gameManager : MonoBehaviour
             float auraGain = predictionAuraK / Mathf.Max(decisionTime, 0.01f);
             aura += auraGain;
             onAuraChanged?.Invoke(auraGain);
-            Debug.Log($"[Aura] Correct prediction in {decisionTime:F2}s ¡ª +{auraGain:F0} | Aura: {aura:F0}");
+            logDiagnostic($"[Aura] Correct prediction in {decisionTime:F2}s ï¿½ï¿½ +{auraGain:F0} | Aura: {aura:F0}");
 
             //auraHud.spawnFloatingText(50);
 
@@ -249,8 +261,8 @@ public class gameManager : MonoBehaviour
 
             //hud.AddAura(5000);
 
-            Debug.Log($"[Round {roundIndex + 1}] CORRECT prediction Q{quadrant + 1} " +
-                      $"in {decisionTime:F2}s ¡ª Streak: {consecutiveCorrectPredictions}");
+            logDiagnostic($"[Round {roundIndex + 1}] CORRECT prediction Q{quadrant + 1} " +
+                      $"in {decisionTime:F2}s ï¿½ï¿½ Streak: {consecutiveCorrectPredictions}");
             onPredictionSuccess?.Invoke(currentQuadrant);
             checkLevelAdvancement();
         }
@@ -263,7 +275,7 @@ public class gameManager : MonoBehaviour
             // --- Aura
             //aura -= wrongPredictionPenalty;
             //onAuraChanged?.Invoke(-wrongPredictionPenalty);
-            //Debug.Log($"[Aura] Wrong prediction ¡ª -{wrongPredictionPenalty} | Aura: {aura:F0}");
+            //logDiagnostic($"[Aura] Wrong prediction ï¿½ï¿½ -{wrongPredictionPenalty} | Aura: {aura:F0}");
 
 
             playerController.failedPredictionShot();
@@ -271,8 +283,8 @@ public class gameManager : MonoBehaviour
 
             updateXpProgress();
 
-            Debug.Log($"[Round {roundIndex + 1}] WRONG ¡ª guessed Q{quadrant + 1}, " +
-                      $"actual Q{currentQuadrant + 1} ¡ª spawning comet");
+            logDiagnostic($"[Round {roundIndex + 1}] WRONG ï¿½ï¿½ guessed Q{quadrant + 1}, " +
+                      $"actual Q{currentQuadrant + 1} ï¿½ï¿½ spawning comet");
 
 
             StartCoroutine(delayedSpawnComet(currentQuadrant));
@@ -297,14 +309,14 @@ public class gameManager : MonoBehaviour
         float auraGain = cometDestroyAuraK / Mathf.Max(cometReactionTime, 0.01f);
         aura += auraGain;
         onAuraChanged?.Invoke(auraGain);
-        Debug.Log($"[Aura] Comet destroyed in {cometReactionTime:F2}s ¡ª +{auraGain:F0} | Aura: {aura:F0}");
+        logDiagnostic($"[Aura] Comet destroyed in {cometReactionTime:F2}s ï¿½ï¿½ +{auraGain:F0} | Aura: {aura:F0}");
 
 
 
         consecutiveCorrectPredictions = 0;
         roundState = roundStateType.resolved; //change state
 
-        Debug.Log($"[Round {roundIndex + 1}] Comet destroyed (backup) in {resolvedTime:F2}s");
+        logDiagnostic($"[Round {roundIndex + 1}] Comet destroyed (backup) in {resolvedTime:F2}s");
     }
 
 
@@ -320,11 +332,11 @@ public class gameManager : MonoBehaviour
         // --- Aura: big fixed penalty ---
         aura -= cometHitPenalty;
         onAuraChanged?.Invoke(-cometHitPenalty);
-        Debug.Log($"[Aura] Comet hit ship ¡ª -{cometHitPenalty} | Aura: {aura:F0}");
+        logDiagnostic($"[Aura] Comet hit ship ï¿½ï¿½ -{cometHitPenalty} | Aura: {aura:F0}");
 
         roundState = roundStateType.resolved; //change state
 
-        Debug.Log($"[Round {roundIndex + 1}] COMET HIT ¡ª Health: {currentHealth}/{gameSettings.instance.maxHealth}");
+        logDiagnostic($"[Round {roundIndex + 1}] COMET HIT ï¿½ï¿½ Health: {currentHealth}/{gameSettings.instance.maxHealth}");
         onHealthChanged?.Invoke();
 
         if (currentHealth <= 0)
@@ -338,7 +350,7 @@ public class gameManager : MonoBehaviour
     {
         aura -= wrongPredictionPenalty;
         onAuraChanged?.Invoke(-wrongPredictionPenalty);
-        Debug.Log($"[Aura] Missed shot ¡ª -{missedShotPenalty} | Aura: {aura:F0}");
+        logDiagnostic($"[Aura] Missed shot ï¿½ï¿½ -{missedShotPenalty} | Aura: {aura:F0}");
     }
 
 
@@ -367,7 +379,7 @@ public class gameManager : MonoBehaviour
             onAuraChanged?.Invoke(-missedShotPenalty);
             consecutiveCorrectPredictions = 0;
             updateXpProgress();
-            Debug.Log($"[Aura] Missed shot ¡ª -{missedShotPenalty} | Aura: {aura:F0}");
+            logDiagnostic($"[Aura] Missed shot ï¿½ï¿½ -{missedShotPenalty} | Aura: {aura:F0}");
         }
 
 
@@ -434,7 +446,7 @@ public class gameManager : MonoBehaviour
 
         bool correct = (quadrant == currentQuadrant);
 
-        Debug.Log($"[Round {roundIndex + 1}] Second guess: Q{quadrant + 1} ¡ª " +
+        logDiagnostic($"[Round {roundIndex + 1}] Second guess: Q{quadrant + 1} ï¿½ï¿½ " +
                   $"{(correct ? "CORRECT" : "WRONG")} (actual Q{currentQuadrant + 1})");
 
         // TODO: record secondGuessQuadrant and correct into your sequenceResult / session data
@@ -477,7 +489,7 @@ public class gameManager : MonoBehaviour
             predictedQuadrant = predictedQuadrant,
             secondGuessQuadrant = this.secondGuessQuadrant,
             level = gameSettings.instance.level,
-            predictionTime = predictionTime,   // CHANGED ¡ª was decisionTime
+            predictionTime = predictionTime,   // CHANGED ï¿½ï¿½ was decisionTime
             resolvedTime = resolvedTime,       // ADDED
             // Keep saved session labels compatible with existing records.
             outcome = outcome switch
@@ -497,7 +509,7 @@ public class gameManager : MonoBehaviour
             ? $"Q{result.predictedQuadrant + 1}"
             : "None";
 
-        Debug.Log($"[Data] Round {result.roundIndex + 1} | " +
+        logDiagnostic($"[Data] Round {result.roundIndex + 1} | " +
                   $"Correct: Q{result.correctQuadrant + 1} | " +
                   $"Predicted: {predLabel} | " +
                   $"Level: {result.level} | " +
@@ -516,7 +528,7 @@ public class gameManager : MonoBehaviour
             {
                 gameSettings.instance.level++;
                 consecutiveCorrectPredictions = 0;
-                Debug.Log($"[gameManager] LEVEL UP ¡ú {gameSettings.instance.level}");
+                logDiagnostic($"[gameManager] LEVEL UP ï¿½ï¿½ {gameSettings.instance.level}");
                 onLevelAdvanced?.Invoke();
                 onXpChanged?.Invoke(0f);
             }
@@ -525,13 +537,13 @@ public class gameManager : MonoBehaviour
     //update progress
     private void updateXpProgress()
     {
-        Debug.Log($"[XP] updateXpProgress called. isCustomMode={gameSettings.instance.isCustomMode}");
+        logDiagnostic($"[XP] updateXpProgress called. isCustomMode={gameSettings.instance.isCustomMode}");
 
         if (gameSettings.instance.isCustomMode) return;
 
         var preset = gameSettings.instance.getCurrentPreset();
         float progress = (float)consecutiveCorrectPredictions / preset.consecutiveCorrectToAdvance;
-        Debug.Log($"[XP] Streak: {consecutiveCorrectPredictions}/{preset.consecutiveCorrectToAdvance} = {progress:F2}");
+        logDiagnostic($"[XP] Streak: {consecutiveCorrectPredictions}/{preset.consecutiveCorrectToAdvance} = {progress:F2}");
         onXpChanged?.Invoke(Mathf.Clamp01(progress));
     }
 
@@ -597,11 +609,11 @@ public class gameManager : MonoBehaviour
 
         sessionData.secondGuessSuccessRate = secondGuessRate;
 
-        Debug.Log("=== GAME OVER ===");
-        Debug.Log($"Player: {sessionData.playerName} | Final Level: {sessionData.finalLevel}");
-        Debug.Log($"Rounds: {sessionData.totalRounds} | " +
+        logDiagnostic("=== GAME OVER ===");
+        logDiagnostic($"Player: {sessionData.playerName} | Final Level: {sessionData.finalLevel}");
+        logDiagnostic($"Rounds: {sessionData.totalRounds} | " +
                   $"Predicted: {predicted} | Destroyed: {destroyed} | Hit: {hit}");
-        Debug.Log($"Second Guesses: {secondGuessCorrect}/{secondGuessAttempts} ({secondGuessRate:F1}%)");
+        logDiagnostic($"Second Guesses: {secondGuessCorrect}/{secondGuessAttempts} ({secondGuessRate:F1}%)");
 
         onGameOver?.Invoke(sessionData);
     }
@@ -683,3 +695,4 @@ public class gameManager : MonoBehaviour
     /// </summary>
     public gameSessionData getSessionData() => sessionData;
 }
+

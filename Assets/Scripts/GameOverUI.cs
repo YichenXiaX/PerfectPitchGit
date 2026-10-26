@@ -26,13 +26,17 @@ public class gameOverUi : MonoBehaviour
             gameManager.instance.onGameOver += showGameOver;
 
         restartButton.onClick.AddListener(onRestartClicked);
+        if (gameManager.instance != null) gameManager.instance.onGameStarted += hideGameOver;
     }
 
     void OnDestroy()
     {
         if (gameManager.instance != null)
             gameManager.instance.onGameOver -= showGameOver;
+        if (gameManager.instance != null) gameManager.instance.onGameStarted -= hideGameOver;
     }
+
+    private void hideGameOver() { gameOverPanel.SetActive(false); }
 
     private void showGameOver(gameSessionData data)
     {

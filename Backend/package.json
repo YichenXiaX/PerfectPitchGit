@@ -1,0 +1,20 @@
+{
+  "name": "comet-catcher-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.11",
+    "@types/node": "26.6.5",
+    "supabase": "2.122.0",
+    "typescript": "7.0.2"
+  }
+}

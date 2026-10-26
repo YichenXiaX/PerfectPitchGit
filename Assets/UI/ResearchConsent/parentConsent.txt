@@ -1,0 +1,76 @@
+Informed Parental Consent for Participation in a Research Study
+
+Study Title: Incidental Learning of Perceptual Categories in a Gamified Environment
+
+Study Number: IRB25-1110
+
+Principal Investigator: Dr. Shannon Heald, University of Chicago, The Attention, Perception, and Experience (APEX) Lab, Department of Psychology.
+
+### 1. Purpose of the Study
+
+Your child is invited to participate in a research study investigating whether children can learn to recognize musical pitches (absolute pitch) while playing a video game. The goal is to understand how learning can occur through engaging, non-explicit activities.
+
+### 2. Procedures
+
+- Your child will play a web-based video game for as long as they wish.
+- In the game, your child pilots a spaceship that shoots targets linked to clusters of musical tones.
+- They may stop playing or take breaks at any time.
+- After gameplay, your child will complete a brief (~10 minute) tone-identification task.
+- Your child will also complete a short questionnaire about age, gender, and musical background.
+- No identifying audio or video will be recorded.
+
+### 3. Potential Risks
+
+This study involves minimal risk, which may include:
+
+- Mild fatigue or frustration while playing the game.
+- Repeated simple tones that may be somewhat annoying.
+
+Your child can pause or stop the game at any time.
+
+### 4. Potential Benefits
+
+Your child may not receive direct personal benefits. However, this research may advance understanding of how children learn implicitly through interactive tasks and may inform future approaches in music education or cognitive development.
+
+### 5. Confidentiality
+
+- Your child will be assigned an ID number; their data will not be labeled with their name.
+- We will not intentionally collect identifying information about you or your child in the game data.
+- All data will be stored on secure computers or University-approved services (e.g., Box) controlled by the research team.
+- Once fully anonymized, data may be shared in repositories such as the Open Science Framework (OSF) for scientific transparency.
+- If you or your child withdraw, data collected up to that point may still be used in anonymized analyses, stored and used as described above.
+
+### 6. Voluntary Participation and Right to Withdraw
+
+- Your child’s participation is completely voluntary.
+- You and your child may decline to participate without penalty.
+- You or your child may withdraw at any time, for any reason.
+- Your child may skip any questions they do not wish to answer.
+
+### 7. Optional Follow-Up Participation
+
+Some children may qualify for a ~30-minute follow-up survey based on their performance in the game and pitch tasks. You may choose whether your child can be contacted for this.
+
+- If you consent, you can provide an email or phone number where we may reach you.
+- This contact information will be stored separately from your child’s game data.
+- It will be used only for scheduling related follow-up studies.
+
+### 8. Contact Information
+
+If you have questions about the study, please contact:
+
+Dr. Shannon Heald, smbowdre@uchicago.edu
+
+If you have questions about your rights or feel your child has been harmed by participating, you may contact the University of Chicago Social & Behavioral Sciences IRB at (773) 702-2915 or sbs-irb@uchicago.edu.
+
+### 9. Parental Consent
+
+By checking the box and signing below, you confirm that:
+
+- Your child is at least 12 years old.
+- You are the child’s parent or legal guardian.
+- You give permission for your child to participate in the study described above.
+
+### 10. Child Assent Confirmation
+
+You also confirm that the study has been explained to your child in age-appropriate language, they had the chance to ask questions, and they indicated that they wish to participate.

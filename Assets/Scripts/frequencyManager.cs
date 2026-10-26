@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class frequencyManager : MonoBehaviour
 {
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    private static void logDiagnostic(string message) { Debug.Log(message); }
+
     public class quadrant
     {
         public float minFrequency;
@@ -230,7 +233,7 @@ public class frequencyManager : MonoBehaviour
             float frequency = Mathf.Clamp(sampleGaussian(q.peakFrequency, sigma), q.minFrequency, q.maxFrequency);
             frequencies.Add(applyOctaveShift(frequency, selectedOctaveShift));
         }
-        Debug.Log($"=== SEQUENCE START: Quadrant Q{quadrantIndex + 1}, Octave Shift: {selectedOctaveShift} ===");
+        logDiagnostic($"=== SEQUENCE START: Quadrant Q{quadrantIndex + 1}, Octave Shift: {selectedOctaveShift} ===");
         StartCoroutine(playSequenceCoroutine(frequencies, quadrantIndex));
     }
 
@@ -244,14 +247,14 @@ public class frequencyManager : MonoBehaviour
             float frequency = frequencies[i];
             AudioClip clip = getClosestAudioClip(frequency);
             playClipAtFrequency(clip, frequency);
-            Debug.Log($"[Note {i + 1}/{frequencies.Count}] Q{quadrantIndex + 1} | Octave: {selectedOctaveShift} | " +
+            logDiagnostic($"[Note {i + 1}/{frequencies.Count}] Q{quadrantIndex + 1} | Octave: {selectedOctaveShift} | " +
                 $"Target: {frequency:F2} Hz | Sample: {clip.name} Hz | Pitch: {audioSource.pitch:F4} | " +
                 $"Volume: {currentNoteVolume:F4} | Modeled target: {calibrationCondition.targetPeakSones:F4} sones");
             yield return new WaitForSeconds(Mathf.Max(0f, duration - fade));
             yield return StartCoroutine(fadeOutOverDuration(fade));
             yield return new WaitForSeconds(pause);
         }
-        Debug.Log("=== SEQUENCE END ===");
+        logDiagnostic("=== SEQUENCE END ===");
     }
 
     private void playClipAtFrequency(AudioClip clip, float targetFrequency)
@@ -353,3 +356,4 @@ public class frequencyManager : MonoBehaviour
         return mean + sigma * Mathf.Sqrt(-2f * Mathf.Log(u1)) * Mathf.Sin(2f * Mathf.PI * u2);
     }
 }
+
