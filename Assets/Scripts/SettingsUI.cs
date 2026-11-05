@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -34,17 +34,11 @@ public class settingsUi : MonoBehaviour
     public TextMeshProUGUI pauseBetweenNotesValue;
 
     [Header("Octave Shifts")]
-    public Toggle octaveNeg5;
-    public Toggle octaveNeg4;
-    public Toggle octaveNeg3;
     public Toggle octaveNeg2;
     public Toggle octaveNeg1;
     public Toggle octave0;
     public Toggle octavePos1;
     public Toggle octavePos2;
-    public Toggle octavePos3;
-    public Toggle octavePos4;
-    public Toggle octavePos5;
 
     [Header("Timing")]
     public Slider predictionWindowSlider;
@@ -69,15 +63,19 @@ public class settingsUi : MonoBehaviour
 
     private gameSettings settings;
     private bool initialized;
+    private float previousTimeScale=1;
+    private void Awake() { gameObject.AddComponent<controlLegend>(); gameObject.AddComponent<terminalSettingsView>(); gameMenuTerminal.start(startOverlay); }
 
     // ���� init ����������������������������������������������������������������������������������������������������������������
     private void initialize()
     {
         if (initialized) return;
         settings = gameSettings.instance;
+        leftHandedToggle.SetIsOnWithoutNotify(controlLayout.leftHanded);
         configureSliders();
         wireUpListeners();
         populateLevelDropdown();
+        leftHandedToggle.onValueChanged.AddListener(controlLayout.select);
         initialized = true;
     }
 
@@ -85,6 +83,8 @@ public class settingsUi : MonoBehaviour
     {
         initialize();
         loadSettingsIntoUi();
+        previousTimeScale=Time.timeScale;
+        gameManager.playerController.clearHeldInput(false);
         Time.timeScale = 0f;
         audioSource.Pause();
     }
@@ -94,7 +94,8 @@ public class settingsUi : MonoBehaviour
     {
         initialize();
         applySettings();
-        Time.timeScale = 1f;
+        Time.timeScale = previousTimeScale;
+        gameManager.playerController.clearHeldInput(false);
         auraHud.refreshFromSettings();
         settingPanel.SetActive(false);
         audioSource.UnPause();
@@ -124,7 +125,7 @@ public class settingsUi : MonoBehaviour
         settings.isCustomMode = isCustom;
 
         settings.playerName = playerNameInput.text;
-        settings.leftHanded = leftHandedToggle.isOn;
+        controlLayout.select(leftHandedToggle.isOn);
         settings.maxHealth = (int)maxHealthSlider.value;
 
         if(settings.maxHealth < gameManager.getCurrentHealth())
@@ -186,7 +187,6 @@ public class settingsUi : MonoBehaviour
         presetToggle.onValueChanged.AddListener(onModeChanged);
         levelDropdown.onValueChanged.AddListener(onLevelSelected);
 
-        presetToggle.onValueChanged.AddListener(onModeChanged);
         customToggle.onValueChanged.AddListener(onCustomToggleChanged);
 
         notesPerSequenceSlider.onValueChanged.AddListener(v =>
@@ -295,7 +295,7 @@ public class settingsUi : MonoBehaviour
         }
 
         playerNameInput.text = settings.playerName;
-        leftHandedToggle.isOn = settings.leftHanded;
+        leftHandedToggle.SetIsOnWithoutNotify(controlLayout.leftHanded);
         maxHealthSlider.value = settings.maxHealth;
         //cometSpawnDelaySlider.value = settings.cometSpawnDelay;
 
@@ -304,6 +304,7 @@ public class settingsUi : MonoBehaviour
 
     private void loadPresetIntoUi(gameSettings.levelPreset preset)
     {
+        preset=gameSettings.normalizePreset(preset);
         notesPerSequenceSlider.value = preset.notesPerSequence;
         noteDurationSlider.value = preset.noteDuration;
         pauseBetweenNotesSlider.value = preset.pauseBetweenNotes;
@@ -314,34 +315,22 @@ public class settingsUi : MonoBehaviour
         consecutiveCorrectSlider.value = preset.consecutiveCorrectToAdvance;
 
         var shifts = new HashSet<int>(preset.octaveShifts);
-        octaveNeg5.isOn = shifts.Contains(-5);
-        octaveNeg4.isOn = shifts.Contains(-4);
-        octaveNeg3.isOn = shifts.Contains(-3);
         octaveNeg2.isOn = shifts.Contains(-2);
         octaveNeg1.isOn = shifts.Contains(-1);
         octave0.isOn = shifts.Contains(0);
         octavePos1.isOn = shifts.Contains(1);
         octavePos2.isOn = shifts.Contains(2);
-        octavePos3.isOn = shifts.Contains(3);
-        octavePos4.isOn = shifts.Contains(4);
-        octavePos5.isOn = shifts.Contains(5);
     }
 
     // ���� octave helper ��������������������������������������������������������������������������������������������
     private int[] getSelectedOctaveShifts()
     {
         var shifts = new List<int>();
-        if (octaveNeg5.isOn) shifts.Add(-5);
-        if (octaveNeg4.isOn) shifts.Add(-4);
-        if (octaveNeg3.isOn) shifts.Add(-3);
         if (octaveNeg2.isOn) shifts.Add(-2);
         if (octaveNeg1.isOn) shifts.Add(-1);
         if (octave0.isOn) shifts.Add(0);
         if (octavePos1.isOn) shifts.Add(1);
         if (octavePos2.isOn) shifts.Add(2);
-        if (octavePos3.isOn) shifts.Add(3);
-        if (octavePos4.isOn) shifts.Add(4);
-        if (octavePos5.isOn) shifts.Add(5);
 
         if (shifts.Count == 0) shifts.Add(0);
         return shifts.ToArray();

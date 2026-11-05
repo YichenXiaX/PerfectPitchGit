@@ -51,21 +51,27 @@ public class gameSettings : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if(instance != null && instance != this) { Destroy(this); return; }
+        // The saved GameSettings object also owns settingsUi. Persist only data,
+        // never the UI's references into a scene that is about to unload.
+        if(GetComponent<settingsUi>() != null)
         {
-            Destroy(gameObject);
+            string values=JsonUtility.ToJson(this);
+            var persistent=new GameObject("gameSettingsPreferences").AddComponent<gameSettings>();
+            JsonUtility.FromJsonOverwrite(values,persistent);
+            persistent.leftHanded=controlLayout.savedLeftHanded;
+            Destroy(this);
+            return;
         }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        instance=this;
+        leftHanded=controlLayout.savedLeftHanded;
+        DontDestroyOnLoad(gameObject);
     }
-
+    private void OnDestroy() { if(instance==this) instance=null; }
     public levelPreset getCurrentPreset()
     {
         if (isCustomMode)
-            return customPreset;
+            return normalizePreset(customPreset);
 
         if (levelPresets == null || levelPresets.Length == 0)
         {
@@ -74,8 +80,23 @@ public class gameSettings : MonoBehaviour
         }
 
         int index = Mathf.Clamp(level, 0, levelPresets.Length - 1);
-        return levelPresets[index];
+        return normalizePreset(levelPresets[index]);
     }
+
+    // Old presets keep every supported choice; unsupported values are removed,
+    // never clamped into a different octave. An empty selection falls back to 0.
+    public static int[] normalizeOctaves(int[] values)
+    {
+        bool alreadyValid=values!=null && values.Length>0;
+        if(alreadyValid)for(int i=0;i<values.Length;i++)if(values[i]<-2 || values[i]>2 || (i>0 && values[i]<=values[i-1])){alreadyValid=false;break;}
+        if(alreadyValid)return values;
+        var valid=new System.Collections.Generic.SortedSet<int>();
+        if(values!=null)foreach(int value in values)if(value>=-2 && value<=2)valid.Add(value);
+        if(valid.Count==0)valid.Add(0);
+        var result=new int[valid.Count];valid.CopyTo(result);return result;
+    }
+    public static levelPreset normalizePreset(levelPreset value)
+    {if(value==null)value=new levelPreset();value.octaveShifts=normalizeOctaves(value.octaveShifts);return value;}
 
 
 }

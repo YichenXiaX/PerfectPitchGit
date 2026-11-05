@@ -29,7 +29,7 @@ public static class cloudIntegrationChecks
             done(200,"{\"access_token\":\"test-access\",\"refresh_token\":\"test-refresh\",\"expires_in\":3600}");yield break;
         }
         if(path=="/auth/v1/user"){done(200,unverified?"{\"id\":\"test-owner\"}":"{\"id\":\"test-owner\",\"email_confirmed_at\":\"2026-10-25T00:00:00Z\"}");yield break;}
-        if(path.EndsWith("/profile")){done(200,"{\"nickname\":\"testPlayer\"}");yield break;}
+        if(path.EndsWith("/profile")){done(200,"{\"nickname\":\"testPlayer\",\"tutorialVersion\":1}");yield break;}
         if(path.EndsWith("/progress")){done(200,"{\"bestScore\":1234,\"highestLevel\":2,\"sessionsPlayed\":3,\"sessionsCompleted\":2}");yield break;}
         if(path.EndsWith("/sessions"))
         {
@@ -103,7 +103,7 @@ public static class cloudIntegrationChecks
         yield return null;
         if(path.Contains("/token"))done(200,"{\"access_token\":\"test-access\",\"refresh_token\":\"test-refresh\",\"expires_in\":3600}");
         else if(path=="/auth/v1/user")done(200,"{\"id\":\"test-owner\",\"email_confirmed_at\":\"2026-10-25T00:00:00Z\"}");
-        else if(path.EndsWith("/profile"))done(200,"{\"nickname\":\"testPlayer\"}");
+        else if(path.EndsWith("/profile"))done(200,"{\"nickname\":\"testPlayer\",\"tutorialVersion\":1}");
         else if(path.EndsWith("/progress"))done(200,"{\"bestScore\":1234,\"highestLevel\":2,\"sessionsPlayed\":3,\"sessionsCompleted\":2}");
         else if(path.EndsWith("/checkpoints")){lastCheckpoint=JsonUtility.FromJson<cloudAccount.checkpoint>(body);done(200,"{}");}
         else if(path.EndsWith("/sessions"))done(200,"{}");
@@ -142,6 +142,3 @@ public static class cloudIntegrationChecks
         Debug.Log(result);
     }
 }
-
-
-

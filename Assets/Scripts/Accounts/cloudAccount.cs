@@ -12,6 +12,9 @@ public class cloudAccount : MonoBehaviour
     public const string gameVersion = "0.1.0";
     public const string accountScene = "account";
     public const string playScene = "SampleScene";
+    public const string tutorialScene = "flightTraining";
+    public const int tutorialVersion = 1;
+    public bool tutorialComplete => profile.tutorialVersion >= tutorialVersion;
     private const string serviceUrl = "https://smgqmnkxfokgjfbtumxz.supabase.co";
     private const string publicKey = "sb_publishable_tQztnjtJ5b2exDOp6fu5sw_Sq-wfZoU";
 
@@ -22,7 +25,7 @@ public class cloudAccount : MonoBehaviour
     [Serializable] private class resendRequest { public string email; public string type = "signup"; }
     [Serializable] private class refreshRequest { public string refresh_token; }
     [Serializable] public class progressRecord { public long bestScore; public int highestLevel; public int sessionsPlayed; public int sessionsCompleted; }
-    [Serializable] public class profileRecord { public string nickname; public bool leaderboardEnabled; }
+    [Serializable] public class profileRecord { public string nickname; public bool leaderboardEnabled; public int tutorialVersion; }
     [Serializable] public class startRecord { public string sessionId; public string gameVersion; public string mode; }
     [Serializable] public class checkpoint
     {
@@ -242,6 +245,7 @@ public class cloudAccount : MonoBehaviour
     public void requestStart(Action begin)
     {
         if (!signedIn) { setMessage("Log in before playing."); return; }
+        if (!tutorialComplete || SceneManager.GetActiveScene().name == tutorialScene) { setMessage("Finish flight training before starting a run."); return; }
         if (!busy) StartCoroutine(startRun(begin));
     }
     private IEnumerator startRun(Action begin)
@@ -270,7 +274,7 @@ public class cloudAccount : MonoBehaviour
     {
         if (activeSessionId == null || ownerId != userId || finished) return;
         var manager = gameManager.instance;
-        if (manager == null || manager.getSessionData() == null) return;
+        if (manager == null || manager.isPractice || manager.getSessionData() == null) return;
         highestLevel = Math.Max(highestLevel, Mathf.Clamp(gameSettings.instance.level, 0, 3));
         latest = new checkpoint {
             sessionId = activeSessionId, score = Mathf.RoundToInt(Mathf.Clamp(manager.aura, -1e9f, 1e9f)),
@@ -278,6 +282,42 @@ public class cloudAccount : MonoBehaviour
             completed = completed };
         finished = completed;
         saveMessage = "Saving progress..."; retryAt = 0; notify();
+    }
+    public void enterPlay()
+    {
+        if(!signedIn || busy || hasPendingSave) return;
+        Time.timeScale=1;
+        SceneManager.LoadScene(tutorialComplete ? playScene : tutorialScene);
+    }
+    public void requestTutorial()
+    {
+        if(signedIn && !busy) StartCoroutine(leaveForTutorial());
+    }
+    private IEnumerator leaveForTutorial()
+    {
+        busy=true; setMessage("Saving this run before training...");
+        capture(false);
+        while(saving) yield return null;
+        if(hasPendingSave) yield return flush();
+        if(hasPendingSave) { busy=false; setMessage("Training postponed: your run has not saved. Retry the save first."); yield break; }
+        // This is a deliberate exit, not a completed run. No session remains attached to practice.
+        activeSessionId=null; pendingStart=null; finished=false; ownerId=null;
+        busy=false; Time.timeScale=1;
+        SceneManager.LoadScene(tutorialScene); setMessage("Training is separate from your game progress.");
+    }
+    public void completeTutorial(Action<bool> done)
+    {
+        if(!signedIn || busy) { done(false); return; }
+        StartCoroutine(saveTutorial(done));
+    }
+    private IEnumerator saveTutorial(Action<bool> done)
+    {
+        busy=true; setMessage("Saving training completion...");
+        response result=null;
+        yield return api("tutorial", "PUT", "{\"version\":1,\"milestones\":[\"correct\",\"miss\",\"recovery\",\"impact\",\"restart\"]}", r=>result=r);
+        if(result.ok) { profile=parse<profileRecord>(result.body); setMessage("Flight training complete."); }
+        else setMessage("Training completion was not saved. Retry before entering the game. "+error(result));
+        busy=false; notify(); done(result.ok && tutorialComplete);
     }
     public void retrySave() { if (!saving && signedIn) StartCoroutine(flush()); }
     private IEnumerator flush()
@@ -326,9 +366,3 @@ public class cloudAccount : MonoBehaviour
     private void OnApplicationPause(bool paused) { if (paused) { capture(false); retrySave(); } }
     // Browser shutdown cannot reliably complete requests. Periodic saves are the durable boundary.
 }
-
-
-
-
-
-

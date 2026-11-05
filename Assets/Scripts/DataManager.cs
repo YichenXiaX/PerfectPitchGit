@@ -18,7 +18,7 @@ public class dataManager : MonoBehaviour
     }
     public void saveSession(gameSessionData data)
     {
-        if (data == null) return;
+        if (data == null || manager == null || manager.isPractice) return;
         cloudAccount.instance?.capture(true);
         cloudAccount.instance?.retrySave();
     }

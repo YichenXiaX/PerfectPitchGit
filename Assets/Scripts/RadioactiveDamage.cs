@@ -9,9 +9,11 @@ public class radioactiveDamage : MonoBehaviour
     private Transform mothershipTransform;
     private float maxDistance;
     private bool isActive = false;
+    private float minimumHealth;
 
-    public void initialize(Transform mothership)
+    public void initialize(Transform mothership, float healthFloor = 0)
     {
+        minimumHealth=gameManager.instance.isPractice?Mathf.Max(0,healthFloor):0;
         mothershipTransform = mothership;
         maxDistance = Vector3.Distance(transform.position, mothership.position);
         isActive = true;
@@ -28,7 +30,7 @@ public class radioactiveDamage : MonoBehaviour
         float multiplier = 1f + (maxDamageMultiplier - 1f) * (proximity * proximity);
         float damage = baseDamagePerSecond * multiplier * Time.deltaTime;
 
-        gameManager.instance.currentHealth = Mathf.Max(0f, gameManager.instance.currentHealth - damage);
+        gameManager.instance.currentHealth = Mathf.Max(minimumHealth, gameManager.instance.currentHealth - damage);
     }
 
     public void stopDamage()

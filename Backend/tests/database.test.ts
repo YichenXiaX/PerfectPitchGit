@@ -12,6 +12,7 @@ before(async () => {
   await db.exec("create role anon; create role authenticated; create schema auth; create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,is_anonymous boolean default false); create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$; grant usage on schema public,auth to authenticated,anon; grant execute on function auth.uid() to authenticated,anon;");
   await db.query("insert into auth.users values ($1,'a@example.invalid',now(),false),($2,'b@example.invalid',now(),false),($3,'g@example.invalid',now(),true),($4,'u@example.invalid',null,false)", [alice,bob,guest,unverified]);
   await db.exec(await readFile(new URL("../supabase/migrations/202610250001_portfolio_backend.sql", import.meta.url), "utf8"));
+  await db.exec(await readFile(new URL("../supabase/migrations/202610300001_flight_training.sql", import.meta.url), "utf8"));
 });
 after(async () => { await db.close(); });
 async function asUser<T>(user: string, work: () => Promise<T>) {
@@ -49,6 +50,19 @@ test("profiles default to private nicknames and reject PII and research fields",
   await assert.rejects(api(alice,"updateProfile",{nickname:"a@example.com",leaderboardEnabled:false}),/Invalid profile/);
   await assert.rejects(api(alice,"updateProfile",{nickname:"Alice_Player",leaderboardEnabled:false,email:"x"}),/fields/);
   await assert.rejects(api(alice,"recordConsent",{adultAgreed:true}),/research collection is disabled/);
+});
+test("tutorial gate is per account, validated, idempotent and cannot change other accounts", async () => {
+  const receipt={version:1,milestones:["correct","miss","recovery","impact","restart"]};
+  assert.equal((await api(alice,"getProfile")).tutorialVersion,0);
+  await assert.rejects(api(alice,"startSession",{sessionId:session,gameVersion:"1",mode:"standard"}),/TUTORIAL_REQUIRED/);
+  for(const payload of [{...receipt,version:2},{...receipt,version:"1"},{...receipt,milestones:["correct"]},{...receipt,userId:bob}])
+    await assert.rejects(api(alice,"completeTutorial",payload),/Invalid tutorial|fields/);
+  await assert.rejects(api(guest,"completeTutorial",receipt),/verified account/);
+  assert.equal((await api(alice,"completeTutorial",receipt)).tutorialVersion,1);
+  assert.equal((await api(alice,"completeTutorial",receipt)).tutorialVersion,1);
+  assert.equal((await api(bob,"getProfile")).tutorialVersion,0);
+  assert.equal((await api(alice,"getProgress")).sessionsPlayed,0);
+  await api(bob,"completeTutorial",receipt);
 });
 test("session start is idempotent and enforces ownership", async () => {
   const payload={sessionId:session,gameVersion:"portfolio-1",mode:"standard"};

@@ -77,7 +77,7 @@ public class frequencyManager : MonoBehaviour
         }
     }
 
-    private void prepareLoudness()
+    private void prepareLoudness(float? practiceDuration = null, int[] practiceOctaves = null)
     {
         if (audioSource == null) throw new InvalidOperationException("Assign the note AudioSource.");
         if (loudnessCalibrationData == null) throw new InvalidOperationException("Assign a generated loudness profile.");
@@ -90,7 +90,9 @@ public class frequencyManager : MonoBehaviour
         }
 
         var settings = preset;
-        if (settings.octaveShifts == null || settings.octaveShifts.Length == 0)
+        float duration=practiceDuration ?? settings.noteDuration;
+        int[] octaves=practiceOctaves ?? settings.octaveShifts;
+        if (octaves == null || octaves.Length == 0)
             throw new InvalidOperationException("Choose at least one octave.");
         if (pianoSamples == null || pianoSamples.Count == 0)
             throw new InvalidOperationException("Assign the note recordings.");
@@ -99,10 +101,10 @@ public class frequencyManager : MonoBehaviour
         if (sorted.Exists(clip => clip == null)) throw new InvalidOperationException("A note recording is missing.");
         sorted.Sort((left, right) => getClipFrequency(left).CompareTo(getClipFrequency(right)));
         var key = new StringBuilder();
-        key.Append(settings.noteDuration.ToString("R", CultureInfo.InvariantCulture)).Append('|')
+        key.Append(duration.ToString("R", CultureInfo.InvariantCulture)).Append('|')
             .Append(fadeDuration.ToString("R", CultureInfo.InvariantCulture)).Append('|')
             .Append(masterVolume.ToString("R", CultureInfo.InvariantCulture));
-        foreach (int shift in settings.octaveShifts) key.Append('|').Append(shift);
+        foreach (int shift in octaves) key.Append('|').Append(shift);
         foreach (var q in quadrants)
         {
             if (q == null || q.minFrequency <= 0 || q.maxFrequency < q.minFrequency
@@ -126,7 +128,7 @@ public class frequencyManager : MonoBehaviour
                 throw new InvalidOperationException("Regenerate calibration for recording " + clip.name + ".");
             double cellMin = i == 0 ? 0 : Math.Sqrt(getClipFrequency(sorted[i - 1]) * (double)nominal);
             double cellMax = i == sorted.Count - 1 ? double.PositiveInfinity : Math.Sqrt(nominal * (double)getClipFrequency(sorted[i + 1]));
-            foreach (int shift in settings.octaveShifts)
+            foreach (int shift in octaves)
             {
                 double octave = Math.Pow(2, shift);
                 foreach (var q in quadrants)
@@ -143,7 +145,7 @@ public class frequencyManager : MonoBehaviour
             }
         }
         calibrationCondition = calibrationProfile.createCondition(
-            intervals.ToArray(), settings.noteDuration, fadeDuration, masterVolume);
+            intervals.ToArray(), duration, fadeDuration, masterVolume);
         conditionKey = nextKey;
     }
 
@@ -237,16 +239,18 @@ public class frequencyManager : MonoBehaviour
         StartCoroutine(playSequenceCoroutine(frequencies, quadrantIndex));
     }
 
-    private IEnumerator playSequenceCoroutine(List<float> frequencies, int quadrantIndex)
+    private IEnumerator playSequenceCoroutine(List<float> frequencies, int quadrantIndex,
+        float? practicePause=null, Action<float> noteStarted=null, Action finished=null)
     {
         float duration = calibrationCondition.duration;
         float fade = Mathf.Min(calibrationCondition.fadeDuration, duration);
-        float pause = preset.pauseBetweenNotes;
+        float pause = practicePause ?? preset.pauseBetweenNotes;
         for (int i = 0; i < frequencies.Count; i++)
         {
             float frequency = frequencies[i];
             AudioClip clip = getClosestAudioClip(frequency);
             playClipAtFrequency(clip, frequency);
+            noteStarted?.Invoke(frequency);
             logDiagnostic($"[Note {i + 1}/{frequencies.Count}] Q{quadrantIndex + 1} | Octave: {selectedOctaveShift} | " +
                 $"Target: {frequency:F2} Hz | Sample: {clip.name} Hz | Pitch: {audioSource.pitch:F4} | " +
                 $"Volume: {currentNoteVolume:F4} | Modeled target: {calibrationCondition.targetPeakSones:F4} sones");
@@ -255,6 +259,7 @@ public class frequencyManager : MonoBehaviour
             yield return new WaitForSeconds(pause);
         }
         logDiagnostic("=== SEQUENCE END ===");
+        finished?.Invoke();
     }
 
     private void playClipAtFrequency(AudioClip clip, float targetFrequency)
@@ -311,6 +316,21 @@ public class frequencyManager : MonoBehaviour
         audioSource.loop = false;
     }
 
+    // Deterministic examples use the same sample/gain/duration/fade/pause path as
+    // normal trials. Their calibration condition includes both teaching octaves
+    // at one common target, without changing any saved preset or calibration data.
+    public void playPracticeSequence(int quadrantIndex, int octaveShift, Action<float> noteStarted, Action finished)
+    {
+        if(quadrantIndex<0 || quadrantIndex>=quadrants.Count)throw new ArgumentOutOfRangeException(nameof(quadrantIndex));
+        if(octaveShift<0 || octaveShift>1)throw new ArgumentOutOfRangeException(nameof(octaveShift));
+        stopSequence();prepareLoudness(.65f,new[]{0,1});beginLoudnessRecord();
+        selectedOctaveShift=octaveShift;
+        var q=quadrants[quadrantIndex];var frequencies=new List<float>();
+        foreach(float position in new[]{.24f,.69f,.43f})
+            frequencies.Add(applyOctaveShift(q.minFrequency*Mathf.Pow(q.maxFrequency/q.minFrequency,position),octaveShift));
+        StartCoroutine(playSequenceCoroutine(frequencies,quadrantIndex,.12f,noteStarted,finished));
+    }
+
     public void generateAndPlayFrequency(int quadrantIndex)
     {
         if (quadrantIndex < 0 || quadrantIndex >= quadrants.Count)
@@ -356,4 +376,3 @@ public class frequencyManager : MonoBehaviour
         return mean + sigma * Mathf.Sqrt(-2f * Mathf.Log(u1)) * Mathf.Sin(2f * Mathf.PI * u2);
     }
 }
-

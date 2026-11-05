@@ -20,10 +20,11 @@ public class gameOverUi : MonoBehaviour
 
     void Start()
     {
+        gameMenuTerminal.gameOver(gameOverPanel);
         gameOverPanel.SetActive(false);
 
         if (gameManager.instance != null)
-            gameManager.instance.onGameOver += showGameOver;
+            gameManager.instance.onGameOver += handleGameOver;
 
         restartButton.onClick.AddListener(onRestartClicked);
         if (gameManager.instance != null) gameManager.instance.onGameStarted += hideGameOver;
@@ -32,12 +33,25 @@ public class gameOverUi : MonoBehaviour
     void OnDestroy()
     {
         if (gameManager.instance != null)
-            gameManager.instance.onGameOver -= showGameOver;
+            gameManager.instance.onGameOver -= handleGameOver;
         if (gameManager.instance != null) gameManager.instance.onGameStarted -= hideGameOver;
     }
 
     private void hideGameOver() { gameOverPanel.SetActive(false); }
 
+    private void handleGameOver(gameSessionData data)
+    {
+        if(gameManager.instance.isPractice) StartCoroutine(showPracticeGameOver(data));
+        else showGameOver(data);
+    }
+    private System.Collections.IEnumerator showPracticeGameOver(gameSessionData data)
+    {
+        yield return new WaitForSeconds(1.25f);
+        showGameOver(data);
+        // The tutorial transmission explains this intentional death; normal run stats would overlap it.
+        var stats=gameOverPanel.transform.Find("StatsCard");
+        if(stats!=null)stats.gameObject.SetActive(false);
+    }
     private void showGameOver(gameSessionData data)
     {
         gameOverPanel.SetActive(true);

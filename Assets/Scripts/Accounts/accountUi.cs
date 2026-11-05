@@ -9,9 +9,11 @@ public class accountUi : MonoBehaviour
     public TMP_Text statusText, progressText, saveText;
     public UnityEngine.UI.Button loginButton, signupButton, verifyButton, resendButton;
     public UnityEngine.UI.Button playButton, logoutButton, refreshButton, accountButton, closeButton, retryButton;
+    public static bool isBlocking { get; private set; }
     private bool opened;
     private float previousTimeScale = 1;
     private cloudAccount account;
+    private readonly System.Collections.Generic.List<AudioSource> pausedSources = new System.Collections.Generic.List<AudioSource>();
 
     private void Awake() { DontDestroyOnLoad(gameObject); }
     private void Start()
@@ -30,12 +32,14 @@ public class accountUi : MonoBehaviour
         playButton.onClick.AddListener(() => {
             if (account.busy || account.hasPendingSave) return;
             opened = false; Time.timeScale = 1;
-            SceneManager.LoadScene(cloudAccount.playScene);
+            if (SceneManager.GetActiveScene().name == cloudAccount.tutorialScene) SceneManager.LoadScene(cloudAccount.accountScene);
+            else account.enterPlay();
         });
         SceneManager.sceneLoaded += sceneLoaded;
+        if(GetComponent<accountTerminal>()==null)gameObject.AddComponent<accountTerminal>();
         render();
     }
-    private void sceneLoaded(Scene scene, LoadSceneMode mode) { opened = false; render(); }
+    private void sceneLoaded(Scene scene, LoadSceneMode mode) { pausedSources.Clear(); opened = false; render(); }
     private void OnDestroy()
     {
         if (account != null) account.changed -= render;
@@ -46,32 +50,39 @@ public class accountUi : MonoBehaviour
         if (opened) return;
         previousTimeScale = Time.timeScale; Time.timeScale = 0;
         opened = true;
-        foreach (var source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None)) if (source.isPlaying) source.Pause();
+        gameManager.instance?.playerController.clearHeldInput(false);
+        pausedSources.Clear();
+        foreach (var source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None)) if (source.isPlaying) { pausedSources.Add(source); source.Pause(); }
         render();
     }
     private void close()
     {
         if (!account.signedIn) return;
         opened = false; Time.timeScale = previousTimeScale;
+        gameManager.instance?.playerController.clearHeldInput(false);
         if (previousTimeScale > 0)
-            foreach (var source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None)) source.UnPause();
+            foreach (var source in pausedSources) if(source!=null) source.UnPause();
+        pausedSources.Clear();
         render();
     }
     private void render()
     {
         if (account == null) return;
-        bool inGame = SceneManager.GetActiveScene().name == cloudAccount.playScene;
+        bool inGame = SceneManager.GetActiveScene().name == cloudAccount.playScene || SceneManager.GetActiveScene().name == cloudAccount.tutorialScene;
         if (!account.signedIn && inGame && !opened) { previousTimeScale = Time.timeScale; Time.timeScale = 0; opened = true; }
         bool showing = !inGame || opened || !account.signedIn;
+        isBlocking = showing;
         panel.SetActive(showing);
         loginPanel.SetActive(!account.signedIn);
         dashboardPanel.SetActive(account.signedIn);
         compactBar.SetActive(inGame && !showing);
         closeButton.gameObject.SetActive(inGame && account.signedIn);
         logoutButton.gameObject.SetActive(account.signedIn);
-        playButton.gameObject.SetActive(!inGame);
+        playButton.gameObject.SetActive(account.signedIn && (!inGame || SceneManager.GetActiveScene().name == cloudAccount.tutorialScene));
+        closeButton.GetComponentInChildren<TMP_Text>().text = SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "Return to training" : "Return to game";
+        playButton.GetComponentInChildren<TMP_Text>().text = SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "Exit training" : (account.tutorialComplete ? "Enter game" : "Start flight training");
         statusText.text = account.message;
-        saveText.text = account.saveMessage;
+        saveText.text = SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "TRAINING / scores and research recording off" : account.saveMessage;
         var p = account.progress;
         progressText.text = "Welcome, " + account.profile.nickname + "\n\n" +
             "Best score     " + p.bestScore.ToString("N0") + "\n" +
@@ -89,6 +100,3 @@ public class accountUi : MonoBehaviour
         if (account.signedIn) { passwordInput.text = ""; codeInput.text = ""; emailInput.text = ""; }
     }
 }
-
-
-

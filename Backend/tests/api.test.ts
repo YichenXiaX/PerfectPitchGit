@@ -77,3 +77,13 @@ test("network errors give a retryable response without internal details",async()
   const response=await handler(request("profile"));
   assert.equal(response.status,503);assert.deepEqual(await response.json(),{error:"service_unavailable"});
 });
+test("tutorial API accepts only current complete receipt and retains caller ownership",async()=>{
+  const receipt={version:1,milestones:["correct","miss","recovery","impact","restart"]};
+  for(const bad of [{...receipt,version:2},{...receipt,milestones:["correct"]},{...receipt,userId:"other"}])
+    assert.equal((await fixture().handler(request("tutorial","PUT",bad))).status,400);
+  const f=fixture();assert.equal((await f.handler(request("tutorial","PUT",receipt))).status,200);
+  assert.deepEqual(JSON.parse(f.calls[1].options!.body as string),{p_action:"completeTutorial",p_payload:receipt});
+  assert.equal(new Headers(f.calls[1].options!.headers).get("Authorization"),"Bearer player-token");
+  const denied=fixture(undefined,403,{message:"TUTORIAL_REQUIRED"});
+  assert.equal((await denied.handler(request("sessions","POST",{sessionId:userId,gameVersion:"1",mode:"standard"}))).status,403);
+});

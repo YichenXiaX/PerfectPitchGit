@@ -36,11 +36,18 @@ public class gameManager : MonoBehaviour
     public float aura { get; private set; }
     public int consecutiveCorrectPredictions { get; private set; }
     public bool isGameActive { get; private set; }
+    public bool isPractice => gameObject.scene.name == cloudAccount.tutorialScene;
+    public bool practiceInputEnabled { get; set; }
+    public event Action<int> onPredictionMiss;
+    public event Action<GameObject> onCometCreated;
+    public event Action onRecovery;
+    public event Action onPracticeRestart;
 
     // --- Second-guess tracking ---
     public bool isSecondGuessWindow { get; private set; }
     private int secondGuessQuadrant = -1;
     private bool secondGuessRecorded = false;
+    private bool predictionPenaltyApplied;
 
     // --- Events for other systems (comet spawner, UI, effects) ---
     public event Action<int> onCometSpawn;            // passes quadrant index
@@ -92,6 +99,7 @@ public class gameManager : MonoBehaviour
     //kick off the game
     public void startGame()
     {
+        if (isPractice) return;
         if (isGameActive || cloudAccount.instance == null || cloudAccount.instance.busy) return;
         if (!frequencyManager.tryPrepareLoudness()) return;
         cloudAccount.instance.requestStart(beginGame);
@@ -159,6 +167,7 @@ public class gameManager : MonoBehaviour
             isSecondGuessWindow = false;
             secondGuessQuadrant = -1;
             secondGuessRecorded = false;
+        predictionPenaltyApplied = false;
 
 
             logDiagnostic($"[Round {roundIndex + 1}] Q{currentQuadrant + 1} | Level {gameSettings.instance.level}");
@@ -234,7 +243,7 @@ public class gameManager : MonoBehaviour
     // Called extenally
     public void onPlayerPrediction(int quadrant)
     {
-        if (roundState != roundStateType.prediction) return;
+        if (!isGameActive || Time.timeScale <= 0 || roundState != roundStateType.prediction) return;
 
         float decisionTime = Time.time - roundStartTime;
         predictedQuadrant = quadrant;
@@ -264,7 +273,7 @@ public class gameManager : MonoBehaviour
             logDiagnostic($"[Round {roundIndex + 1}] CORRECT prediction Q{quadrant + 1} " +
                       $"in {decisionTime:F2}s �� Streak: {consecutiveCorrectPredictions}");
             onPredictionSuccess?.Invoke(currentQuadrant);
-            checkLevelAdvancement();
+            if (!isPractice) checkLevelAdvancement();
         }
         else //incorrect
         {
@@ -287,6 +296,7 @@ public class gameManager : MonoBehaviour
                       $"actual Q{currentQuadrant + 1} �� spawning comet");
 
 
+            onPredictionMiss?.Invoke(quadrant);
             StartCoroutine(delayedSpawnComet(currentQuadrant));
         }
     }
@@ -315,6 +325,7 @@ public class gameManager : MonoBehaviour
 
         consecutiveCorrectPredictions = 0;
         roundState = roundStateType.resolved; //change state
+        onRecovery?.Invoke();
 
         logDiagnostic($"[Round {roundIndex + 1}] Comet destroyed (backup) in {resolvedTime:F2}s");
     }
@@ -336,6 +347,7 @@ public class gameManager : MonoBehaviour
 
         roundState = roundStateType.resolved; //change state
 
+
         logDiagnostic($"[Round {roundIndex + 1}] COMET HIT �� Health: {currentHealth}/{gameSettings.instance.maxHealth}");
         onHealthChanged?.Invoke();
 
@@ -348,6 +360,8 @@ public class gameManager : MonoBehaviour
 
     public void onPlayerFailedPrediction() //called only by failedPredictionBullet
     {
+        if (predictionPenaltyApplied || predictedQuadrant < 0 || predictedQuadrant == currentQuadrant) return;
+        predictionPenaltyApplied=true;
         aura -= wrongPredictionPenalty;
         onAuraChanged?.Invoke(-wrongPredictionPenalty);
         logDiagnostic($"[Aura] Missed shot �� -{missedShotPenalty} | Aura: {aura:F0}");
@@ -427,8 +441,9 @@ public class gameManager : MonoBehaviour
         isSecondGuessWindow = true;
         secondGuessQuadrant = -1;
         secondGuessRecorded = false;
+        predictionPenaltyApplied = false;
 
-        yield return new WaitForSeconds(gameSettings.instance.getCurrentPreset().cometSpawnDelay);
+        yield return new WaitForSeconds(isPractice ? .7f : gameSettings.instance.getCurrentPreset().cometSpawnDelay);
 
         // Close the window
         isSecondGuessWindow = false;
@@ -439,7 +454,7 @@ public class gameManager : MonoBehaviour
 
     public void onSecondGuess(int quadrant)
     {
-        if (!isSecondGuessWindow || secondGuessRecorded) return;
+        if (!isGameActive || Time.timeScale <= 0 || !isSecondGuessWindow || secondGuessRecorded || predictedQuadrant < 0 || quadrant == predictedQuadrant || quadrant < 0 || quadrant > 3) return;
 
         secondGuessQuadrant = quadrant;
         secondGuessRecorded = true;
@@ -476,12 +491,15 @@ public class gameManager : MonoBehaviour
         var radioDamage = cometInstance.GetComponent<radioactiveDamage>();
         if (radioDamage != null)
         {
-            radioDamage.initialize(mothership.transform); // pass the mothership, not the player
+            if (!isPractice) radioDamage.initialize(mothership.transform); // pass the mothership, not the player
         }
+        onCometCreated?.Invoke(cometInstance);
+        onCometSpawn?.Invoke(quadrant);
     }
 
     private void recordResult(sequenceOutcome outcome, float predictionTime, float resolvedTime)
     {
+        if (isPractice) return;
         var result = new sequenceResult
         {
             roundIndex = this.roundIndex,
@@ -620,6 +638,7 @@ public class gameManager : MonoBehaviour
 
     public void restartGame()
     {
+        if (isPractice) { onPracticeRestart?.Invoke(); return; }
         if (!frequencyManager.tryPrepareLoudness()) return;
         stopRoundActivity();
 
@@ -662,6 +681,7 @@ public class gameManager : MonoBehaviour
         isSecondGuessWindow = false;
         secondGuessQuadrant = -1;
         secondGuessRecorded = false;
+        predictionPenaltyApplied = false;
 
         // --- Notify UI to reset ---
         onHealthChanged?.Invoke();
@@ -693,6 +713,36 @@ public class gameManager : MonoBehaviour
     /// <summary>
     /// Grab session data any time (e.g. for Firebase upload).
     /// </summary>
+    public bool acceptsShot(int lane,bool prediction) => !isPractice || (tutorialDirector.instance != null && tutorialDirector.instance.acceptShot(lane,prediction));
+    public void resetPractice()
+    {
+        if(!isPractice) return;
+        stopRoundActivity(); clearPracticeHazards();
+        currentHealth=100; aura=0; consecutiveCorrectPredictions=0; isGameActive=true;
+        roundState=roundStateType.resolved; isSecondGuessWindow=false; practiceInputEnabled=false;
+        sessionData=new gameSessionData { results=new List<sequenceResult>(), playerName="Training simulation" };
+        healthBar.instance.initialize(100);
+        overlayObj.SetActive(false);starfieldEffect.SetActive(true);
+        playerController.clearHeldInput(true);
+        onHealthChanged?.Invoke();onAuraChanged?.Invoke(0);onXpChanged?.Invoke(0);onGameStarted?.Invoke();
+    }
+    public void practiceRound(int lane,bool prediction=true)
+    {
+        if(!isPractice) return;
+        stopRoundActivity();clearPracticeHazards();
+        currentQuadrant=lane;predictedQuadrant=-1;predictionClickTime=-1;cometSpawnTime=-1;
+        roundStartTime=Time.time;roundState=prediction?roundStateType.prediction:roundStateType.cometActive;
+        secondGuessQuadrant=-1;secondGuessRecorded=false;predictionPenaltyApplied=false;isSecondGuessWindow=false;
+        onRoundStart?.Invoke(lane);playerController.clearHeldInput(true);
+        if(!prediction) spawnComet(lane);
+    }
+    public void clearPracticeHazards()
+    {
+        if(!isPractice) return;
+        foreach(var item in FindObjectsByType<cometBehavior>(FindObjectsSortMode.None)) {item.gameObject.SetActive(false);Destroy(item.gameObject);}
+        foreach(var item in FindObjectsByType<bulletBehavior>(FindObjectsSortMode.None)) {item.gameObject.SetActive(false);Destroy(item.gameObject);}
+        foreach(var item in FindObjectsByType<failedPredictionBullet>(FindObjectsSortMode.None)) {item.gameObject.SetActive(false);Destroy(item.gameObject);}
+    }
+    private void OnDestroy() { if(instance==this) instance=null; }
     public gameSessionData getSessionData() => sessionData;
 }
-

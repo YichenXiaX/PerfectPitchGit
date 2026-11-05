@@ -17,12 +17,14 @@ public static class accountUiBuilder
         if (Application.isPlaying) throw new System.InvalidOperationException("Stop Play mode first.");
 
         var oldScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-        font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset");
-        rounded = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/UI/ResearchConsent/Theme/rounded.png");
+        // This prefab supplies stable serialized controls; accountTerminal is the sole rendered layout owner.
+        font = signalTerminal.bodyFont;
+        rounded = null;
+        ink=signalTerminal.ink;mint=signalTerminal.accent;surface=signalTerminal.panelColor;
         var root = new GameObject("accountUi", typeof(RectTransform), typeof(Canvas), typeof(UnityEngine.UI.CanvasScaler), typeof(UnityEngine.UI.GraphicRaycaster), typeof(accountUi));
         var canvas = root.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 200;
         var scaler = root.GetComponent<UnityEngine.UI.CanvasScaler>(); scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1280,900); scaler.matchWidthOrHeight = 1f;
+        scaler.referenceResolution = new Vector2(1280,720); scaler.matchWidthOrHeight = 1f;
         var ui = root.GetComponent<accountUi>();
         var overlay = node(root.transform,"accountPanel"); fill(overlay);
         image(overlay,new Color32(23,24,25,255),false); ui.panel = overlay.gameObject;

@@ -7,6 +7,7 @@ export type Config = {
 type Fetch = typeof fetch;
 type Route = { action: string; keys: string[] };
 const routes: Record<string, Route> = {
+  "PUT tutorial": { action: "completeTutorial", keys: ["version", "milestones"] },
   "GET profile": { action: "getProfile", keys: [] },
   "PUT profile": { action: "updateProfile", keys: ["nickname", "leaderboardEnabled"] },
   "POST sessions": { action: "startSession", keys: ["sessionId", "gameVersion", "mode"] },
@@ -34,6 +35,7 @@ const version = /^[A-Za-z0-9._-]{1,40}$/;
 export function validate(action: string, value: Record<string, unknown>): void {
   const text = (key: string, regex: RegExp) => typeof value[key] === "string" && regex.test(value[key] as string);
   let valid = true;
+  if (action === "completeTutorial") valid = value.version === 1 && JSON.stringify(value.milestones) === JSON.stringify(["correct", "miss", "recovery", "impact", "restart"]);
   if (action === "updateProfile") valid = text("nickname", /^[A-Za-z][A-Za-z0-9_-]{2,23}$/) && typeof value.leaderboardEnabled === "boolean";
   if (action === "startSession") valid = text("sessionId", uuid) && text("gameVersion", version) && ["standard", "custom"].includes(value.mode as string);
   if (action === "saveCheckpoint") valid = text("sessionId", uuid) && integer(value.revision, 1, 100000) &&
@@ -143,6 +145,7 @@ export function createHandler(config: Config, fetcher: Fetch = fetch) {
       });
       const result = await response.json();
       if (!response.ok) {
+        if (result.message === "TUTORIAL_REQUIRED") throw new ApiError(403, "tutorial_required");
         if (result.message === "RATE_LIMIT") throw new ApiError(429, "rate_limit");
         if (result.message === "SESSION_NOT_FOUND") throw new ApiError(404, "session_not_found");
         if (["SESSION_CONFLICT", "CHECKPOINT_CONFLICT"].includes(result.message)) throw new ApiError(409, "save_conflict");
