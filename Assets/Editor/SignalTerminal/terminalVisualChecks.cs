@@ -24,13 +24,13 @@ public static class terminalVisualChecks
         var gt=a.GetType("UnityEditor.GameView");var w=EditorWindow.GetWindow(gt);gt.GetProperty("selectedSizeIndex",flags).SetValue(w,index);w.Focus();
     }
     public static void login(bool finished=false)
-    {complete=finished;cloudAccount.testTransport=transport;cloudAccount.instance.logIn("preview@example.invalid","editor-preview-only");Application.runInBackground=true;}
+    {complete=finished;cloudAccount.testTransport=transport;cloudAccount.testApiTransport=transport;cloudAccount.instance.logIn("preview@example.invalid","editor-preview-only");Application.runInBackground=true;}
     private static IEnumerator transport(string path,string method,string json,string bearer,Action<long,string> done)
     {
         yield return null;
-        if(path.Contains("/token"))done(200,"{\"access_token\":\"preview\",\"refresh_token\":\"preview\",\"expires_in\":3600}");
-        else if(path=="/auth/v1/user")done(200,"{\"id\":\"visual-preview\",\"email_confirmed_at\":\"2026-10-31\"}");
-        else if(path.EndsWith("/profile")||path.EndsWith("/tutorial"))done(200,"{\"nickname\":\"Pilot_Orion\",\"tutorialVersion\":"+(complete?1:0)+"}");
+        if(path.Contains("/token") || path.Contains("accounts:signInWithPassword"))done(200,"{\"idToken\":\"preview\",\"refreshToken\":\"preview\",\"expiresIn\":3600}");
+        else if(path.Contains("accounts:lookup"))done(200,"{\"users\":[{\"localId\":\"visual-preview\",\"emailVerified\":true}]}");
+        else if(path.EndsWith("/profile")||path.EndsWith("/tutorial"))done(200,"{\"consentVersion\":\"2026-10-25-v1\",\"consentStatus\":\"declined\",\"researchCollectionEnabled\":false,\"nickname\":\"Pilot_Orion\",\"tutorialVersion\":"+(complete?1:0)+"}");
         else if(path.EndsWith("/progress"))done(200,"{\"bestScore\":12450,\"highestLevel\":2,\"sessionsPlayed\":18,\"sessionsCompleted\":12}");
         else done(200,"{}");
     }
@@ -40,7 +40,7 @@ public static class terminalVisualChecks
     private static IEnumerator consentScreens()
     {
         SceneManager.LoadScene("researchConsent");yield return null;yield return null;
-        var account=UnityEngine.Object.FindFirstObjectByType<accountUi>();account.gameObject.SetActive(false);
+        var account=UnityEngine.Object.FindFirstObjectByType<accountUi>();
         var ui=UnityEngine.Object.FindFirstObjectByType<researchConsentUi>();
         size(1280,720);ui.showOpening();yield return screen("consent-opening-1280");
         ui.showAdult();yield return screen("consent-adult-top-1280");ui.adult.scroll.verticalNormalizedPosition=0;yield return screen("consent-adult-fields-1280");
@@ -63,7 +63,7 @@ public static class terminalVisualChecks
     private static IEnumerator consentNavigation()
     {
         SceneManager.LoadScene("researchConsent");yield return null;yield return null;
-        var account=UnityEngine.Object.FindFirstObjectByType<accountUi>();account.gameObject.SetActive(false);
+        var account=UnityEngine.Object.FindFirstObjectByType<accountUi>();
         var ui=UnityEngine.Object.FindFirstObjectByType<researchConsentUi>();ui.showAdult();
         if(ui.adult.agreement.isOn || ui.child.agreement.isOn || ui.parent.agreement.isOn)throw new Exception("Consent began checked");
         var keyboard=UnityEngine.InputSystem.Keyboard.current;

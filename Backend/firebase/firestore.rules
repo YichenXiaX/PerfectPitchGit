@@ -1,0 +1,187 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owner(uid) {
+      return request.auth != null && request.auth.uid == uid &&
+        request.auth.token.email_verified == true &&
+        request.auth.token.firebase.sign_in_provider == 'password';
+    }
+    function uuid(value) { return value is string && value.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'); }
+    function number(value, low, high) { return value is number && value >= low && value <= high; }
+    function integer(value, low, high) { return value is int && value >= low && value <= high; }
+    function text(value) { return value is string && value.size() <= 254 && !value.matches('.*[\\x00-\\x1f\\x7f].*'); }
+    function player(uid) { return get(/databases/$(database)/documents/players/$(uid)).data; }
+    function receipt(uid, id) { return get(/databases/$(database)/documents/players/$(uid)/consents/$(id)).data; }
+    function currentConsent(uid) {
+      let p = player(uid);
+      return uuid(p.consentReceiptId) && receipt(uid, p.consentReceiptId).formVersion == '2026-10-25-v1';
+    }
+    function validConsent(d, id) {
+      return d.keys().hasOnly(['schemaVersion','requestId','formVersion','decision','adultAgreement','childAgreement','parentAgreement',
+          'participantName','childName','parentChildName','guardianName','participantFollowUp','guardianFollowUp','participantContact','guardianContact','savedAt']) &&
+        d.schemaVersion == 1 && d.requestId == id && uuid(id) && d.formVersion == '2026-10-25-v1' &&
+        d.savedAt == request.time && d.adultAgreement is bool && d.childAgreement is bool && d.parentAgreement is bool &&
+        text(d.participantName) && text(d.childName) && text(d.parentChildName) && text(d.guardianName) && text(d.participantContact) && text(d.guardianContact) &&
+        d.participantFollowUp in ['yes','no','notSpecified'] && d.guardianFollowUp in ['yes','no','notSpecified'] &&
+        (d.participantFollowUp == 'yes' || d.participantContact == '') && (d.guardianFollowUp == 'yes' || d.guardianContact == '') &&
+        ((d.decision == 'declined' && !d.adultAgreement && !d.childAgreement && !d.parentAgreement &&
+          d.participantName == '' && d.childName == '' && d.parentChildName == '' && d.guardianName == '' &&
+          d.participantContact == '' && d.guardianContact == '' && d.participantFollowUp == 'notSpecified' && d.guardianFollowUp == 'notSpecified') ||
+        (d.decision == 'adultAgreed' && d.adultAgreement && !d.childAgreement && !d.parentAgreement &&
+          d.childName == '' && d.parentChildName == '' && d.guardianName == '' && d.guardianContact == '' && d.guardianFollowUp == 'notSpecified') ||
+        (d.decision == 'childAndParentAgreed' && !d.adultAgreement && d.childAgreement && d.parentAgreement && d.participantName == '' &&
+          ((d.participantFollowUp == 'yes' && d.guardianFollowUp == 'yes') || (d.participantContact == '' && d.guardianContact == ''))));
+    }
+    function validProfile(d) {
+      return d.keys().hasOnly(['schemaVersion','nickname','consentReceiptId','tutorialVersion','tutorialCompletedAt','createdAt','updatedAt']) &&
+        d.schemaVersion == 1 && d.nickname is string && d.nickname.matches('[a-zA-Z0-9_]{3,32}') &&
+        (d.consentReceiptId == '' || uuid(d.consentReceiptId)) && d.tutorialVersion in [0,1] &&
+        (d.tutorialCompletedAt == null || d.tutorialCompletedAt is timestamp) && d.createdAt is timestamp && d.updatedAt == request.time;
+    }
+    function validSession(d) {
+      return d.keys().hasOnly(['schemaVersion','gameVersion','mode','consentReceiptId','revision','score','highestLevel','elapsedSeconds','completed','createdAt','updatedAt','startedAtUnixMs','endedAtUnixMs','endReason']) &&
+        d.schemaVersion in [1,2] && (d.schemaVersion==1 ? !d.keys().hasAny(['startedAtUnixMs','endedAtUnixMs','endReason']) : validSessionTimes(d)) && d.gameVersion == '0.1.0' && d.mode in ['standard','custom'] && uuid(d.consentReceiptId) &&
+        integer(d.revision,0,100000) && integer(d.score,-1000000000,1000000000) && integer(d.highestLevel,0,3) &&
+        integer(d.elapsedSeconds,0,86400) && d.completed is bool && d.createdAt is timestamp && d.updatedAt == request.time;
+    }
+    function unixMs(t) { return integer(t,1,4102444800000); }
+    function validSessionTimes(d) {
+      return (d.startedAtUnixMs==null || unixMs(d.startedAtUnixMs)) &&
+        ((d.endedAtUnixMs==null && d.endReason==null) ||
+          (unixMs(d.startedAtUnixMs) && unixMs(d.endedAtUnixMs) && d.endedAtUnixMs>=d.startedAtUnixMs &&
+            d.endReason in ['impact','radiationDeath','audioUnavailable','logout','tutorialExit','consentReview','applicationExit']));
+    }
+    function researchAllowed(uid, sessionId) {
+      let p = player(uid);
+      let s = get(/databases/$(database)/documents/players/$(uid)/sessions/$(sessionId)).data;
+      let c = receipt(uid, p.consentReceiptId);
+      return p.tutorialVersion >= 1 && c.formVersion == '2026-10-25-v1' &&
+        c.decision in ['adultAgreed','childAndParentAgreed'] && s.consentReceiptId == p.consentReceiptId &&
+        s.createdAt + duration.value(24,'h') > request.time;
+    }
+    function validAudio(d) {
+      return d.keys().hasOnly(['profileId','model','playbackCalibration','pressurePaPerDigitalUnit','noteDurationSeconds','fadeDurationSeconds','masterVolume','plannedTargetPeakSones']) &&
+        text(d.profileId) && text(d.model) && text(d.playbackCalibration) &&
+        number(d.pressurePaPerDigitalUnit,0,1000000000) && number(d.noteDurationSeconds,0,1000000000) &&
+        number(d.fadeDurationSeconds,0,1000000000) && number(d.masterVolume,0,1) && number(d.plannedTargetPeakSones,0,1000000000);
+    }
+    function validTrial(d, round) {
+      return d.keys().hasOnly(['schemaVersion','roundIndex','correctQuadrant','predictedQuadrant','secondGuessQuadrant','level','predictionTime','resolvedTime','outcome','audioLoudness','noteCount','savedAt']) &&
+        d.schemaVersion == 1 && integer(d.roundIndex,0,100000) && round == string(d.roundIndex) &&
+        integer(d.correctQuadrant,0,3) && integer(d.predictedQuadrant,-1,3) && integer(d.secondGuessQuadrant,-1,3) && integer(d.level,0,3) &&
+        number(d.predictionTime,-1,1000000000) && number(d.resolvedTime,0,1000000000) &&
+        d.outcome in ['Predicted','Destroyed','Hit'] && validAudio(d.audioLoudness) && integer(d.noteCount,0,64) && d.savedAt == request.time;
+    }
+    function validNote(d, note, count) {
+      return d.keys().hasOnly(['schemaVersion','index','clipName','requestedFrequencyHz','nominalPlaybackFrequencyHz','pitchRatio','playbackStartFrame','playbackSampleRate','sourceVolume',
+          'plannedPeakSones','plannedDurationSeconds','elapsedSecondsAtResult','resultBeforePlannedEnd','requestedTimeInSequenceSeconds']) &&
+        d.schemaVersion == 1 && integer(d.index,0,63) && note == string(d.index) && d.index < count && text(d.clipName) &&
+        number(d.requestedFrequencyHz,0,1000000000) && number(d.nominalPlaybackFrequencyHz,0,1000000000) && number(d.pitchRatio,0,1000000000) &&
+        integer(d.playbackStartFrame,0,1000000000) && integer(d.playbackSampleRate,0,1000000000) && number(d.sourceVolume,0,1) &&
+        number(d.plannedPeakSones,0,1000000000) && number(d.plannedDurationSeconds,0,1000000000) && number(d.elapsedSecondsAtResult,0,1000000000) &&
+        d.resultBeforePlannedEnd is bool && number(d.requestedTimeInSequenceSeconds,0,1000000000);
+    }
+    // Version 2 research: a small start marker followed by one immutable result
+    // and its notes in a single atomic commit. No per-note network requests.
+    function validSettings(d) {
+      return d.keys().hasOnly(['mode','controlLayout','notesPerSequence','consecutiveCorrectToAdvance','allowedOctaveShifts',
+        'noteDuration','pauseBetweenNotes','predictionWindow','cometSpawnDelay','pauseBetweenRounds','cometSpeed','shotInterval']) &&
+        d.mode in ['standard','custom'] && d.controlLayout in ['left','right'] && integer(d.notesPerSequence,1,100) &&
+        integer(d.consecutiveCorrectToAdvance,1,10000) && d.allowedOctaveShifts is list && d.allowedOctaveShifts.size()>0 &&
+        d.allowedOctaveShifts.size()<=11 && d.allowedOctaveShifts.toSet().hasOnly([-5,-4,-3,-2,-1,0,1,2,3,4,5]) &&
+        number(d.noteDuration,0.001,600) && number(d.pauseBetweenNotes,0,600) && number(d.predictionWindow,0,600) &&
+        number(d.cometSpawnDelay,0,600) && number(d.pauseBetweenRounds,0,600) && number(d.cometSpeed,0,100000) && number(d.shotInterval,0.001,600);
+    }
+    function toneIndex(i,count) { return i==null || integer(i,0,count-1); }
+    function validDecision(d,count,end) {
+      return d==null || (d.keys().hasOnly(['quadrant','atMs','mostRecentToneIndex','activeToneIndex']) &&
+        integer(d.quadrant,0,3) && number(d.atMs,0,end) && toneIndex(d.mostRecentToneIndex,count) &&
+        (d.activeToneIndex==null || (d.mostRecentToneIndex!=null && d.activeToneIndex==d.mostRecentToneIndex)));
+    }
+    function validTrialV2(d,round) {
+      return d.keys().hasOnly(['schemaVersion','roundIndex','correctQuadrant','level','state','startedAtUnixMs','octaveShift','settings',
+        'firstDecision','secondDecision','cometSpawnedAtMs','resolvedAtMs','predictionStatus','resolution','interruptionReason',
+        'wasPaused','lostFocus','settingsChanged','audioLoudness','noteCount','savedAt']) &&
+        d.schemaVersion==2 && d.wasPaused is bool && d.lostFocus is bool && d.settingsChanged is bool &&
+        d.savedAt==request.time && integer(d.noteCount,0,100) && d.noteCount<=d.settings.notesPerSequence &&
+        ((d.state=='started' && integer(d.roundIndex,0,100000) && round==string(d.roundIndex) && integer(d.correctQuadrant,0,3) && integer(d.level,0,3) &&
+          unixMs(d.startedAtUnixMs) && validSettings(d.settings) && d.octaveShift==null && d.firstDecision==null && d.secondDecision==null && d.cometSpawnedAtMs==null &&
+          d.resolvedAtMs==null && d.predictionStatus=='notAttempted' && d.resolution==null && d.interruptionReason==null && d.audioLoudness==null && d.noteCount==0) ||
+        (d.state=='resolved' && validResultV2(d)));
+    }
+    function validResultV2(d) {
+      return number(d.resolvedAtMs,0,86400000) &&
+        ((d.noteCount==0 && d.audioLoudness==null && d.octaveShift==null) ||
+          (d.noteCount>0 && validAudio(d.audioLoudness) && integer(d.octaveShift,-5,5) && d.octaveShift in d.settings.allowedOctaveShifts)) &&
+        (d.cometSpawnedAtMs==null || number(d.cometSpawnedAtMs,0,d.resolvedAtMs)) &&
+        validDecision(d.firstDecision,d.noteCount,d.resolvedAtMs) && validDecision(d.secondDecision,d.noteCount,d.resolvedAtMs) &&
+        ((d.firstDecision==null && d.predictionStatus=='notAttempted') || (d.firstDecision!=null &&
+          d.predictionStatus==(d.firstDecision.quadrant==d.correctQuadrant?'correct':'wrong'))) &&
+        (d.secondDecision==null || (d.firstDecision!=null && d.predictionStatus=='wrong' && d.secondDecision.quadrant!=d.firstDecision.quadrant &&
+          d.secondDecision.atMs>=d.firstDecision.atMs && (d.cometSpawnedAtMs==null || d.secondDecision.atMs<=d.cometSpawnedAtMs))) &&
+        ((d.resolution=='Predicted' && d.predictionStatus=='correct' && d.cometSpawnedAtMs==null) ||
+          (d.resolution in ['Destroyed','Hit','RadiationDeath'] && d.cometSpawnedAtMs!=null && d.predictionStatus!='correct') || d.resolution=='Interrupted') &&
+        ((d.resolution=='Interrupted' && d.interruptionReason in ['logout','tutorialExit','consentReview','applicationExit','audioUnavailable']) ||
+          (d.resolution!='Interrupted' && d.interruptionReason==null));
+    }
+    function validNoteV2(d,n,t) {
+      return d.keys().hasOnly(['schemaVersion','index','clipName','requestedFrequencyHz','nominalPlaybackFrequencyHz','pitchRatio','playbackStartFrame',
+        'playbackSampleRate','sourceVolume','plannedPeakSones','plannedDurationSeconds','elapsedSecondsAtResult','resultBeforePlannedEnd','startedAtMs']) &&
+        d.schemaVersion==2 && integer(d.index,0,t.noteCount-1) && n==string(d.index) && text(d.clipName) &&
+        number(d.requestedFrequencyHz,0.001,1000000000) && number(d.nominalPlaybackFrequencyHz,0.001,1000000000) && number(d.pitchRatio,0.001,1000000000) &&
+        integer(d.playbackStartFrame,0,1000000000) && integer(d.playbackSampleRate,1,1000000000) && number(d.sourceVolume,0,1) &&
+        number(d.plannedPeakSones,0,1000000000) && number(d.plannedDurationSeconds,0,600) && number(d.elapsedSecondsAtResult,0,600) &&
+        d.resultBeforePlannedEnd is bool && number(d.startedAtMs,0,t.resolvedAtMs) && t.state=='resolved' && t.savedAt==request.time;
+    }
+    match /players/{uid} {
+      allow read: if owner(uid);
+      allow create: if owner(uid) && validProfile(request.resource.data) && request.resource.data.createdAt == request.time &&
+        request.resource.data.consentReceiptId == '' && request.resource.data.tutorialVersion == 0 && request.resource.data.tutorialCompletedAt == null;
+      allow update: if owner(uid) && validProfile(request.resource.data) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['consentReceiptId','tutorialVersion','tutorialCompletedAt','updatedAt']) &&
+        (request.resource.data.consentReceiptId == resource.data.consentReceiptId ||
+          (!exists(/databases/$(database)/documents/players/$(uid)/consents/$(request.resource.data.consentReceiptId)) &&
+          getAfter(/databases/$(database)/documents/players/$(uid)/consents/$(request.resource.data.consentReceiptId)).data.savedAt == request.time)) &&
+        ((request.resource.data.tutorialVersion == resource.data.tutorialVersion && request.resource.data.tutorialCompletedAt == resource.data.tutorialCompletedAt) ||
+          (resource.data.tutorialVersion == 0 && request.resource.data.tutorialVersion == 1 && currentConsent(uid) && request.resource.data.tutorialCompletedAt == request.time));
+      match /consents/{id} {
+        allow read: if owner(uid);
+        allow create: if owner(uid) && validConsent(request.resource.data,id) &&
+          getAfter(/databases/$(database)/documents/players/$(uid)).data.consentReceiptId == id;
+        // Receipt content is immutable. A successful retry reads the existing receipt.
+      }
+      match /sessions/{sessionId} {
+        allow read: if owner(uid);
+        allow create: if owner(uid) && uuid(sessionId) && validSession(request.resource.data) && currentConsent(uid) && player(uid).tutorialVersion >= 1 &&
+          request.resource.data.consentReceiptId == player(uid).consentReceiptId && request.resource.data.createdAt == request.time &&
+          request.resource.data.revision == 0 && request.resource.data.score == 0 && request.resource.data.highestLevel == 0 &&
+          request.resource.data.elapsedSeconds == 0 && !request.resource.data.completed &&
+          (request.resource.data.schemaVersion==1 || (request.resource.data.startedAtUnixMs==null && request.resource.data.endedAtUnixMs==null));
+        allow update: if owner(uid) && validSession(request.resource.data) && !resource.data.completed &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['revision','score','highestLevel','elapsedSeconds','completed','updatedAt','startedAtUnixMs','endedAtUnixMs','endReason']) &&
+          (resource.data.schemaVersion==1 || ((resource.data.startedAtUnixMs==null || request.resource.data.startedAtUnixMs==resource.data.startedAtUnixMs) && resource.data.endedAtUnixMs==null)) &&
+          request.resource.data.revision == resource.data.revision + 1 && request.resource.data.highestLevel >= resource.data.highestLevel &&
+          request.resource.data.elapsedSeconds >= resource.data.elapsedSeconds;
+        match /trials/{round} {
+          allow read: if owner(uid);
+          allow create: if owner(uid) && researchAllowed(uid,sessionId) &&
+            (request.resource.data.schemaVersion==1 ? validTrial(request.resource.data,round) :
+              (request.resource.data.state=='started' && validTrialV2(request.resource.data,round)));
+          allow update: if owner(uid) && researchAllowed(uid,sessionId) && resource.data.schemaVersion==2 && resource.data.state=='started' &&
+            validTrialV2(request.resource.data,round) && request.resource.data.state=='resolved' &&
+            request.resource.data.roundIndex==resource.data.roundIndex && request.resource.data.correctQuadrant==resource.data.correctQuadrant &&
+            request.resource.data.level==resource.data.level && request.resource.data.startedAtUnixMs==resource.data.startedAtUnixMs && request.resource.data.settings==resource.data.settings;
+          match /notes/{note} {
+            allow read: if owner(uid);
+            allow create: if owner(uid) && researchAllowed(uid,sessionId) &&
+              ((request.resource.data.schemaVersion==1 && getAfter(/databases/$(database)/documents/players/$(uid)/sessions/$(sessionId)/trials/$(round)).data.schemaVersion==1 &&
+                validNote(request.resource.data,note,getAfter(/databases/$(database)/documents/players/$(uid)/sessions/$(sessionId)/trials/$(round)).data.noteCount)) ||
+               (request.resource.data.schemaVersion==2 && validNoteV2(request.resource.data,note,
+                getAfter(/databases/$(database)/documents/players/$(uid)/sessions/$(sessionId)/trials/$(round)).data)));
+          }
+        }
+      }
+    }
+    // No anonymous access, public scans, client deletions, or administrator credentials.
+  }
+}

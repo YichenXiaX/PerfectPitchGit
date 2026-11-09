@@ -22,6 +22,7 @@ public class audioLoudnessRecord
 [Serializable]
 public class notePlaybackRecord
 {
+    public double? startedAtMs; // Research clock, relative to this trial; null in practice/legacy records.
     public string clipName;
     public float requestedFrequencyHz;
     public float nominalPlaybackFrequencyHz;

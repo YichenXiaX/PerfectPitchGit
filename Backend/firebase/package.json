@@ -1,0 +1,11 @@
+{
+  "name": "comet-catcher-firebase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "firebase emulators:exec --project demo-comet-catcher --only auth,firestore \"node --test tests/rules.test.mjs\""
+  },
+  "devDependencies": {
+    "firebase-tools": "15.35.0"
+  }
+}

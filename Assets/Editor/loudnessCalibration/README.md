@@ -39,7 +39,7 @@ For each played note:
 
 The target includes the allowed clip/pitch intervals and relevant interior table knots. It is not recalculated from each randomly selected sequence. Conditions outside the profile or without a feasible solution fail explicitly instead of silently extrapolating. Master volume zero is handled as mute.
 
-The shipped table contains 80,864 response values. Duration nodes span 0.1–3 seconds and gain nodes span −54–0 dB in 3 dB steps. Response values are natural-log sones, interpolated over log pitch ratio, linear duration, and gain in dB. The positive pitch limit of 3 is included in the model.
+The Editor table contains 80,864 response values. The browser table contains 92,416, including additional nodes at the tutorial's 0.65-second duration and the custom default's 0.95-second duration. Both duration axes span 0.1–3 seconds and gain axes span −54–0 dB in 3 dB steps. Response values are natural-log sones, interpolated over log pitch ratio, linear duration, and gain in dB. The positive pitch limit of 3 is included in the model.
 
 ## Offline analysis details
 
@@ -76,7 +76,28 @@ These are errors against the modeled target in the tested cases, not measurement
 2. Follow the offline tool instructions in `Assets/Editor/loudnessCalibration/tools~/README.md` to install the pinned environment, validate the model, analyze onsets and generate a replacement profile.
 3. Replace the profile asset, preserve its scene assignment, and run **Tools > Validate Piano Loudness Profiles**. The manual command checks already-open enabled build scenes and reports unopened scenes it skipped. During a build, the validator checks every included scene as Unity processes it, without opening extra scenes. It rejects missing profiles or changed sources, importer metadata, dependencies, dimensions, Unity version, build target, onset offsets or fade settings. Recheck playback in the intended player after regeneration.
 
-The analysis uses an ideal continuous linear fade and offline resampling. Actual playback retains the existing per-frame coroutine fade and frame-based timing; these can differ, especially for short notes or slow frames. Unity WebGL also uses browser decoding and resampling, so Editor-exported PCM is an approximation of browser output. Build validation establishes input provenance, not identical output waveforms or acoustic timing. See [Unity's Web audio documentation](https://docs.unity3d.com/6000.0/Documentation/Manual/webgl-audio.html).
+The analysis uses an ideal continuous linear fade. Actual playback retains the existing per-frame coroutine fade and frame-based timing; these can differ, especially for short notes or slow frames. The Editor profile uses offline resampling; the browser profile uses Web Audio-rendered recordings as described below. Build validation establishes input provenance, not identical physical output or acoustic timing. See [Unity's Web audio documentation](https://docs.unity3d.com/6000.0/Documentation/Manual/webgl-audio.html).
+
+## Browser calibration and decoding
+
+Editor/desktop playback retains the original scene-assigned profile. WebGL selects `Assets/Resources/browserLoudnessProfile.json` automatically. The loudness model and C# gain solver are shared. Each profile chooses its own feasible common target; this matches notes within that playback condition and does not claim identical physical volume across devices or platforms.
+
+The browser table is generated from the actual AAC bytes exported by Unity, decoded and pitch-rendered in Chromium using Web Audio at 48 kHz. The original playback start times, looping behavior, pressure assumption, stereo aggregation and end fade are retained. Independent note renders check both 44.1 and 48 kHz. Source WAVs, their import settings, and the Editor table are unchanged.
+
+`frequencyManager` requests audio decoding on scene entry. The tutorial and normal start flow wait for it before playback/session creation. Validation uses the browser table's decoded duration, including AAC padding, and permits only sample-rate rounding. The condition cache includes decoded dimensions, so a pre-decode result cannot be reused after the clip changes. Missing, failed, or mismatched audio still blocks playback.
+
+WebGL builds require a validated browser profile tied to the exact Editor source-profile hash, in addition to the existing source/import/Unity-version checks. The selected browser profile ID is saved through the existing audio metadata; no research schema or consent logic changes are needed. The offline browser workflow is documented in `tools~/README.md`.
+
+The browser profile `iso532-1-browser-stereo-e4afbfbc5af56085` passed 1,040 C# condition checks and 242,480 gain checks. Fresh Web Audio renders at both 44.1 and 48 kHz produced the following independent model results:
+
+| Condition | Comparisons | Maximum error against modeled target |
+| --- | ---: | ---: |
+| Normal 0.59-second gameplay | 330 | 0.752% |
+| Exact tutorial examples, including lower/higher octaves | 72 | 0.614% |
+| 0.1-second note checks | 120 | 0.798% |
+| Entire validation set, including legacy stress conditions | 2,216 | 3.610% |
+
+All comparisons stayed within the existing 5% model threshold and the gain/peak limits. The previous shared Editor profile had a 16.548% worst normal-game error in the browser measurement. All 176 decoded dimension checks (88 recordings at both rates) match the new profile within sample-rate rounding. These figures describe ideal offline browser rendering and model agreement, not measured equality of human perception. The current permitted octave range is unchanged.
 
 Public-device sessions remain explicitly `uncalibratedDevice`: headphones, speakers, system volume and hearing differ. For future controlled EEG work, measure the complete equipment chain, establish the physical SPL reference and channel response, and validate onset/offset timing and synchronization with recorded audio and experiment triggers. The current planned loudness values and logical elapsed times are not measured SPL or EEG onset markers.
 
@@ -139,7 +160,9 @@ Unity-generated `.meta` files accompany the new imported scripts, profile, docum
 
 ## Verification scope
 
-In addition to the profile checks above, 13 calibration regression suites (8,730 assertions) and 10 pure-tone reference suites (6,755 assertions) passed. Unity Editor compilation, playback starting position, short-note playback/replay, repeated game-over/replay, and saved audio metadata checks passed. A browser build/playback test was not completed.
+In addition to the profile checks above, 13 calibration regression suites (8,730 assertions) and 10 pure-tone reference suites (6,755 assertions) passed. Unity Editor compilation, playback starting position, short-note playback/replay, repeated game-over/replay, and saved audio metadata checks passed.
+
+The November 2026 browser update passed 2,216 independent Web Audio renders at 44.1 and 48 kHz (all within the existing 5% model-error limit). Both Editor and browser profiles passed 1,040 runtime conditions and 242,480 gain checks each. A rebuilt Unity WebGL player was then exercised in Chromium at 48 kHz with a local Firebase emulator account: login, declined research consent, every tutorial lesson (including original/high/low octaves), real held-key predictions and recovery, practice collision/restart, completion save, SampleScene launch, and normal game-over/replay. All 88 recordings decoded and used the browser profile; no browser console errors were observed. Temporary diagnostic instrumentation was removed from the delivered build. These checks do not constitute a production-backend test or coverage of Firefox, Safari, other audio hardware, or listener-perceived equality.
 
 The reported 0.6632% default-condition error is disagreement with the selected numerical model in tested cases, not measured equality of human perception. A newly generated table must be validated again; it does not inherit that measured accuracy.
 
@@ -151,9 +174,12 @@ LICENSE-MOSQITO.txt
 README.md
 THIRD_PARTY_NOTICES.txt
 analyzeOnsets.py
+browserCalibration.html
+browserCalibration.py
 bundle-manifest.json
 endpoint-validation.json
 fastModel.py
+generateBrowserProfile.py
 generateProfile.py
 identifier-map.json
 identifier-rename-equivalence.json

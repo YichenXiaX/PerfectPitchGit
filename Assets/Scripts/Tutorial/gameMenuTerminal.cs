@@ -16,6 +16,12 @@ public static class gameMenuTerminal
         if(root==null)return;
         isolate(root,"startTerminal",60);
         foreach(Transform child in root.transform)child.gameObject.SetActive(false);
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name==cloudAccount.playScene)
+        {
+            launchSequence.create(root,root.transform.Find("PlayButton").GetComponent<Button>());
+            if(root.GetComponent<terminalKeyboardNavigation>()==null)root.AddComponent<terminalKeyboardNavigation>().blockWithAccount=true;
+            return;
+        }
         var panel=terminalPanel.create(root.transform,"startConsole");panel.preferredWidth=560;panel.top=180;panel.metadata.text="COMET CATCHER / HELIOS";panel.title.text="Ready for the Slipstream";
         signalTerminal.text(panel.content,"briefing","Listen. Predict. Intercept.\nKeep the carrier alive.",18,46);
         var button=root.transform.Find("PlayButton").GetComponent<Button>();button.transform.SetParent(panel.actions,false);button.gameObject.SetActive(true);signalTerminal.height((RectTransform)button.transform,40);signalTerminal.width((RectTransform)button.transform,180);signalTerminal.styleButton(button,signalTerminal.actionStyle.primary);button.GetComponentInChildren<TMP_Text>().text="Start run";

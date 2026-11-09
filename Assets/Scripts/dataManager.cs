@@ -1,0 +1,25 @@
+using UnityEngine;
+
+// Final summary saving is independent of the consent-gated per-round research upload.
+public class dataManager : MonoBehaviour
+{
+    public static dataManager instance { get; private set; }
+    private gameManager manager;
+    private void Awake() { instance = this; }
+    private void Start()
+    {
+        manager = gameManager.instance;
+        if (manager != null) manager.onGameOver += saveSession;
+    }
+    private void OnDestroy()
+    {
+        if (manager != null) manager.onGameOver -= saveSession;
+        if (instance == this) instance = null;
+    }
+    public void saveSession(gameSessionData data)
+    {
+        if (data == null || manager == null || manager.isPractice) return;
+        cloudAccount.instance?.capture(true);
+        cloudAccount.instance?.retrySave();
+    }
+}

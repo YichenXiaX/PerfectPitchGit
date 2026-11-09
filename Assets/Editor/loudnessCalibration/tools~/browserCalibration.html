@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Browser calibration generation</title>
+<style>body{background:#101823;color:#dce7f4;font:17px system-ui;max-width:920px;margin:48px auto;padding:20px}button{font:inherit;padding:14px;margin:8px 12px 8px 0}pre{white-space:pre-wrap;line-height:1.6}</style>
+<h1>Browser calibration generation</h1><p>Exact shipped recordings, rendered silently by Web Audio. The existing loudness model and Editor profile stay unchanged.</p>
+<button id="grid">Render calibration grid</button><button id="validate">Render independent validation</button><pre id="status">Ready.</pre>
+<script>
+const status=document.querySelector('#status');
+async function save(name,body){const result=await fetch('/save?name='+encodeURIComponent(name),{method:'POST',body});if(!result.ok)throw Error(await result.text())}
+async function sha(bytes){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function pcm(buffer){const data=new Float32Array(buffer.length*buffer.numberOfChannels);for(let ch=0;ch<buffer.numberOfChannels;ch++){const channel=buffer.getChannelData(ch);for(let i=0;i<buffer.length;i++)data[i*buffer.numberOfChannels+ch]=channel[i]}return data}
+function roundEven(x){const floor=Math.floor(x),part=x-floor;return part===.5?(floor%2===0?floor:floor+1):Math.round(x)}
+async function run(validation){
+ document.querySelectorAll('button').forEach(b=>b.disabled=true);
+ try{
+  const grid=await(await fetch('/browserGrid.json')).json();const cases=validation?await(await fetch('/browserValidationCases.json')).json():grid.tasks;
+  const rows=[],clips=[];const rates=validation?[44100,48000]:[grid.sampleRate];
+  for(const rate of rates){let previous=null,buffer=null;
+   for(const c of cases){
+    if(previous!==c.clipName){
+     const encoded=await(await fetch('/clips/'+c.clipName+'.bin')).arrayBuffer(),hash=await sha(encoded);
+     const expected=grid.tasks.find(t=>t.clipName===c.clipName).encodedSha256;if(hash!==expected)throw Error('Encoded recording changed: '+c.clipName);
+     buffer=await new OfflineAudioContext(2,1,rate).decodeAudioData(encoded);previous=c.clipName;
+     clips.push({clipName:c.clipName,sampleRate:buffer.sampleRate,frames:buffer.length,channels:buffer.numberOfChannels,encodedSha256:hash});
+    }
+    status.textContent=`${validation?'Validating':'Calibrating'} ${c.clipName} (${rows.length+1}/${cases.length*rates.length})`;
+    const context=new OfflineAudioContext(2,Math.round((c.duration+(validation?.2:0))*rate),rate);
+    const source=context.createBufferSource();source.buffer=buffer;source.loop=true;source.playbackRate.value=c.pitchRatio;
+    const gain=context.createGain();gain.gain.value=validation?c.gain:1;
+    if(validation){const fade=Math.min(c.fadeDuration,c.duration);gain.gain.setValueAtTime(c.gain,0);gain.gain.setValueAtTime(c.gain,c.duration-fade);gain.gain.linearRampToValueAtTime(0,c.duration)}
+    source.connect(gain);gain.connect(context.destination);
+    const start=roundEven(c.playbackStartFrame*rate/c.sampleRate);source.start(0,start/rate);source.stop(c.duration);
+    const rendered=await context.startRendering(),bytes=pcm(rendered),file=`${validation?'validation':'calibration'}-${rate}-${c.caseId}.f32`;
+    await save(file,bytes);rows.push({caseId:c.caseId,clipName:c.clipName,pitchRatio:c.pitchRatio,sampleRate:rate,channels:rendered.numberOfChannels,frames:rendered.length,playbackStartFrame:start,pcmSha256:await sha(bytes),file});
+   }
+  }
+  await save((validation?'browser-validation':'browser-grid')+'-manifest.json',JSON.stringify({complete:true,userAgent:navigator.userAgent,sourceProfileId:grid.sourceProfileId,sourceProfileSha256:grid.sourceProfileSha256,clips,rows},null,2));
+  status.textContent=`Complete: ${rows.length} browser ${validation?'validation notes':'calibration waveforms'} saved locally.`;
+ }catch(error){status.textContent='Failed: '+error.message}
+ finally{document.querySelectorAll('button').forEach(b=>b.disabled=false)}
+}
+document.querySelector('#grid').onclick=()=>run(false);document.querySelector('#validate').onclick=()=>run(true);
+</script></html>

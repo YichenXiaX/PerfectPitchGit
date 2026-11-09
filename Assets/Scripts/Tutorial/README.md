@@ -18,7 +18,7 @@ Account/backend scripts, consent wording, calibration assets and the protected H
 
 `playerController.shotInterval` defaults to 0.20 gameplay seconds, with a 0.05-second minimum. The currently selected lane key and F must both remain held. InputAction callbacks preserve key-event order. Cooldown survives releases, lane changes and overlays; slow frames emit at most one shot. A first prediction needs a fresh F press after each round, replay, blocking overlay or layout change. An unresolved wrong prediction permits lane changes while continuing to hold F.
 
-A second guess means the FIRST eligible backup shot fired after an explicit change to a lane different from the original wrong prediction, while the pre-spawn window is still open. Same-lane automatic shots do not consume that opportunity. Later shots cannot overwrite it, and post-spawn shots are recovery, not second guesses. The initial prediction and response-time fields are retained. Portfolio mode uploads no trial-level research data. Guided tutorial choices do not establish learning or above-chance performance.
+A second guess means the FIRST eligible backup shot fired after an explicit change to a lane different from the original wrong prediction, while the pre-spawn window is still open. Same-lane automatic shots do not consume that opportunity. Later shots cannot overwrite it, and post-spawn shots are recovery, not second guesses. The initial prediction and response-time fields are retained. Normal-game trial uploads now require account-owned research consent; practice never uploads them. Guided tutorial choices do not establish learning or above-chance performance.
 
 ## Tutorial isolation and completion
 
@@ -32,24 +32,20 @@ Both recovery and impact use the actual Q4 prefab. `practiceTarget` only stages 
 
 `tutorialSpectrum` reads the four ranges from `frequencyManager.quadrants` and the four actual sprites from `gameSettings.cometPrefabs`. Its reversed C5-to-C4 piano is a musical reference. The separate logarithmic spectrum uses the real approximately 254.29–508.57 Hz range; connectors link white-key reference frequencies to that scale. C5 lies beyond the upper gameplay boundary. Markers, category cards and comet previews highlight as notes play. The narrow layout scrolls the body while retaining visible actions and clearance around the unchanged HUD.
 
-`frequencyManager.playPracticeSequence` plays three deterministic, distinct pitches at positions 0.24, 0.69 and 0.43 through a quadrant's logarithmic range. Initial examples use octave zero; the later comparison repeats Q2 at +1. Tutorial notes last 0.65 seconds with 0.12-second pauses, using the existing sample selection, loudness gain, fade and pause path. These local overrides do not change saved presets or calibration. Replay cancels the preceding sequence; leaving a step stops audio and stale highlighting. Input is disabled until each required cue finishes. A quadrant is a sound category; its lane is the matching screen position.
+`frequencyManager.playPracticeSequence` plays three deterministic, distinct pitches at positions 0.24, 0.69 and 0.43 through a quadrant's logarithmic range. Initial examples use octave zero; the later comparison plays Q2 at 0, +1 and -1, in that order, with matching on-screen labels. All three teaching octaves share one calibrated loudness target. Tutorial notes last 0.65 seconds with 0.12-second pauses, using the existing sample selection, loudness gain, fade and pause path. These local overrides do not change saved presets or calibration. Replay cancels the preceding sequence; leaving a step stops audio and stale highlighting. Continue stays disabled until all three versions finish. Input is disabled until each required cue finishes. A quadrant is a sound category; its lane is the matching screen position.
 
 Settings now contains exactly −2, −1, 0, +1 and +2. Obsolete controls, serialized fields and load/save references are removed in both gameplay and training scenes. Old presets retain supported, distinct values in sorted order; an empty result falls back to zero. Preset selection and custom settings use the same normalization.
 
 The existing Settings object also contained scene-specific UI. Its data is now kept on a separate persistent object; the original scene UI and its serialized references remain scene-local. This prevents destroyed-panel references after training, scene reload or logout. No HUD integration or styling changes were required.
 
-Completion is stored in the authenticated account profile as `tutorialVersion` (current version 1). The API validates the version and required milestone receipt and uses the verified caller's identity, never a client-supplied account ID. This is client-reported onboarding, not an anti-cheat attestation. The server also gates normal session creation on completion. Exit training returns to the account screen without signing out or completing unfinished training. Replay does not erase prior completion. The final **Enter game** action saves completion and enters the normal start flow only after that save succeeds. A failed save displays the error and leaves the action available to retry. Active runs must save successfully before exiting to training.
+Completion is stored in the authenticated Firebase account profile as `tutorialVersion` (current version 1). Firestore rules require a verified owner, a saved consent decision and the supported tutorial version. This is client-reported onboarding, not an anti-cheat attestation. The rules also gate normal session creation on completion. Exit training returns to the account screen without signing out or completing unfinished training. Replay does not erase prior completion. The final **Enter game** action saves completion and enters the normal start flow only after that save succeeds. A failed save displays the error and leaves the action available to retry. Active runs must save successfully before exiting to training.
 
-## Backend deployment required
+## Backend
 
-The new completion endpoint is NOT deployed automatically. From the project's `Backend` directory, using your linked Supabase CLI:
-
-```powershell
-npx supabase db push --linked
-npx supabase functions deploy game-api
-```
-
-This applies `202610300001_flight_training.sql` and the updated `PUT /tutorial` route. Deploy this together with the updated game client: the migration makes training mandatory for normal session starts. Until deployed, the completion save will show an error and keep the player on the final step. Cross-device completion depends on this server deployment; there is no machine-global or silent local completion fallback.
+Firebase rules are deployed to `comet-catcher`. See `Backend/firebase/README.md`
+for the current setup, deployment command and verification status. There is no
+machine-global or silent local completion fallback. Old provider accounts/data
+were not imported; the owner chose a fresh start.
 
 ## UI scope
 
@@ -62,7 +58,7 @@ The authoritative visual owners are:
 - `tutorialDirector`: compact lesson content and one final Enter game action. Required gameplay events, practice Replay, audio and effects remain connected to the existing systems.
 - `accountTerminal`: bounded account/login/verification presentation with original callbacks, readable status/error messages, compact statistics and one Account/exit entry point. `accountUiBuilder` supplies stable serialized bindings; the runtime view owns layout.
 - `terminalSettingsView` and `gameMenuTerminal`: scoped Settings and start/game-over presentation. Original settings values, serialized toggle, buttons and callbacks are retained.
-- `consentTerminalTheme` and the saved `researchConsent.unity`: full document content inside a scrollable body with a fixed action footer. All 137 original text strings, fields, agreement/decline conditions and callbacks are retained. Keyboard focus scrolls fields into view. The consent scene stays excluded from the public build; research collection remains disabled.
+- `consentTerminalTheme` and the saved `researchConsent.unity`: full document content inside a scrollable body with a fixed action footer. Original form wording, fields and agreement/decline conditions are retained. Keyboard focus scrolls fields into view. The November consent integration includes this scene in builds and saves the choice before training; see `Backend/firebase/README.md` for the new account flow and deployment status.
 
 New UI canvases use a 1280x720 reference with height matching: one reference pixel maps to `canvasHeight / 720` display pixels. Panels have bounded preferred widths and responsive viewport caps; the opening is 620x359 reference pixels. The WebGL template reserves 38 browser pixels for its footer, so its canvas is shorter than the browser viewport. The existing HUD CanvasScaler and all protected transforms remain unchanged. Tutorial/menu keyboard navigation yields to account and Settings overlays.
 
@@ -86,4 +82,9 @@ The final polish WebGL build succeeded (28,956,700 bytes; zero errors). It repor
 
 Known limitation: the original health HUD clips below the viewport at the unusually wide 1920x800 aspect ratio. Its pre-existing geometry was deliberately preserved, as requested; the new panels remain bounded. The health display is visible at the other tested sizes.
 
-A real authenticated Supabase/browser training run still needs verification after the earlier migration/function deployment. Editor transport tests do not prove live email delivery, browser audio during training or cross-device persistence. The public build retains normal authentication; no testing shortcut was added.
+The November 7 Firebase migration completed the interactive tutorial in a local
+WebGL player using the Auth/Firestore emulators, then confirmed saved completion
+after a browser reload and login. Live Firebase consent/account tests and a real
+verification email also passed. Browser gameplay/audio still needs the release
+checks described in `Backend/firebase/README.md`. The public build retains
+normal authentication; no testing shortcut was added.

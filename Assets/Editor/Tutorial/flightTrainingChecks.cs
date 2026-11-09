@@ -33,7 +33,7 @@ public static class flightTrainingChecks
         UnityEditor.EditorWindow.GetWindow(typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.GameView")).Focus();
         Application.runInBackground=true;
         checks.Clear();completions.Clear();sessions=checkpoints=receipts=0;owner="alice";failCompletion=true;failCheckpoint=false;failSession=false;
-        result="running";cloudAccount.testTransport=transport;
+        result="running";cloudAccount.testTransport=transport;cloudAccount.testApiTransport=transport;
         cloudAccount.instance.StartCoroutine(runAll());
     }
     private static void ensure(bool value,string name)
@@ -42,17 +42,16 @@ public static class flightTrainingChecks
     private static IEnumerator transport(string path,string method,string json,string bearer,Action<long,string> done)
     {
         yield return null;
-        if(path.Contains("/token"))done(200,"{\"access_token\":\"test\",\"refresh_token\":\"test\",\"expires_in\":3600}");
-        else if(path=="/auth/v1/user")done(200,"{\"id\":\""+owner+"\",\"email_confirmed_at\":\"2026-10-30\"}");
+        if(path.Contains("/token") || path.Contains("accounts:signInWithPassword"))done(200,"{\"idToken\":\"test\",\"refreshToken\":\"test\",\"expiresIn\":3600}");
+        else if(path.Contains("accounts:lookup"))done(200,"{\"users\":[{\"localId\":\""+owner+"\",\"emailVerified\":true}]}");
         else if(path.EndsWith("/profile"))done(200,profile());
         else if(path.EndsWith("/progress"))done(200,"{\"bestScore\":1234,\"highestLevel\":2,\"sessionsPlayed\":3,\"sessionsCompleted\":2}");
         else if(path.EndsWith("/tutorial")){receipts++;if(failCompletion){failCompletion=false;done(503,"{}");}else{completions[owner]=1;done(200,profile());}}
         else if(path.EndsWith("/sessions")){if(failSession)done(503,"{}");else{sessions++;done(200,"{}");}}
         else if(path.EndsWith("/checkpoints")){checkpoints++;done(failCheckpoint?503:200,"{}");}
-        else if(path.StartsWith("/auth/v1/logout"))done(204,"");
         else {result="FAILED: unexpected transport "+path;done(500,"{}");}
     }
-    private static string profile()=>"{\"nickname\":\""+owner+"\",\"tutorialVersion\":"+(completions.ContainsKey(owner)?completions[owner]:0)+"}";
+    private static string profile()=>"{\"consentVersion\":\"2026-10-25-v1\",\"consentStatus\":\"declined\",\"researchCollectionEnabled\":false,\"nickname\":\""+owner+"\",\"tutorialVersion\":"+(completions.ContainsKey(owner)?completions[owner]:0)+"}";
     private static IEnumerator keys(params Key[] values)
     {InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(values));yield return null;yield return null;}
     private static void next()

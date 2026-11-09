@@ -1,0 +1,8 @@
+node_modules/
+.firebase/
+*-debug.log
+.firebaserc
+service-account*.json
+exports/
+public/
+.build-report.json

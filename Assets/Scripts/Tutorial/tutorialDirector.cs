@@ -29,6 +29,7 @@ public class tutorialDirector : MonoBehaviour
     private IEnumerator Start()
     {
         yield return null;manager=gameManager.instance;
+        yield return manager.frequencyManager.waitForRecordings();
         manager.onPredictionSuccess+=correctPrediction;manager.onPredictionMiss+=wrongPrediction;
         manager.onCometCreated+=cometCreated;manager.onRecovery+=recovered;
         manager.onGameOver+=gameOver;manager.onPracticeRestart+=restart;manager.onAuraChanged+=auraChanged;
@@ -40,7 +41,7 @@ public class tutorialDirector : MonoBehaviour
         var root=new GameObject("flightTerminal",typeof(RectTransform),typeof(Canvas),typeof(UnityEngine.UI.CanvasScaler),typeof(UnityEngine.UI.GraphicRaycaster));
         root.transform.SetParent(transform,false);root.AddComponent<terminalKeyboardNavigation>().blockWithAccount=true;
         var canvas=root.GetComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=90;signalTerminal.canvas(canvas);
-        panel=terminalPanel.create(root.transform,"transmission");transmission=panel.title;
+        panel=terminalPanel.create(root.transform,"transmission");panel.centerVertically=true;transmission=panel.title;
         body=signalTerminal.text(panel.content,"body","",18);
         layoutChoice=terminalLayoutSelector.create(panel.content);
         diagram=tutorialSpectrum.create(panel.content,manager.frequencyManager);
@@ -76,8 +77,7 @@ public class tutorialDirector : MonoBehaviour
         next.gameObject.SetActive(navigable);next.interactable=!cuePlaying && (!isCueStep || cueHeard);
         next.GetComponentInChildren<TMP_Text>().text=state==lesson.complete || state==lesson.saved?"Enter game":state==lesson.spotlight || state==lesson.impactSpotlight?"Resume":state==lesson.assessmentRetry?"Try again":state==lesson.demonstration && demoQuadrant<3?"Next quadrant":"Continue";
         panel.metadata.text="HELIOS / FLIGHT CONTROL";panel.progress.text=stepNumber().ToString("00")+" / 10";
-        panel.preferredWidth=map?680:620;panel.top=map?85:145;panel.reserveTutorialHud=map;
-        if(state==lesson.awaitingComet || state==lesson.spotlight || state==lesson.recovery || state==lesson.impactArrival || state==lesson.impactSpotlight || state==lesson.impact)panel.top=330;
+        panel.preferredWidth=map?680:620;panel.reserveTutorialHud=map;
         hint.text="";
         switch(state)
         {
@@ -85,7 +85,7 @@ public class tutorialDirector : MonoBehaviour
             case lesson.signal:transmission.text="Listen before you aim";body.text="Our engineers have developed a sonar system that detects each comet's wave signature before it appears. The system converts that signal into a short sequence of notes. Your job is to interpret what you hear and fire into the correct quadrant.";hint.text="These are sensor signals converted into sound aboard HELIOS.";break;
             case lesson.mapping:transmission.text="Sound points to a lane";body.text="One octave is divided into four quadrants. Each covers a range of pitches and one type of comet. High pitches are on the left; low pitches are on the right.";hint.text="The keyboard is reversed here to match the lanes: high on the left, low on the right.";break;
             case lesson.demonstration:transmission.text="Listen to Quadrant "+(demoQuadrant+1);body.text="Watch the pitches, comet and key for the same quadrant as the sequence plays.";hint.text="The piano keys are reference points. A signal can fall between them, too. You only need its quadrant; you do not need to name the note.";break;
-            case lesson.octaves:transmission.text="Same quadrant, another octave";body.text="A signal can also be played an octave higher or lower. It still belongs to the same quadrant and identifies the same type of comet.";hint.text="Listen to Quadrant 2, then the same sequence one octave higher.";break;
+            case lesson.octaves:transmission.text="Same quadrant, another octave";body.text="A signal can also be played an octave higher or lower. It still belongs to the same quadrant and identifies the same type of comet.";hint.text="Listen to Quadrant 2 in the original octave, then one octave higher, then one octave lower.";break;
             case lesson.correct:transmission.text="Predict the comet";body.text="This signal belongs to Quadrant 2. Hold "+controlLayout.label(1)+", then press F while keeping that key held down.";hint.text="Listen to the complete sequence, then try it.";break;
             case lesson.celebrating:transmission.text="Interception";body.text="Watch the interception finish.";break;
             case lesson.success:transmission.text="Correct prediction";body.text="You predicted the correct quadrant and intercepted the comet before it appeared.";hint.text="Aura rewards the interception. The bar below HELIOS shows hull health.";break;
@@ -132,9 +132,9 @@ public class tutorialDirector : MonoBehaviour
     {
         if(!isCueStep)return;stopCue();cueHeard=false;cuePlaying=true;manager.practiceInputEnabled=false;manager.playerController.clearHeldInput(true);next.interactable=false;
         int generation=cueGeneration;int quadrant=state==lesson.demonstration?demoQuadrant:state==lesson.miss?3:state==lesson.assessment?assessmentQuadrant:1;
-        playCuePart(quadrant,0,generation,state==lesson.octaves);
+        playCuePart(quadrant,0,generation);
     }
-    private void playCuePart(int quadrant,int octave,int generation,bool repeatHigher)
+    private void playCuePart(int quadrant,int octave,int generation)
     {
         try
         {
@@ -142,11 +142,11 @@ public class tutorialDirector : MonoBehaviour
             {
                 if(generation!=cueGeneration)return;
                 if(diagram.gameObject.activeSelf)diagram.highlight(quadrant,frequency,octave);
-                if(state==lesson.octaves)hint.text=octave==0?"Quadrant 2 · original octave":"Quadrant 2 · the same sequence one octave higher";
+                if(state==lesson.octaves)hint.text=octave==0?"Quadrant 2 · original octave":"Quadrant 2 · the same sequence one octave "+(octave>0?"higher":"lower");
             },()=>
             {
                 if(this==null || generation!=cueGeneration)return;
-                if(repeatHigher){playCuePart(quadrant,1,generation,false);return;}
+                if(state==lesson.octaves && octave!=-1){playCuePart(quadrant,octave==0?1:-1,generation);return;}
                 cuePlaying=false;cueHeard=true;next.interactable=true;
                 if(diagram.gameObject.activeSelf)diagram.highlight(quadrant);
                 if(state==lesson.demonstration)hint.text="Those notes were slightly different pitches, but all fell in Quadrant "+(quadrant+1)+". That signal belongs to this comet. Aim at "+new[]{"the first lane on the left","the second lane from the left","the third lane from the left","the far-right lane"}[quadrant]+".";

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Per-launch decision, not an account record or durable consent receipt.
+// Session mirror of the server's account-owned consent receipt. Never an authorization source.
 public static class researchConsentState
 {
     public const string formVersion = "2026-10-25-v1";

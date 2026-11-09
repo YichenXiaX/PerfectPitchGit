@@ -36,6 +36,7 @@ public class frequencyManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public List<AudioClip> pianoSamples;
+    public event Action<notePlaybackRecord,int> notePlayed;
 
     [Header("Fade Settings")]
     [Tooltip("The calibration profile must be generated for this fade duration.")]
@@ -51,6 +52,9 @@ public class frequencyManager : MonoBehaviour
     private float currentNoteVolume;
     private gameSettings.levelPreset preset => gameSettings.instance.getCurrentPreset();
     private TextAsset loadedCalibrationAsset;
+#if UNITY_WEBGL && !UNITY_EDITOR
+    private TextAsset browserCalibrationAsset;
+#endif
     private pianoLoudnessCalibration.profileData calibrationData;
     private pianoLoudnessCalibration.profile calibrationProfile;
     private pianoLoudnessCalibration.condition calibrationCondition;
@@ -58,6 +62,40 @@ public class frequencyManager : MonoBehaviour
     private string lastCalibrationError;
     private float sequenceStartTime;
     private audioLoudnessRecord currentLoudnessRecord;
+
+    private void Awake() { requestRecordingLoads(); }
+
+    private void requestRecordingLoads()
+    {
+        if (pianoSamples == null) return;
+        foreach (var clip in pianoSamples)
+            if (clip != null && (clip.loadState == AudioDataLoadState.Unloaded || clip.loadState == AudioDataLoadState.Failed))
+                clip.LoadAudioData();
+    }
+
+    // Web Audio decoding is asynchronous. The caller owns this coroutine so
+    // stopping a note sequence cannot cancel preparation. No gameplay time runs here.
+    public IEnumerator waitForRecordings()
+    {
+        requestRecordingLoads();
+        float deadline = Time.realtimeSinceStartup + 30f;
+        while (pianoSamples != null && pianoSamples.Exists(clip => clip != null
+            && (clip.loadState == AudioDataLoadState.Loading || clip.loadState == AudioDataLoadState.Unloaded))
+            && Time.realtimeSinceStartup < deadline)
+            yield return null;
+        // prepareLoudness reports a failed/timed-out decode and keeps playback blocked.
+    }
+
+    private TextAsset getCalibrationAsset()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (browserCalibrationAsset == null)
+            browserCalibrationAsset = Resources.Load<TextAsset>("browserLoudnessProfile");
+        return browserCalibrationAsset;
+#else
+        return loudnessCalibrationData;
+#endif
+    }
 
     /// <summary>Validate before starting a session, so bad data cannot silently produce uncalibrated trials.</summary>
     public bool tryPrepareLoudness()
@@ -80,12 +118,13 @@ public class frequencyManager : MonoBehaviour
     private void prepareLoudness(float? practiceDuration = null, int[] practiceOctaves = null)
     {
         if (audioSource == null) throw new InvalidOperationException("Assign the note AudioSource.");
-        if (loudnessCalibrationData == null) throw new InvalidOperationException("Assign a generated loudness profile.");
-        if (calibrationProfile == null || loadedCalibrationAsset != loudnessCalibrationData)
+        TextAsset selectedCalibrationAsset = getCalibrationAsset();
+        if (selectedCalibrationAsset == null) throw new InvalidOperationException("The generated loudness profile for this platform is missing. Rebuild the game with its calibration data.");
+        if (calibrationProfile == null || loadedCalibrationAsset != selectedCalibrationAsset)
         {
-            calibrationData = JsonUtility.FromJson<pianoLoudnessCalibration.profileData>(loudnessCalibrationData.text);
+            calibrationData = JsonUtility.FromJson<pianoLoudnessCalibration.profileData>(selectedCalibrationAsset.text);
             calibrationProfile = pianoLoudnessCalibration.createProfile(calibrationData);
-            loadedCalibrationAsset = loudnessCalibrationData;
+            loadedCalibrationAsset = selectedCalibrationAsset;
             conditionKey = null;
         }
 
@@ -114,7 +153,13 @@ public class frequencyManager : MonoBehaviour
             key.Append('|').Append(q.minFrequency.ToString("R", CultureInfo.InvariantCulture))
                 .Append(':').Append(q.maxFrequency.ToString("R", CultureInfo.InvariantCulture));
         }
-        foreach (var clip in sorted) key.Append('|').Append(clip.GetInstanceID());
+        foreach (var clip in sorted)
+        {
+            if (clip.loadState != AudioDataLoadState.Loaded)
+                throw new InvalidOperationException("Recording " + clip.name + " has not finished decoding. Retry playback; if this persists, reload the game.");
+            // Never reuse validation performed before decoding or at a different output rate.
+            key.Append('|').Append(clip.GetInstanceID()).Append(':').Append(clip.samples).Append(':').Append(clip.frequency);
+        }
         string nextKey = key.ToString();
         if (nextKey == conditionKey) return;
 
@@ -153,8 +198,8 @@ public class frequencyManager : MonoBehaviour
     {
         if (entry.channels != clip.channels) return false;
 #if UNITY_WEBGL && !UNITY_EDITOR
-        // Web Audio may resample decoded PCM to the browser's output rate.
-        // Source hashes/import settings are checked in the Editor before builds.
+        // This is the BROWSER profile's decoded duration, including codec padding.
+        // Only sample-rate rounding is allowed; source/import hashes remain build checks.
         double expectedDuration = entry.frames / (double)entry.sampleRate;
         double actualDuration = clip.samples / (double)clip.frequency;
         return Math.Abs(expectedDuration - actualDuration) <= 2.0 / Math.Min(entry.sampleRate, clip.frequency);
@@ -201,6 +246,7 @@ public class frequencyManager : MonoBehaviour
             plannedTargetPeakSones = currentLoudnessRecord.plannedTargetPeakSones,
             notes = currentLoudnessRecord.notes.ConvertAll(note => new notePlaybackRecord
             {
+                startedAtMs = note.startedAtMs,
                 clipName = note.clipName,
                 requestedFrequencyHz = note.requestedFrequencyHz,
                 nominalPlaybackFrequencyHz = note.nominalPlaybackFrequencyHz,
@@ -292,6 +338,7 @@ public class frequencyManager : MonoBehaviour
             requestedTimeInSequenceSeconds = Time.time - sequenceStartTime
         });
         audioSource.Play();
+        notePlayed?.Invoke(currentLoudnessRecord.notes[currentLoudnessRecord.notes.Count-1],selectedOctaveShift);
     }
 
     private IEnumerator fadeOutOverDuration(float duration)
@@ -317,13 +364,13 @@ public class frequencyManager : MonoBehaviour
     }
 
     // Deterministic examples use the same sample/gain/duration/fade/pause path as
-    // normal trials. Their calibration condition includes both teaching octaves
+    // normal trials. Their calibration condition includes all three teaching octaves
     // at one common target, without changing any saved preset or calibration data.
     public void playPracticeSequence(int quadrantIndex, int octaveShift, Action<float> noteStarted, Action finished)
     {
         if(quadrantIndex<0 || quadrantIndex>=quadrants.Count)throw new ArgumentOutOfRangeException(nameof(quadrantIndex));
-        if(octaveShift<0 || octaveShift>1)throw new ArgumentOutOfRangeException(nameof(octaveShift));
-        stopSequence();prepareLoudness(.65f,new[]{0,1});beginLoudnessRecord();
+        if(octaveShift< -1 || octaveShift>1)throw new ArgumentOutOfRangeException(nameof(octaveShift));
+        stopSequence();prepareLoudness(.65f,new[]{-1,0,1});beginLoudnessRecord();
         selectedOctaveShift=octaveShift;
         var q=quadrants[quadrantIndex];var frequencies=new List<float>();
         foreach(float position in new[]{.24f,.69f,.43f})

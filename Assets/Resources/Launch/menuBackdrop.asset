@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891ba64459cf66549acc2c16130936c0, type: 3}
+  m_Name: menuBackdrop
+  m_EditorClassIdentifier: 
+  carrier: {fileID: 2949310793317762208, guid: 07f391b41b3430b42b091ef35002595a, type: 3}
+  interceptor: {fileID: 4736449065902978594, guid: 26f789904b6569242997283ffbc318ef, type: 3}
+  spriteMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  carrierColor: {r: 0.5773585, g: 0, b: 0, a: 1}
+  interceptorColor: {r: 1, g: 1, b: 1, a: 1}
+  carrierScale: {x: 3.721689, y: 2.6268344, z: 0.3}
+  interceptorScale: {x: 0.4691, y: 0.4691, z: 0.1}

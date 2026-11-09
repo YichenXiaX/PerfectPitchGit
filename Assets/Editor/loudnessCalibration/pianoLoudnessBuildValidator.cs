@@ -126,6 +126,35 @@ public sealed class pianoLoudnessBuildValidator : IProcessSceneWithReport
                 || AssetDatabase.GetAssetDependencyHash(assetPath).ToString() != saved.dependencyHash)
                 fail(context, "recording source/import settings changed; regenerate calibration: " + assetPath);
         }
+        if (target == BuildTarget.WebGL) validateBrowserProfile(data, profileAsset, context);
+    }
+
+    private static void validateBrowserProfile(pianoLoudnessCalibration.profileData source, TextAsset sourceAsset, string context)
+    {
+        var asset = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/browserLoudnessProfile.json");
+        if (asset == null) fail(context, "browser calibration is missing; generate and validate it from the exported browser audio");
+        var wrapper = JsonUtility.FromJson<buildProfile>(asset.text);
+        var browser = wrapper == null ? null : wrapper.browser;
+        if (browser == null || !browser.validationPassed || browser.encoding != "AAC"
+            || browser.sourceProfileId != source.profileId
+            || browser.sourceProfileSha256 != hashFile(AssetDatabase.GetAssetPath(sourceAsset)))
+            fail(context, "browser calibration is unvalidated or belongs to a different source profile");
+        var data = JsonUtility.FromJson<pianoLoudnessCalibration.profileData>(asset.text);
+        try { pianoLoudnessCalibration.createProfile(data); }
+        catch (Exception error) { fail(context, "invalid browser profile: " + error.Message); }
+        if (!data.profileId.StartsWith("iso532-1-browser-stereo-", StringComparison.Ordinal)
+            || data.model != source.model || data.fadeDuration != source.fadeDuration
+            || data.pressurePaPerDigitalUnit != source.pressurePaPerDigitalUnit
+            || data.clips.Length != source.clips.Length)
+            fail(context, "browser profile model, stimulus assumptions or recording set differs from the source profile");
+        foreach (var original in source.clips)
+        {
+            var decoded = Array.Find(data.clips, clip => clip.clipName == original.clipName);
+            if (decoded == null || decoded.channels != original.channels || decoded.sampleRate != browser.sampleRate
+                || Math.Abs(decoded.playbackStartFrame / (double)decoded.sampleRate
+                    - original.playbackStartFrame / (double)original.sampleRate) > .51 / decoded.sampleRate)
+                fail(context, "browser recording identity or onset changed: " + original.clipName);
+        }
     }
 
     private static string hashFile(string path)
@@ -155,6 +184,17 @@ public sealed class pianoLoudnessBuildValidator : IProcessSceneWithReport
     private sealed class buildProfile
     {
         public provenanceData provenance;
+        public browserData browser;
+    }
+
+    [Serializable]
+    private sealed class browserData
+    {
+        public string sourceProfileId;
+        public string sourceProfileSha256;
+        public string encoding;
+        public int sampleRate;
+        public bool validationPassed;
     }
 
     [Serializable]

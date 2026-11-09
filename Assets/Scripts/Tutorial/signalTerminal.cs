@@ -12,7 +12,7 @@ public static class signalTerminal
     public static readonly Color rule = new Color32(62,98,112,255);
     public enum actionStyle { primary, secondary, quiet }
     public static TMP_FontAsset bodyFont => Resources.Load<TMP_FontAsset>("SignalTerminal/barlowRegular");
-    public static TMP_FontAsset buttonFont => Resources.Load<TMP_FontAsset>("SignalTerminal/barlowMedium");
+    public static TMP_FontAsset buttonFont => monoFont;
     public static TMP_FontAsset monoFont => Resources.Load<terminalFontSet>("SignalTerminal/fontSet").heading;
     public static RectTransform node(Transform parent,string name)
     {var r=new GameObject(name,typeof(RectTransform)).GetComponent<RectTransform>();r.SetParent(parent,false);return r;}
@@ -42,7 +42,7 @@ public static class signalTerminal
         var c=b.colors;c.normalColor=style==actionStyle.primary?accent:style==actionStyle.quiet?new Color(9/255f,25/255f,34/255f,0):new Color32(16,33,50,255);
         c.highlightedColor=style==actionStyle.primary?new Color32(185,232,246,255):new Color32(29,62,82,255);
         c.selectedColor=c.highlightedColor;c.pressedColor=new Color32(87,143,164,255);c.disabledColor=new Color32(35,51,61,255);c.fadeDuration=.08f;b.colors=c;
-        var t=b.GetComponentInChildren<TMP_Text>(true);if(t!=null){type(t,false,16);t.font=buttonFont;t.rectTransform.localScale=Vector3.one;t.margin=Vector4.zero;fill(t.rectTransform,8);t.color=style==actionStyle.primary?background:ink;t.alignment=TextAlignmentOptions.Center;}
+        var t=b.GetComponentInChildren<TMP_Text>(true);if(t!=null){type(t,true,15);t.font=buttonFont;t.rectTransform.localScale=Vector3.one;t.margin=Vector4.zero;fill(t.rectTransform,8);t.color=style==actionStyle.primary?background:ink;t.alignment=TextAlignmentOptions.Center;}
         var existing=r.Find("buttonBorder");if(existing==null){var border=node(r,"buttonBorder");fill(border);var f=border.gameObject.AddComponent<terminalFrame>();f.box=true;f.color=style==actionStyle.primary?accent:rule;f.raycastTarget=false;}
         var nav=b.GetComponent<terminalFocus>();if(nav==null)nav=b.gameObject.AddComponent<terminalFocus>();
     }

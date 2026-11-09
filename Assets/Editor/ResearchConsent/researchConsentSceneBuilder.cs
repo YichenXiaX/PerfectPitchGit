@@ -110,7 +110,8 @@ public static class researchConsentSceneBuilder
             label(content,value,heading?22:19,heading);
         }
         space(content,24);
-        for(int i=0;i<nameLabels.Length;i++) { label(content,nameLabels[i],19); input(content,placeholders[i]); }
+        var nameFields=new TMP_InputField[nameLabels.Length];
+        for(int i=0;i<nameLabels.Length;i++) { label(content,nameLabels[i],19); nameFields[i]=input(content,placeholders[i]); }
         space(content,10);
         var agree = toggle(content,agreement,null);
         label(content,"Optional follow-up:",20,true);
@@ -119,7 +120,7 @@ public static class researchConsentSceneBuilder
         var yesToggle=toggle(content,yes,group);
         var noToggle=toggle(content,no,group);
         label(content,contact,19);
-        input(content,contactPlaceholder);
+        var contactField=input(content,contactPlaceholder);
         space(content,36);
         var actions=row(content,80);
         button(actions,"Back",backAction,fieldColor,100);
@@ -127,7 +128,7 @@ public static class researchConsentSceneBuilder
         var next=button(actions,proceed,continueAction,accentColor,240);
         next.interactable=false;
         return new researchConsentUi.form {panel=scroll.transform.parent.gameObject,scroll=scroll,
-            agreement=agree,followUpYes=yesToggle,followUpNo=noToggle,continueButton=next};
+            agreement=agree,followUpYes=yesToggle,followUpNo=noToggle,continueButton=next,nameFields=nameFields,contactField=contactField};
     }
     private static RectTransform page(Transform canvas,string name,string title,out UnityEngine.UI.ScrollRect scroll)
     {

@@ -20,10 +20,7 @@ public class accountUi : MonoBehaviour
     {
         account = cloudAccount.instance;
         account.changed += render;
-        loginButton.onClick.AddListener(() => { var password = passwordInput.text; passwordInput.text = ""; account.logIn(emailInput.text, password); });
-        signupButton.onClick.AddListener(() => { var password = passwordInput.text; passwordInput.text = ""; account.signUp(emailInput.text, password); });
-        verifyButton.onClick.AddListener(() => { var code = codeInput.text; codeInput.text = ""; account.verifyEmail(emailInput.text, code); });
-        resendButton.onClick.AddListener(() => account.resendEmail(emailInput.text));
+        // accountEntry owns the separate login, signup and email-confirmation actions.
         refreshButton.onClick.AddListener(account.refreshProgress);
         retryButton.onClick.AddListener(account.retrySave);
         logoutButton.onClick.AddListener(account.logOut);
@@ -32,7 +29,7 @@ public class accountUi : MonoBehaviour
         playButton.onClick.AddListener(() => {
             if (account.busy || account.hasPendingSave) return;
             opened = false; Time.timeScale = 1;
-            if (SceneManager.GetActiveScene().name == cloudAccount.tutorialScene) SceneManager.LoadScene(cloudAccount.accountScene);
+            if (SceneManager.GetActiveScene().name == cloudAccount.tutorialScene || SceneManager.GetActiveScene().name == cloudAccount.consentScene) SceneManager.LoadScene(cloudAccount.accountScene);
             else account.enterPlay();
         });
         SceneManager.sceneLoaded += sceneLoaded;
@@ -68,19 +65,20 @@ public class accountUi : MonoBehaviour
     private void render()
     {
         if (account == null) return;
-        bool inGame = SceneManager.GetActiveScene().name == cloudAccount.playScene || SceneManager.GetActiveScene().name == cloudAccount.tutorialScene;
+        bool inConsent = SceneManager.GetActiveScene().name == cloudAccount.consentScene;
+        bool inGame = SceneManager.GetActiveScene().name == cloudAccount.playScene || SceneManager.GetActiveScene().name == cloudAccount.tutorialScene || inConsent;
         if (!account.signedIn && inGame && !opened) { previousTimeScale = Time.timeScale; Time.timeScale = 0; opened = true; }
         bool showing = !inGame || opened || !account.signedIn;
         isBlocking = showing;
         panel.SetActive(showing);
-        loginPanel.SetActive(!account.signedIn);
-        dashboardPanel.SetActive(account.signedIn);
+        loginPanel.SetActive(!account.signedIn || account.authenticating);
+        dashboardPanel.SetActive(account.signedIn && !account.authenticating);
         compactBar.SetActive(inGame && !showing);
         closeButton.gameObject.SetActive(inGame && account.signedIn);
         logoutButton.gameObject.SetActive(account.signedIn);
-        playButton.gameObject.SetActive(account.signedIn && (!inGame || SceneManager.GetActiveScene().name == cloudAccount.tutorialScene));
-        closeButton.GetComponentInChildren<TMP_Text>().text = SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "Return to training" : "Return to game";
-        playButton.GetComponentInChildren<TMP_Text>().text = SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "Exit training" : (account.tutorialComplete ? "Enter game" : "Start flight training");
+        playButton.gameObject.SetActive(account.signedIn && (!inGame || SceneManager.GetActiveScene().name == cloudAccount.tutorialScene || inConsent));
+        closeButton.GetComponentInChildren<TMP_Text>().text = inConsent ? "Return to consent" : SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "Return to training" : "Return to game";
+        playButton.GetComponentInChildren<TMP_Text>().text = inConsent ? "Back to account" : SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "Exit training" : !account.consentComplete ? "Research choice" : (account.tutorialComplete ? "Enter game" : "Start flight training");
         statusText.text = account.message;
         saveText.text = SceneManager.GetActiveScene().name == cloudAccount.tutorialScene ? "TRAINING / scores and research recording off" : account.saveMessage;
         var p = account.progress;
@@ -97,6 +95,6 @@ public class accountUi : MonoBehaviour
         playButton.interactable = !account.busy && !account.hasPendingSave;
         retryButton.gameObject.SetActive(account.hasPendingSave);
         retryButton.interactable = !account.saving && !account.busy && account.signedIn;
-        if (account.signedIn) { passwordInput.text = ""; codeInput.text = ""; emailInput.text = ""; }
+        // Clear credentials only after confirmed success, in accountEntry; retain recoverable failures.
     }
 }

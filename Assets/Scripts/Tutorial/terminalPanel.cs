@@ -6,6 +6,8 @@ public class terminalPanel : MonoBehaviour
     public TMP_Text metadata,title,progress;
     public float preferredWidth=620,top=145;
     public bool reserveTutorialHud;
+    public bool centerVertically;
+    public float horizontalOffset;
     private RectTransform header,leftRule,bottomRule,viewport,scrollbar;
     private UnityEngine.UI.ScrollRect scroller;
     public static terminalPanel create(Transform parent,string name)
@@ -34,15 +36,17 @@ public class terminalPanel : MonoBehaviour
     {
         var r=(RectTransform)transform;var parent=(RectTransform)r.parent;float w=Mathf.Min(Mathf.Min(preferredWidth,680),parent.rect.width-32);r.sizeDelta=new Vector2(w,r.sizeDelta.y);
         bool narrowLesson=reserveTutorialHud && parent.rect.width/parent.rect.height<1.5f;
-        float effectiveTop=narrowLesson?Mathf.Max(top,110):top;
-        float bottomMargin=narrowLesson?75:20;
+        float effectiveTop=centerVertically?(narrowLesson?110:24):narrowLesson?Mathf.Max(top,110):top;
+        float bottomMargin=centerVertically?effectiveTop:narrowLesson?75:20;
         float bodyWidth=w-60;
         foreach(Transform child in content)if(child.gameObject.activeSelf){var t=child.GetComponent<TMP_Text>();if(t!=null)signalTerminal.height((RectTransform)child,Mathf.Max(t.fontSize+4,t.GetPreferredValues(t.text,bodyWidth,0).y+2));}
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(content);
         float bodyHeight=UnityEngine.UI.LayoutUtility.GetPreferredHeight(content)+28;
         bool hasActions=false;foreach(Transform a in actions)if(a.gameObject.activeSelf)hasActions=true;
         float footer=hasActions?58:14;float visibleBody=Mathf.Min(bodyHeight,Mathf.Max(80,parent.rect.height-effectiveTop-bottomMargin-76-footer));float height=76+visibleBody+footer;
-        r.sizeDelta=new Vector2(w,height);r.anchoredPosition=new Vector2(0,-effectiveTop);
+        if(centerVertically)effectiveTop=Mathf.Max(24,(parent.rect.height-height)*.5f);
+        float maxOffset=Mathf.Max(0,(parent.rect.width-w)*.5f-16);
+        r.sizeDelta=new Vector2(w,height);r.anchoredPosition=new Vector2(Mathf.Clamp(horizontalOffset,-maxOffset,maxOffset),-effectiveTop);
         viewport.anchorMin=new Vector2(0,1);viewport.anchorMax=Vector2.one;viewport.pivot=new Vector2(.5f,1);viewport.offsetMin=new Vector2(40,-76-visibleBody+14);viewport.offsetMax=new Vector2(-20,-90);
         scrollbar.anchorMin=scrollbar.anchorMax=Vector2.one;scrollbar.pivot=new Vector2(1,1);scrollbar.offsetMin=new Vector2(-8,-76-visibleBody+14);scrollbar.offsetMax=new Vector2(-4,-90);
         content.sizeDelta=new Vector2(0,bodyHeight-28);scroller.vertical=bodyHeight>visibleBody+1;
@@ -51,5 +55,7 @@ public class terminalPanel : MonoBehaviour
         actions.offsetMin=new Vector2(20,10);actions.offsetMax=new Vector2(-20,50);actions.gameObject.SetActive(hasActions);
         bottomRule.anchorMin=Vector2.zero;bottomRule.anchorMax=new Vector2(1,0);bottomRule.pivot=new Vector2(.5f,0);bottomRule.anchoredPosition=new Vector2(0,footer);bottomRule.sizeDelta=new Vector2(0,1);bottomRule.gameObject.SetActive(hasActions);
     }
+    public void resetScroll()
+    {scroller.StopMovement();content.anchoredPosition=Vector2.zero;scroller.verticalNormalizedPosition=1;}
     private void LateUpdate(){reflow();}
 }

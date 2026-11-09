@@ -72,3 +72,44 @@ the SPL reference, channel balance, timing and any needed device correction.
 See THIRD_PARTY_NOTICES.txt, LICENSE-MOSQITO.txt and reference-manifest.json
 for provenance and attribution.
 
+## Browser profile
+
+Keep the Editor profile unchanged when generating browser corrections. The new
+tools reuse `fastModel.py`, its pressure/stereo metric, and the runtime gain solver.
+They do not use a second hearing model or modify the source recordings.
+
+1. Install UnityPy 1.25.4 in an isolated tool environment for extraction. Supply
+   the uncompressed `.data` file from the actual WebGL build (decompress `.br` or
+   `.gz` first if necessary):
+
+       python browserCalibration.py --data /path/to/build.data --source-profile /path/to/loudnessProfile.json --directory /path/to/browser-work
+       python browserCalibration.py --serve --directory /path/to/browser-work
+
+2. Open the local address printed by the server and select **Render calibration
+   grid**. This silently exports 48 kHz Web Audio playback at every pitch knot.
+   Encoded and rendered waveform hashes guard against accidentally mixing builds.
+
+3. Generate the response grid in the existing pinned model environment:
+
+       python generateBrowserProfile.py --source-profile /path/to/loudnessProfile.json --render-dir /path/to/browser-work/measurement --output /path/to/browser-work/browserLoudnessProfile.json --cache-dir /path/to/browser-work/cache --workers 4
+
+4. Run `runtimeTests/realProfileRegression.csproj` against the new profile. Add
+   `sampleRate` from each profile clip to its exported cases and save the case
+   array as `browserValidationCases.json` in the work directory. Include exact
+   tutorial sequences and intermediate pitches/durations. Select **Render
+   independent validation**, then reevaluate the saved waveforms with the same
+   model. Check both rates, gain ceilings, onset offsets and clipping. A table's
+   own predicted values are not an independent validation.
+
+5. Only after those checks pass, attach their report to the profile metadata,
+   set `browser.validationPassed`, and install it as
+   `Assets/Resources/browserLoudnessProfile.json`. Verify a new build's encoded
+   piano hashes against the profile's `encodedSha256` fields, then test actual
+   tutorial-to-game playback. The normal game build validator must remain enabled.
+
+Chromium offline rendering does not measure headphones, device latency, other
+browser engines or Unity's live per-frame fade. Keep those limits in the report.
+Updating Unity, recording imports or source profile/onsets requires revalidation;
+new audio exports may require a separate calibration-only build before replacing
+the playable build. Do not mark an untested table as validated to unblock a build.
+
